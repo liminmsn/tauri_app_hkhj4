@@ -45,7 +45,7 @@ export default function () {
                 }
             </div>
         </div>
-        <Com_TipsLabel label="年度分类" icon="line-md:thumbs-up-twotone" />
+        <Com_TipsLabel label="年度分类" icon="line-md:calendar-twotone" />
         <div className=" grid gap-1 grid-cols-6">
             {
                 grup.map(item => {
@@ -63,7 +63,7 @@ export default function () {
                 })
             }
         </div>
-        <Com_TipsLabel label="连载更新" icon="line-md:thumbs-up-twotone" />
+        <Com_TipsLabel label="连载更新" icon="line-md:beer-twotone-loop" />
         <div className="grid gap-1 grid-cols-6">
             {
                 itemList.map(item => {
