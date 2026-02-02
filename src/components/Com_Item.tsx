@@ -26,7 +26,7 @@ export default function ({ item }: propsType) {
             {
                 isErr ?
                     <div>
-                        <Icon icon="line-md:youtube-twotone" width="80" />
+                        <Icon icon="line-md:youtube-twotone" width="40" />
                     </div> :
                     <img className="
                     group-hover:-z-1 
