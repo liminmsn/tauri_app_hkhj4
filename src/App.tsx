@@ -1,5 +1,5 @@
-import { Outlet } from "react-router";
 import Com_TopBar from "./components/Com_TopBar";
+import { Outlet } from "react-router-dom";
 import "@/design/App.css";
 
 function App() {

@@ -1,8 +1,16 @@
 import { Icon } from "@iconify/react/dist/iconify.js"
+import { useEffect } from "react";
+import { useLoaderData } from "react-router-dom"
 
 export default function () {
+    const loader = useLoaderData();
+    useEffect(() => {
+        console.log(loader);
+        
+    }, [])
+
     return <div className="h-full overflow-y-auto p-2">
-        <div className="py-4 pb-6 px-4 h-2/5 shadow-sm rounded-sm flex text_1" style={{ backgroundRepeat: 'no-repeat', backgroundSize: "100% 100%", backgroundImage: 'url("/test/bg.svg")',backgroundColor:'rgba(0,0,0,0.2)' }}>
+        <div className="py-4 pb-6 px-4 h-2/5 shadow-sm rounded-sm flex text_1" style={{ backgroundRepeat: 'no-repeat', backgroundSize: "100% 100%", backgroundImage: 'url("/test/bg.svg")', backgroundColor: 'rgba(0,0,0,0.2)' }}>
             <div className="h-full flex-1 mr-6 flex">
                 <img className="h-full mr-6" src="/test/tp.png" alt="" />
                 <div className="flex flex-col">
@@ -21,7 +29,7 @@ export default function () {
             <div className="grid grid-cols-3 grid-rows-3 gap-1">
                 {
                     [1, 2, 3, 4, 5, 6, 7, 8, 9].map(item => {
-                        return <img className="h-full" src="/test/tp.png" alt="" />
+                        return <img key={item} className="h-full" src="/test/tp.png" alt="" />
                     })
                 }
             </div>
@@ -33,7 +41,7 @@ export default function () {
         <div className="grid gap-2 grid-cols-5">
             {
                 [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(item => {
-                    return <div className=" rounded-sm shadow-sm overflow-hidden cursor-pointer">
+                    return <div key={item} className=" rounded-sm shadow-sm overflow-hidden cursor-pointer">
                         {/* <div className="h-2 theme_0"></div> */}
                         <img src="/test/tp.png" className="theme_0" />
                         <div className="text-center label_bg">
