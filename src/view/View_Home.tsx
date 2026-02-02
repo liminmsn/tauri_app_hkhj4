@@ -1,9 +1,8 @@
 import Com_Item from "@/components/Com_Item";
 import Com_TipsLabel from "@/components/Com_TipsLabel";
 import { data_home_onign } from "@/router/analysis/analysis_net_api_home";
-import { Icon } from "@iconify/react/dist/iconify.js"
 import { useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom"
+import { Link, useLoaderData } from "react-router-dom"
 
 export default function () {
     const { cardList, itemList, grup } = useLoaderData<typeof data_home_onign>();
@@ -12,7 +11,7 @@ export default function () {
     useEffect(() => {
     }, [])
 
-    return <div className="h-full overflow-y-auto p-2">
+    return <div className="p-1">
         <div className="py-4 pb-6 px-4 h-80 shadow-sm rounded-sm flex text_1" style={{ backgroundSize: "100% auto", backgroundImage: 'url("/test/bg.svg")' }}>
             <div className="h-full flex-1 mr-6 flex">
                 <img className="h-full max-w-50 min-w-50 mr-6" src={cardList_current.img} />
@@ -50,24 +49,22 @@ export default function () {
         <div className=" grid gap-1 grid-cols-6">
             {
                 grup.map(item => {
-                    return <div key={item.label}
+                    return <Link key={item.label} to={`/year/${encodeURIComponent(item.url)}`}
                         className="
-                    hover:scale-98
-                    hover:shadow-none
-                    active:scale-100
-                    p-1
-                    theme_0
-                    transition
-                    shadow-sm 
-                    rounded-br-sm 
-                    cursor-pointer">
+                            hover:shadow-none
+                            active:shadow-md
+                            p-1
+                            theme_0
+                            shadow-sm 
+                            rounded-br-sm 
+                            cursor-pointer">
                         <span className="text-sm">{item.label}</span>
-                    </div>
+                    </Link>
                 })
             }
         </div>
         <Com_TipsLabel label="连载更新" icon="line-md:thumbs-up-twotone" />
-        <div className="grid gap-1 grid-cols-5">
+        <div className="grid gap-1 grid-cols-6">
             {
                 itemList.map(item => {
                     return <Com_Item item={item} key={item.url} />

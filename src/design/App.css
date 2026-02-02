@@ -2,10 +2,10 @@
 ::-webkit-scrollbar{
     appearance: none;
     width: 4px;
-    background: var(--theme_bg_0);
+    background: var(--theme_1);
 }
 ::-webkit-scrollbar-thumb{
-    background: var(--text_0);
+    background: var(--theme_0);
 }
 :root {
     --theme_bg_0: #6CA651;
