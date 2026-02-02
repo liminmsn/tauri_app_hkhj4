@@ -1,12 +1,15 @@
 @import "tailwindcss";
-::-webkit-scrollbar{
+
+::-webkit-scrollbar {
     appearance: none;
     width: 4px;
     background: var(--theme_1);
 }
-::-webkit-scrollbar-thumb{
+
+::-webkit-scrollbar-thumb {
     background: var(--theme_0);
 }
+
 :root {
     --theme_bg_0: #6CA651;
     --theme_0: #BBCB2E;
@@ -15,10 +18,11 @@
 }
 
 
-.label_bg{
+.label_bg {
     color: var(--theme_0);
     background-color: color-mix(in srgb, var(--text_0) 20%, rgba(0, 0, 0, 0.2) 20%);
 }
+
 .text_0 {
     color: var(--text_0);
 }
@@ -33,4 +37,12 @@
 
 .theme_1 {
     background-color: var(--theme_1);
+}
+
+.drag {
+    -webkit-app-region: drag;
+}
+
+.no_drag {
+    -webkit-app-region: no-drag;
 }
