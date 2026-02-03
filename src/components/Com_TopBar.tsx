@@ -1,18 +1,20 @@
 import { Icon } from "@iconify/react";
 import logo from "@/assets/icon/icon.svg";
-import { useNavigate, useNavigation, useRoutes } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { window } from "@tauri-apps/api";
 import { useEffect, useState } from "react";
+import GlobalEvent from "@/tools/GlobalEvent";
 const app_name = import.meta.env['VITE_APPNAME'] as string;
 
 const win = window.getCurrentWindow();
 export default function () {
-    // const navigate = useNavigation();
+    const [loding, setLoding] = useState(false);
     const navigate = useNavigate();
     const [isfull, setIsFull] = useState(false);
 
     useEffect(() => {
-        win.isMaximized().then(setIsFull)
+        win.isMaximized().then(setIsFull);
+        GlobalEvent.on('loding', setLoding)
     }, [])
     return <div className="theme_0 px-2 py-1 flex justify-between shadow-sm drag">
         <div className="flex no_drag">
@@ -20,10 +22,13 @@ export default function () {
                 <img src={logo} />
                 <span className=" ml-2 font-bold">{app_name}</span>
             </div>
-            <div className="inline-flex ml-2">
+            <div className="inline-flex">
                 <Icon onClick={() => navigate(-1)} icon="line-md:arrow-left-circle-twotone" width="24" className="cursor-pointer active:scale-95" />
                 <Icon onClick={() => navigate("/")} icon="line-md:home-twotone" width="24" className="cursor-pointer active:scale-95" />
                 <Icon onClick={() => location.reload()} icon="line-md:gauge-full-twotone" width="24" className="cursor-pointer active:scale-95" />
+            </div>
+            <div>
+                {loding && <Icon icon="line-md:loading-twotone-loop" width="24" />}
             </div>
         </div>
         <div className="flex select-none no_drag">

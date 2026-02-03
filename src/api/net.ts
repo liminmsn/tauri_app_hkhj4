@@ -1,4 +1,5 @@
 import Debug from "@/tools/Debug";
+import GlobalEvent from "@/tools/GlobalEvent";
 import { ClientOptions, fetch } from "@tauri-apps/plugin-http";
 
 export enum NetAPI {
@@ -25,10 +26,12 @@ export default class Net extends Debug {
     }
     private async send() {
         this.Log("网络请求:", this.base_url);
+        GlobalEvent.send('loding', true);
         const res = await fetch(this.base_url, this.fetchInit);
         if (!res.ok) {
             throw new Error(`HTTP ${res.status}`);
         }
+        GlobalEvent.send('loding', false);
         return res;
     }
 }
