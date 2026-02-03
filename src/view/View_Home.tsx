@@ -1,4 +1,5 @@
 import Com_Item from "@/components/Com_Item";
+import Com_Link from "@/components/Com_Link";
 import Com_TipsLabel from "@/components/Com_TipsLabel";
 import { data_home_onign } from "@/router/analysis/analysis_net_api_home";
 import { useEffect, useState } from "react";
@@ -31,16 +32,17 @@ export default function () {
             <div className="grid grid-cols-3 grid-rows-3 gap-1">
                 {
                     cardList.map(item => {
-                        return <img
-                            className="h-full max-w-full w-full cursor-pointer"
-                            onMouseEnter={() => setCardListCurrent(item)}
-                            style={
-                                cardList_current == item ?
-                                    { outline: '2px var(--theme_bg_0) solid' } :
-                                    {}
-                            }
-                            key={item.url}
-                            src={item.img} />
+                        return <Link key={item.url} to={`detail/${window.btoa(item.url)}`}>
+                            <img
+                                className="h-full max-w-full w-full cursor-pointer"
+                                onMouseEnter={() => setCardListCurrent(item)}
+                                style={
+                                    cardList_current == item ?
+                                        { outline: '2px var(--theme_bg_0) solid' } :
+                                        {}
+                                }
+                                src={item.img} />
+                        </Link>
                     })
                 }
             </div>
@@ -49,17 +51,7 @@ export default function () {
         <div className=" grid gap-1 grid-cols-6">
             {
                 grup.map(item => {
-                    return <Link key={item.label} to={`/year/${encodeURIComponent(item.url)}`}
-                        className="
-                            hover:shadow-none
-                            active:shadow-md
-                            p-1
-                            theme_0
-                            shadow-sm 
-                            rounded-br-sm 
-                            cursor-pointer">
-                        <span className="text-sm">{item.label}</span>
-                    </Link>
+                    return <Com_Link key={item.url} label={item.label} url={`/year/${encodeURIComponent(item.url)}`} />
                 })
             }
         </div>
