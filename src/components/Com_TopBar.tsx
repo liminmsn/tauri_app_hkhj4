@@ -20,7 +20,7 @@ export default function () {
         <div className="flex no_drag">
             <div className=" inline-flex">
                 <img src={logo} />
-                <span className=" ml-2 font-bold">{app_name}</span>
+                <span className=" mx-1 font-bold">{app_name}</span>
             </div>
             <div className="inline-flex">
                 <Icon onClick={() => navigate(-1)} icon="line-md:arrow-left-circle-twotone" width="24" className="cursor-pointer active:scale-95" />
