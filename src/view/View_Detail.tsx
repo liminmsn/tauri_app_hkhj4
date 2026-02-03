@@ -56,7 +56,7 @@ export default function () {
                 })
             }
         </div>
-        <Com_TipsLabel label="喜欢看的人也在看" icon="line-md:thumbs-up-twotone" />
+        <Com_TipsLabel label="同时在看" icon="line-md:thumbs-up-twotone" />
         <div className=" grid grid-cols-6 gap-1">
             {
                 playother_2.map(item => {

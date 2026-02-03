@@ -31,7 +31,10 @@ export default class Net extends Debug {
         if (!res.ok) {
             throw new Error(`HTTP ${res.status}`);
         }
-        GlobalEvent.send('loding', false);
+        setTimeout(() => {
+            GlobalEvent.send('loding', false);
+            GlobalEvent.send('top', true);
+        }, 50);
         return res;
     }
 }
