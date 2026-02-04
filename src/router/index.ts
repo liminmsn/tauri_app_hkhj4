@@ -1,4 +1,4 @@
-import { createBrowserRouter, useParams } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import Net, { NetAPI } from "@/api/net";
 import App from "@/App";
 import View_Home from "@/view/View_Home";
@@ -8,6 +8,8 @@ import View_Year from "@/view/View_Year";
 import analysis_net_api_year from "./analysis/analysis_net_api_year";
 import View_Detail from "@/view/View_Detail";
 import analysis_net_api_detail from "./analysis/analysis_net_api_detail";
+import View_Play from "@/view/View_Play";
+import analysis_net_api_play from "./analysis/analysis_net_api_play";
 
 const router = createBrowserRouter([
     {
@@ -37,6 +39,15 @@ const router = createBrowserRouter([
                     const url = window.atob(params['url'] || '');
                     const res_text = await (await new Net(url).get()).text();
                     return analysis.init(res_text, analysis_net_api_detail);
+                }
+            },
+            {
+                path:'/play/:url',
+                Component: View_Play,
+                loader: async ({ params }) => {
+                    const url = window.atob(params['url'] || '');
+                    const res_text = await (await new Net(url).get()).text();
+                    return analysis.init(res_text, analysis_net_api_play);
                 }
             }
         ]

@@ -29,7 +29,7 @@ export default function () {
                 <div className="grid grid-cols-6 gap-1">
                     {
                         playlist_1.map(item => {
-                            return <Com_Link key={item.url} label={item.label} url={item.url} />
+                            return <Com_Link key={item.url} label={item.label} url={`/play/${window.btoa(item.url)}`} />
                         })
                     }
                 </div>
@@ -42,7 +42,7 @@ export default function () {
                 <div className="grid grid-cols-6 gap-1">
                     {
                         playlist_2.map(item => {
-                            return <Com_Link key={item.url} label={item.label} url={item.url} />
+                            return <Com_Link key={item.url} label={item.label} url={`/play/${window.btoa(item.url)}`} />
                         })
                     }
                 </div>

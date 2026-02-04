@@ -15,6 +15,7 @@
     --theme_0: #BBCB2E;
     --theme_1: #839705;
     --text_0: #6B7445;
+    --plyr-color-main: var(--theme_0);
 }
 
 
@@ -45,4 +46,9 @@
 
 .no_drag {
     -webkit-app-region: no-drag;
+}
+
+
+.plyr {
+    height: 100%;
 }
