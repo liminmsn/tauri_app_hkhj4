@@ -8,8 +8,8 @@ const app_name = import.meta.env['VITE_APPNAME'] as string;
 
 const win = window.getCurrentWindow();
 export default function () {
-    const [loding, setLoding] = useState(false);
     const navigate = useNavigate();
+    const [loding, setLoding] = useState(false);
     const [isfull, setIsFull] = useState(false);
 
     useEffect(() => {
