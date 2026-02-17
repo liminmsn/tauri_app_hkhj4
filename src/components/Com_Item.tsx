@@ -32,11 +32,8 @@ export default function ({ item }: propsType) {
                             <Icon icon="line-md:youtube-twotone" width="40" />
                         </div> :
                         <img className="
-                        group-hover:-z-1 
-                        group-hover:rotate-0
-                        group-hover:scale-100
-                        group-hover:translate-0
-                        scale-100
+                        min-w-full
+                        group-hover:-z-1
                         absolute 
                         transition"
                             onError={() => setIsErr(true)}

@@ -25,7 +25,6 @@ export default class Net extends Debug {
         return this.send();
     }
     private async send() {
-        this.Log("网络请求:", this.base_url);
         GlobalEvent.send('loding', true);
         const res = await fetch(this.base_url, this.fetchInit);
         if (!res.ok) {
@@ -35,6 +34,12 @@ export default class Net extends Debug {
             GlobalEvent.send('loding', false);
             GlobalEvent.send('top', true);
         }, 50);
+        if (import.meta.env['VITE_NET_DEBUG'] == "true") {
+            this.Log("网络请求:", this.base_url);
+            if (import.meta.env['VITE_NET_DEBUG_info'] == "true") {
+                this.Log("请求数据:", res)
+            }
+        }
         return res;
     }
 }
