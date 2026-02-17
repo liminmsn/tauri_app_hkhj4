@@ -1,6 +1,6 @@
-import Com_Item from "@/components/Com_Item";
-import Com_Link from "@/components/Com_Link";
-import Com_TipsLabel from "@/components/Com_TipsLabel";
+import Com_Item from "@/components/view/Com_Item";
+import Com_Link from "@/components/view/Com_Link";
+import Com_TipsLabel from "@/components/view/Com_TipsLabel";
 import { data_detail_onign } from "@/router/analysis/analysis_net_api_detail";
 import { useLoaderData } from "react-router-dom"
 
