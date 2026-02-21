@@ -9,6 +9,17 @@ export enum NetAPI {
 export default class Net extends Debug {
     base_url = import.meta.env['VITE_URL'] as string;
     private fetchInit: RequestInit & ClientOptions = {}
+    protected nethook = {
+        loding: () => {
+            GlobalEvent.send('loding', true);
+        },
+        lodingEnd: () => {
+            setTimeout(() => {
+                GlobalEvent.send('loding', false);
+                GlobalEvent.send('top', false);
+            }, 50);
+        }
+    }
 
     constructor(url = "") {
         super();
@@ -19,21 +30,20 @@ export default class Net extends Debug {
         this.fetchInit.body = form;
         return this.send();
     }
-    pose(body: object) {
+    post(body: object) {
         this.fetchInit.method = "POST";
         this.fetchInit.body = JSON.stringify(body);
         return this.send();
     }
+
     private async send() {
-        GlobalEvent.send('loding', true);
+        this.nethook.loding();
         const res = await fetch(this.base_url, this.fetchInit);
-        if (!res.ok) {
-            throw new Error(`HTTP ${res.status}`);
-        }
-        setTimeout(() => {
-            GlobalEvent.send('loding', false);
-            GlobalEvent.send('top', true);
-        }, 50);
+        this.nethook.lodingEnd();
+        // if (!res.ok) {
+        //     throw new Error(`HTTP ${res.status}`);
+        // }
+        // 调试方法
         if (import.meta.env['VITE_NET_DEBUG'] == "true") {
             this.Log("网络请求:", this.base_url);
             if (import.meta.env['VITE_NET_DEBUG_info'] == "true") {

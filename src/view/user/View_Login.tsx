@@ -1,10 +1,16 @@
-import GlobalEvent from "@/tools/GlobalEvent";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function () {
 
     function search(formData: FormData) {
-        GlobalEvent.send('toast', { label: formData.get('username'), icon: '✅' })
+        toast.promise(() => {
+            return new Promise((res, rej) => {
+                setTimeout(() => {
+                    res(213);
+                }, 1000);
+            })
+        }, { pending: '加载中', success: 'suc', error: 'er' })
     }
 
     return <div className="w-full text-center">

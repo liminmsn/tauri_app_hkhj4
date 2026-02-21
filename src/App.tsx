@@ -4,23 +4,13 @@ import { useEffect, useRef, useState } from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import "@/design/App.css";
 import GlobalEvent from "./tools/GlobalEvent";
-import toast, { Toaster } from "react-hot-toast";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   useEffect(() => {
     document.addEventListener('contextmenu', (e) => e.preventDefault());
     GlobalEvent.on('top', scrollTop);
   }, [])
-
-  GlobalEvent.on('toast', async (obj: { label: '通知', icon: '✅' }) => {
-    const id = toast.loading("加载中...", {
-      position: 'top-center'
-    })
-    setTimeout(() => {
-
-      toast.dismiss(id);
-    }, 1000);
-  })
 
   const location = useLocation();
   const isPlayPage = location.pathname.startsWith("/play");
@@ -43,11 +33,11 @@ function App() {
       <Com_TopBar />
       <div ref={scrollDoM} onScroll={onScroll} className="mx-auto overflow-y-auto" style={{ height: 'calc(100vh - 33px)', maxWidth: isPlayPage ? '' : '1200px' }}>
         {topBtn && !isPlayPage &&
-          <div onClick={() => scrollTop(false)} className="p-2 theme_0 shadow-md rounded-sm cursor-pointer active:scale-90 z-100 fixed right-4 bottom-4">
+          <div onClick={() => scrollTop(true)} className="p-2 theme_0 shadow-md rounded-sm cursor-pointer active:scale-90 z-100 fixed right-4 bottom-4">
             <Icon icon="line-md:upload-twotone-loop" width="24" height="24" />
           </div>}
         <Outlet />
-        <Toaster />
+        <ToastContainer />
       </div>
     </main>
   );
