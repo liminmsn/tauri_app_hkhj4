@@ -22,14 +22,14 @@ export default function () {
                 <img src={logo} />
                 <span className=" mx-1 font-bold">{app_name}</span>
             </div>
-            <div className="inline-flex">
-                <Icon onClick={() => navigate(-1)} icon="line-md:arrow-left-circle-twotone" width="24" className="cursor-pointer active:scale-95" />
-                <Icon onClick={() => location.reload()} icon="line-md:round-360" width="24" className="cursor-pointer active:scale-95" />
+            <div className="inline-flex gap-1.5">
                 <Icon onClick={() => navigate("/")} icon="line-md:hazard-lights-twotone-loop" width="24" className="cursor-pointer active:scale-95" />
+                <Icon onClick={() => location.reload()} icon="line-md:round-360" width="24" className="cursor-pointer active:scale-95" />
+                <Icon onClick={() => navigate(-1)} icon="line-md:arrow-left-circle-twotone" width="24" className="cursor-pointer active:scale-95" />
             </div>
-            <div className="inline-flex">
-                <Link to={"/setting"}> <Icon icon="line-md:cog-loop" width="24" className="cursor-pointer active:scale-95" /></Link>
+            <div className="inline-flex gap-1.5 ml-1.5">
                 <Link to={"/user"}> <Icon icon="material-symbols:account-circle" width="24" className="cursor-pointer active:scale-95" /></Link>
+                <Link to={"/setting"}> <Icon icon="line-md:cog-loop" width="24" className="cursor-pointer active:scale-95" /></Link>
             </div>
         </div>
         <div className="flex select-none no_drag">

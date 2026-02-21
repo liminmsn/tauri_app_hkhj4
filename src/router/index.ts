@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import Net, { NetAPI } from "@/api/net";
+import Net, { NetAPI } from "@/api/Net";
 import App from "@/App";
 import View_Home from "@/view/View_Home";
 import analysis from "./analysis";
@@ -12,6 +12,9 @@ import View_Play from "@/view/View_Play";
 import analysis_net_api_play from "./analysis/analysis_net_api_play";
 import View_User from "@/view/View_User";
 import View_Setting from "@/view/View_Setting";
+import View_Login from "@/view/user/View_Login";
+import View_UserInfo from "@/view/user/View_UserInfo";
+import View_Register from "@/view/user/View_Register";
 
 const router = createBrowserRouter([
     {
@@ -55,7 +58,21 @@ const router = createBrowserRouter([
             {
                 path: '/user',
                 Component: View_User,
-                loader: () => { }
+                loader: () => { },
+                children: [
+                    {
+                        path: '',
+                        Component: View_Login
+                    },
+                    {
+                        path: "userInfo",
+                        Component: View_UserInfo
+                    },
+                    {
+                        path: 'register',
+                        Component: View_Register
+                    }
+                ]
             },
             {
                 path: '/setting',

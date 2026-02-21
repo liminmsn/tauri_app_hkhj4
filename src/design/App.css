@@ -18,6 +18,10 @@
     --plyr-color-main: var(--theme_0);
 }
 
+input:not([type=submit]){
+    text-indent: 0.5rem;
+}
+
 
 .label_bg {
     color: var(--theme_0);

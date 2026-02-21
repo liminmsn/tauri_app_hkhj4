@@ -1,5 +1,7 @@
-export default function(){
-    return <div>
-        用户中心
+import { Outlet } from "react-router-dom";
+
+export default function () {
+    return <div className="p-2">
+        <Outlet />
     </div>
 }
