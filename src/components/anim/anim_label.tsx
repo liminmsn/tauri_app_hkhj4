@@ -1,6 +1,6 @@
-import { animate, createTimeline, spring, stagger, Timeline } from 'animejs';
-import { useEffect, useRef } from 'react';
-export default function () {
+import { animate, spring } from 'animejs';
+import { ReactNode, useEffect, useRef } from 'react';
+export default function ({ children }: { children: ReactNode }) {
     const p_ = useRef(null);
     useEffect(() => {
         animate(p_.current as any, {
@@ -13,6 +13,6 @@ export default function () {
         })
     }, [])
     return <p ref={p_}>
-        test hello
+        {children}
     </p>
 }

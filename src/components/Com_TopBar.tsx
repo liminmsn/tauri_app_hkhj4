@@ -1,7 +1,6 @@
 import { Icon } from "@iconify/react";
-import logo from "@/assets/icon/icon.svg";
 import { Link, useNavigate } from "react-router-dom";
-import { window } from "@tauri-apps/api";
+import { app, window } from "@tauri-apps/api";
 import { useEffect, useState } from "react";
 import GlobalEvent from "@/tools/GlobalEvent";
 import Anim_label from "./anim/anim_label";
@@ -20,9 +19,7 @@ export default function () {
     return <div className="theme_0 px-2 py-1 flex justify-between shadow-sm drag">
         <div className="flex no_drag">
             <div className=" inline-flex">
-                <img src={logo} />
-                <Anim_label />
-                <span className=" mx-1 font-bold">{app_name}</span>
+                <Anim_label>{app_name}</Anim_label>
             </div>
             <div className="inline-flex gap-1 ml-2">
                 <Icon onClick={() => navigate("/")} icon="line-md:home-md-twotone" width="24" className="cursor-pointer active:scale-95" />

@@ -46,7 +46,7 @@ export default function ({ item }: propsType) {
             </div>
             {
                 item.info2 &&
-                <div className="text-center label_bg overflow-hidden text-ellipsis">
+                <div className="text-center label_bg overflow-hidden text-ellipsis px-1">
                     <span className="text-sm text-nowrap scale-10">{item.info2}</span>
                 </div>
             }

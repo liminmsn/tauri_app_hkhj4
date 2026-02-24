@@ -47,6 +47,6 @@
 }
 
 .theme_1_opacity {
-    color: var(--theme_0);
+    color: var(--text_0);
     background: color-mix(in srgb, var(--theme_1) 10%, rgba(0,0,0,0.1) 90%);
 }
