@@ -1,5 +1,7 @@
-import { toast, TypeOptions } from "react-toastify";
-import Net from "./Net";
+import Debug from "@/tools/Debug";
+import GlobalEvent from "@/tools/GlobalEvent";
+import ToastUtil from "@/tools/ToastUtil";
+import { toast } from "react-toastify";
 
 export enum NetUserAPI {
     /**获取登录图片验证码 */
@@ -12,34 +14,40 @@ export enum NetUserAPI {
     register = "/api/user/createUser"
 }
 
-export default class NetUser extends Net {
-    base_url = import.meta.env['Vite_URL_USER'];
+export default class NetUser extends Debug {
+    baseUrl = "/api"
+    private initData: RequestInit = {};
     constructor(url = "") {
-        super(url);
+        super();
+        this.baseUrl += url;
     }
-    nethook = {
-        notific_id: 0,
-        notific: (label: string, type: TypeOptions = "default", loding: boolean = false) => {
-            this.nethook.notific_id = toast(label, {
-                theme: 'dark',
-                type: type,
-                isLoading: loding
-            }) as number;
-        },
+    protected nethook = {
         loding: () => {
-            this.nethook.notific("加载中");
+            GlobalEvent.send('loding', true);
         },
         lodingEnd: () => {
-            toast.dismiss(this.nethook.notific_id);
+            setTimeout(() => {
+                GlobalEvent.send('loding', false);
+            }, 50);
         }
-    };
-    async getData(res: Response): Promise<{ code: number, msg: string, data?: any }> {
-        if (res.status == 200) {
-            return await res.json() as any;
-        }
-        return {
-            code: 500,
-            msg: '服务器错误'
+    }
+    get(form?: FormData) {
+        this.initData.method = "GET";
+        this.initData.body = form;
+        return this;
+    }
+    async then(): Promise<{ code: number, msg: string, data: any }> {
+        this.nethook.loding();
+        const res = await fetch(this.baseUrl, this.initData);
+        this.nethook.lodingEnd();
+        try {
+            return await res.json();
+        } catch (error) {
+            return {
+                code: 500,
+                msg: "错误",
+                data: null
+            }
         }
     }
 }

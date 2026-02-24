@@ -1,4 +1,7 @@
 @import "tailwindcss";
+@import "./input.css";
+@import "./plyr.css";
+@import "./drag.css";
 
 ::-webkit-scrollbar {
     appearance: none;
@@ -13,14 +16,18 @@
 :root {
     --theme_bg_0: #6CA651;
     --theme_0: #BBCB2E;
-    --theme_1: #839705;
+    --theme_0: #839705;
     --text_0: #6B7445;
     --plyr-color-main: var(--theme_0);
 }
 
+.card_bg{
+    fill: red !important;
+}
+
 .label_bg {
-    color: var(--theme_0);
-    background-color: color-mix(in srgb, var(--text_0) 20%, rgba(0, 0, 0, 0.2) 20%);
+    color: var(--theme_1);
+    background-color: color-mix(in srgb, var(--theme_0) 20%, rgba(0, 0, 0, 0.2) 20%);
 }
 
 .text_0 {
@@ -42,36 +49,4 @@
 .theme_1_opacity {
     color: var(--theme_0);
     background: color-mix(in srgb, var(--theme_1) 10%, rgba(0,0,0,0.1) 90%);
-}
-
-
-.drag {
-    -webkit-app-region: drag;
-}
-
-.no_drag {
-    -webkit-app-region: no-drag;
-}
-
-
-.plyr {
-    height: 100%;
-}
-
-
-input {
-    padding: 0.05rem;
-}
-
-input[type=submit] {
-    cursor: pointer;
-
-    &:active {
-        transform: scale(0.9);
-        transition: 250ms;
-    }
-}
-
-input:not([type=submit]) {
-    text-indent: 0.25rem;
 }

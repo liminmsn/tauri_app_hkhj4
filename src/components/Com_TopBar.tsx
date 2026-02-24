@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { window } from "@tauri-apps/api";
 import { useEffect, useState } from "react";
 import GlobalEvent from "@/tools/GlobalEvent";
+import Anim_label from "./anim/anim_label";
 const app_name = import.meta.env['VITE_APPNAME'] as string;
 
 const win = window.getCurrentWindow();
@@ -20,6 +21,7 @@ export default function () {
         <div className="flex no_drag">
             <div className=" inline-flex">
                 <img src={logo} />
+                <Anim_label />
                 <span className=" mx-1 font-bold">{app_name}</span>
             </div>
             <div className="inline-flex gap-1 ml-2">
@@ -33,7 +35,7 @@ export default function () {
         </div>
         <div className="flex select-none no_drag">
             <div className="inline-flex gap-1 mr-2">
-                <Link to={"/user"}> <Icon icon="material-symbols:account-circle" width="24" className="cursor-pointer active:scale-95" /></Link>
+                <Link to={"/user/login"}> <Icon icon="material-symbols:account-circle" width="24" className="cursor-pointer active:scale-95" /></Link>
                 <Link to={"/setting"}> <Icon icon="line-md:cog-loop" width="24" className="cursor-pointer active:scale-95" /></Link>
             </div>
             <div className="inline-flex">

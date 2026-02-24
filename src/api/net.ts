@@ -21,8 +21,9 @@ export default class Net extends Debug {
         }
     }
 
-    constructor(url = "") {
+    constructor(url = "", base_url?: string) {
         super();
+        if (base_url) this.base_url = base_url;
         this.base_url += url;
     }
     get(form?: FormData) {
@@ -40,9 +41,6 @@ export default class Net extends Debug {
         this.nethook.loding();
         const res = await fetch(this.base_url, this.fetchInit);
         this.nethook.lodingEnd();
-        // if (!res.ok) {
-        //     throw new Error(`HTTP ${res.status}`);
-        // }
         // 调试方法
         if (import.meta.env['VITE_NET_DEBUG'] == "true") {
             this.Log("网络请求:", this.base_url);

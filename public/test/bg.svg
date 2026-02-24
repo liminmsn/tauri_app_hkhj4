@@ -1,6 +1,6 @@
 <svg width="886" height="294" viewBox="0 0 886 294" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g filter="url(#filter0_g_13_626)">
-<rect x="4" y="4" width="878" height="286" fill="#BBCB2E"/>
+<rect x="4" y="4" width="878" height="286" id="card_bg" fill="var(--theme_0)"/>
 </g>
 <defs>
 <filter id="filter0_g_13_626" x="0" y="0" width="886" height="294" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">

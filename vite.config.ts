@@ -1,39 +1,42 @@
-import { defineConfig } from "vite";
+import { defineConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react";
 import tsconfigPaths from "vite-tsconfig-paths"
 import tailwindcss from "@tailwindcss/vite";
 
-// @ts-expect-error process is a nodejs global
 const host = process.env.TAURI_DEV_HOST;
-
 // https://vite.dev/config/
-export default defineConfig(async () => ({
-  plugins: [react(), tailwindcss(), tsconfigPaths()],
-  resolve: {
-    alias: {
-      "*": "./src"
-    }
-  },
-
-  // Vite options tailored for Tauri development and only applied in `tauri dev` or `tauri build`
-  //
-  // 1. prevent Vite from obscuring rust errors
-  clearScreen: false,
-  // 2. tauri expects a fixed port, fail if that port is not available
-  server: {
-    port: 1420,
-    strictPort: true,
-    host: host || false,
-    hmr: host
-      ? {
-        protocol: "ws",
-        host,
-        port: 1421,
+export default defineConfig(async ({ mode }) => {
+  console.log(mode,process.cwd(),'yyyyyy');
+   const env = loadEnv(mode, process.cwd(), '')
+  return {
+    plugins: [react(), tailwindcss(), tsconfigPaths()],
+    resolve: {
+      alias: {
+        "*": "./src"
       }
-      : undefined,
-    watch: {
-      // 3. tell Vite to ignore watching `src-tauri`
-      ignored: ["**/src-tauri/**"],
     },
-  },
-}));
+    clearScreen: false,
+    server: {
+      port: 1420,
+      strictPort: true,
+      host: host || false,
+      hmr: host
+        ? {
+          protocol: "ws",
+          host,
+          port: 1421,
+        }
+        : undefined,
+      watch: {
+        ignored: ["**/src-tauri/**"],
+      },
+      proxy: {
+        '/api': {
+          target: env['VITE_URL_USER'],
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api/, ''),
+        }
+      }
+    },
+  }
+});

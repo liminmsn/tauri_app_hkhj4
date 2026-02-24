@@ -25,7 +25,7 @@ export default function ({ item }: propsType) {
             {/* {item.url} */}
             <div className="theme_0 h-1" style={{ backgroundSize: "100% auto", backgroundImage: 'url("/test/bg.svg")' }}></div>
             <div className="h-50 label_bg overflow-hidden relative flex justify-center items-center">
-                <span style={{ color: 'var(--theme_0)' }} className="absolute z-2 top-0 left-0 text-sm bg-black/50 px-1 rounded-br-sm group-hover:hidden">{item.info}</span>
+                <span className="absolute z-2 top-0 left-0 text-sm bg-black/50 px-1 rounded-br-sm group-hover:hidden">{item.info}</span>
                 {
                     isErr ?
                         <div>
@@ -41,7 +41,7 @@ export default function ({ item }: propsType) {
                 }
 
             </div>
-            <div className="text-center overflow-hidden text-ellipsis" style={{ backgroundSize: "100% auto", backgroundImage: 'url("/test/bg.svg")' }}>
+            <div className="text-center overflow-hidden text-ellipsis theme_0">
                 <span className="text-sm text-nowrap">{item.label}</span>
             </div>
             {

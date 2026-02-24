@@ -1,3 +1,4 @@
+import Icon_bg from "@/components/icon/icon_bg";
 import Com_Item from "@/components/view/Com_Item";
 import Com_Link from "@/components/view/Com_Link";
 import Com_TipsLabel from "@/components/view/Com_TipsLabel";
@@ -13,40 +14,42 @@ export default function () {
     }, [])
 
     return <div className="p-1">
-        <div className="py-4 pb-6 px-4 h-80 shadow-sm rounded-sm flex text_1" style={{ backgroundSize: "100% auto", backgroundImage: 'url("/test/bg.svg")' }}>
-            <div className="h-full flex-1 mr-6 flex">
-                <img className="h-full max-w-50 min-w-50 mr-6" src={cardList_current.img} />
-                <div className="flex flex-col">
-                    <p className="text-2xl">{cardList_current.info.title}</p>
-                    <p className="my-2 text-right text-2xl"><span className=" text-amber-300 mr-1 font-bold">{cardList_current.info.fen}</span>分</p>
-                    <p>主演：{cardList_current.info.ul[0]}</p>
-                    <div className="grid grid-cols-2 grid-rows-2 my-2">
-                        <span>类型：{cardList_current.info.ul[1]}</span>
-                        <span>导演：{cardList_current.info.ul[2]}</span>
-                        <span>地区：{cardList_current.info.ul[3]}</span>
-                        <span>年份：{cardList_current.info.ul[4]}</span>
+        <Icon_bg>
+            <div className="py-4 pb-6 px-4 h-80 shadow-sm rounded-sm flex text_1">
+                <div className="h-full flex-1 mr-6 flex">
+                    <img className="h-full max-w-50 min-w-50 mr-6" src={cardList_current.img} />
+                    <div className="flex flex-col">
+                        <p className="text-2xl">{cardList_current.info.title}</p>
+                        <p className="my-2 text-right text-2xl"><span className=" text-amber-300 mr-1 font-bold">{cardList_current.info.fen}</span>分</p>
+                        <p>主演：{cardList_current.info.ul[0]}</p>
+                        <div className="grid grid-cols-2 grid-rows-2 my-2">
+                            <span>类型：{cardList_current.info.ul[1]}</span>
+                            <span>导演：{cardList_current.info.ul[2]}</span>
+                            <span>地区：{cardList_current.info.ul[3]}</span>
+                            <span>年份：{cardList_current.info.ul[4]}</span>
+                        </div>
+                        <p>剧情：{cardList_current.info.desc2}</p>
                     </div>
-                    <p>剧情：{cardList_current.info.desc2}</p>
+                </div>
+                <div className="grid grid-cols-3 grid-rows-3 gap-1">
+                    {
+                        cardList.map(item => {
+                            return <Link key={item.url} to={`detail/${window.btoa(item.url)}`}>
+                                <img
+                                    className="h-full max-w-full w-full cursor-pointer"
+                                    onMouseEnter={() => setCardListCurrent(item)}
+                                    style={
+                                        cardList_current == item ?
+                                            { outline: '2px var(--theme_bg_0) solid' } :
+                                            {}
+                                    }
+                                    src={item.img} />
+                            </Link>
+                        })
+                    }
                 </div>
             </div>
-            <div className="grid grid-cols-3 grid-rows-3 gap-1">
-                {
-                    cardList.map(item => {
-                        return <Link key={item.url} to={`detail/${window.btoa(item.url)}`}>
-                            <img
-                                className="h-full max-w-full w-full cursor-pointer"
-                                onMouseEnter={() => setCardListCurrent(item)}
-                                style={
-                                    cardList_current == item ?
-                                        { outline: '2px var(--theme_bg_0) solid' } :
-                                        {}
-                                }
-                                src={item.img} />
-                        </Link>
-                    })
-                }
-            </div>
-        </div>
+        </Icon_bg>
         <Com_TipsLabel label="年度分类" icon="line-md:calendar-twotone" />
         <div className=" grid gap-1 grid-cols-6">
             {
