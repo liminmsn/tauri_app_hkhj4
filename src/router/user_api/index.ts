@@ -8,6 +8,18 @@ export async function user_api_captcha() {
 export async function user_api_login(from: FormData) {
     const res = await new NetUser(NetUserAPI.login).post(from).then();
     console.log(res);
-    
+
     return res;
+}
+
+export type UserInfoType = {
+    username: string;
+    email: string;
+    image: string;
+    gender: number;
+    registerTime: string;
+}
+/**获取用户信息 */
+export async function user_api_userInfo() {
+    return await new NetUser(NetUserAPI.user_info).get().then();
 }

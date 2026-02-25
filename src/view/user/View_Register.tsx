@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 export default function () {
     return <div className="px-10 py-4 pb-8">
@@ -13,7 +13,7 @@ export default function () {
             <label>密&nbsp;&nbsp;码：
                 <input className="border outline-none" type="password" name="password" placeholder="******" minLength={6} required />
             </label>
-            <label htmlFor="">性&nbsp;&nbsp;别：
+            <label>性&nbsp;&nbsp;别：
                 <select className="border outline-none" name="gender" defaultValue={0}>
                     <option value={0} label="私密" />
                     <option value={1} label="男生" />

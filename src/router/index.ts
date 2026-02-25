@@ -16,7 +16,7 @@ import View_Login from "@/view/user/View_Login";
 import View_UserInfo from "@/view/user/View_UserInfo";
 import View_Register from "@/view/user/View_Register";
 import View_Error from "@/view/View_Error";
-import { user_api_captcha } from "./user_api";
+import { user_api_captcha, user_api_userInfo } from "./user_api";
 
 async function analysis_body(url: NetAPI | string | undefined, analysis_net_api: (dom: Document) => any) {
     try {
@@ -65,7 +65,7 @@ const router = createBrowserRouter([
                         path: '',
                         Component: View_Login,
                         loader: async () => {
-                            if(localStorage.getItem('token')){
+                            if (localStorage.getItem('token')) {
                                 location.replace('/user/userInfo');
                             }
                             return await user_api_captcha();
@@ -73,7 +73,10 @@ const router = createBrowserRouter([
                     },
                     {
                         path: "userInfo",
-                        Component: View_UserInfo
+                        Component: View_UserInfo,
+                        loader: async () => {
+                            return await user_api_userInfo();
+                        }
                     },
                     {
                         path: 'register',

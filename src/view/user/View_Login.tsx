@@ -1,9 +1,10 @@
 import { user_api_login } from "@/router/user_api";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData} from "react-router-dom";
 import { toast } from "react-toastify";
 
 export default function () {
     const { data } = useLoaderData();
+
     function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
 
@@ -17,6 +18,7 @@ export default function () {
             });
             if (res.code == 200) {
                 localStorage.setItem('token', res.data);
+                window.location.pathname = '/user/userInfo';
             }
         });
     }

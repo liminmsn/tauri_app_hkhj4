@@ -7,6 +7,8 @@ export enum NetUserAPI {
     captcha_image = "/captcha",
     /**用户登录 */
     login = "/login",
+    /**用户登录 */
+    user_info = "/api/user/info",
     /**价格列表 */
     premium_list = "/api/premium/premium_list",
     /**注册用户 */
@@ -19,6 +21,10 @@ export default class NetUser extends Debug {
     constructor(url = "") {
         super();
         this.baseUrl += url;
+        const token = localStorage.getItem("token");
+        if (token) {
+            this.initData.headers = { "token": token } as HeadersInit;
+        }
     }
     protected nethook = {
         loding: () => {
