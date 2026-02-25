@@ -1,17 +1,8 @@
 @import "tailwindcss";
+@import "./root.css";
 @import "./input.css";
 @import "./plyr.css";
 @import "./drag.css";
-
-::-webkit-scrollbar {
-    appearance: none;
-    width: 4px;
-    background: var(--theme_0);
-}
-
-::-webkit-scrollbar-thumb {
-    background: var(--theme_1);
-}
 
 :root {
     --theme_0: #BBCB2E;

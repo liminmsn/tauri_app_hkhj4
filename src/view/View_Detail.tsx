@@ -10,7 +10,7 @@ export default function () {
     return <div className="p-1">
         <Icon_bg>
             <div className="py-4 pb-6 px-4 shadow-sm rounded-sm flex text_1 relative">
-                <div className="h-full flex-1 mr-6 flex">
+                <div className="h-full flex-1 mr-6 w-full flex">
                     <img className="h-full max-w-60 min-w-60 rounded-sm" style={{ borderColor: 'var(--theme_1)' }} src={info.img} />
                     <div className="flex flex-col ml-2">
                         <p className="text-2xl">{info.title}</p>

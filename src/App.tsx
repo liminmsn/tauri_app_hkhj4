@@ -33,7 +33,7 @@ function App() {
       <Com_TopBar />
       <div ref={scrollDoM} onScroll={onScroll} className="mx-auto overflow-y-auto" style={{ height: 'calc(100vh - 33px)', maxWidth: isPlayPage ? '' : '1200px' }}>
         {topBtn && !isPlayPage &&
-          <div onClick={() => GlobalEvent.send('top', true)} className="p-2 theme_1 shadow-md rounded-sm cursor-pointer active:scale-90 z-100 fixed right-4 bottom-4">
+          <div onClick={() => GlobalEvent.send('top', true)} className="p-2 theme_0 shadow-md rounded-sm cursor-pointer active:scale-90 z-100 fixed right-4 bottom-4">
             <Icon icon="line-md:upload-twotone-loop" width="24" height="24" />
           </div>}
         <Outlet />
