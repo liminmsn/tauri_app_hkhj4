@@ -33,11 +33,11 @@ export default function () {
         </label>
         <label>
             <div className="flex">
-                <div className="w-12 theme_0 text-sm text-center leading-7 font-bold">{data}</div>
+                <div className="w-12 theme_1 text-sm text-center leading-7 font-bold">{data}</div>
                 <input className="border outline-none" type="text" name="captcha" placeholder="输入验证码" required />
             </div>
         </label>
-        <input className="theme_0 text_0" type="submit" value="登录" />
+        <input type="submit" value="登录" />
         <div className="flex justify-between text-sm">
             <Link to={""}>忘记密码？</Link>
             <Link to={"register"}>注册</Link>

@@ -4,8 +4,8 @@ export default function ({ children }: { children: ReactNode }) {
     const p_ = useRef(null);
     useEffect(() => {
         animate(p_.current as any, {
-            scale: [
-                { to: 1.25, ease: 'inOut(3)', duration: 200 },
+            opacity: [
+                { to: .25, ease: 'inOut(2)', duration: 200 },
                 { to: 1, ease: spring({ bounce: .7 }) }
             ],
             loop: true,

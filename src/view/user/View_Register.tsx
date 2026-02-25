@@ -20,7 +20,7 @@ export default function () {
                     <option value={2} label="女生" />
                 </select>
             </label>
-            <input className="theme_0 text_0" type="submit" value="注册" required />
+            <input type="submit" value="注册" />
             <div className="text-sm text-right">
                 <Link to={"/user"}>已有帐号? 去登录</Link>
             </div>

@@ -6,36 +6,38 @@
 ::-webkit-scrollbar {
     appearance: none;
     width: 4px;
-    background: var(--theme_1);
+    background: var(--theme_0);
 }
 
 ::-webkit-scrollbar-thumb {
-    background: linear-gradient(transparent, var(--theme_0),transparent);
+    background: var(--theme_1);
 }
 
 :root {
-    --theme_bg_0: #6CA651;
     --theme_0: #BBCB2E;
-    --theme_0: #839705;
+    --theme_1: #839705;
     --text_0: #6B7445;
-    --plyr-color-main: var(--theme_0);
+    --plyr-color-main: var(--text_0);
 }
 
 .label_bg {
     color: var(--theme_1);
-    background-color: color-mix(in srgb, var(--theme_0) 20%, rgba(0, 0, 0, 0.2) 20%);
+    background-color: color-mix(in srgb, var(--theme_0) 50%, transparent);
 }
+
+.theme_bg_0 {
+    background: linear-gradient(to left bottom, transparent 0%, var(--theme_0) 80%);
+    background-color: var(--theme_1);
+}
+
+
 
 .text_0 {
     color: var(--text_0);
 }
 
-.theme_bg_0 {
-    background-color: var(--theme_bg_0);
-}
-
 .theme_0 {
-    background-color: var(--theme_0);
+    background-color: color-mix(in srgb, var(--theme_0) 100%, transparent);
 }
 
 .theme_1 {

@@ -11,16 +11,19 @@ export default function () {
         <Icon_bg>
             <div className="py-4 pb-6 px-4 shadow-sm rounded-sm flex text_1 relative">
                 <div className="h-full flex-1 mr-6 flex">
-                    <img className="h-full max-w-60 min-w-60 mr-6" src={info.img} />
-                    <div className="flex flex-col">
+                    <img className="h-full max-w-60 min-w-60 rounded-sm" style={{ borderColor: 'var(--theme_1)' }} src={info.img} />
+                    <div className="flex flex-col ml-2">
                         <p className="text-2xl">{info.title}</p>
                         <p className="my-2 text-right text-2xl absolute right-4 top-2"><span className=" text-amber-300 mr-1 font-bold">{info.pingfen}</span>分</p>
-                        {info.desc.map(item => {
+                        {info.desc.filter(val => val.t !== "").map(item => {
                             return <p key={item.o}>
                                 <span>{item.o}</span>
                                 <span>{item.t}</span>
                             </p>
                         })}
+                        <div>
+                            <input type="button" value="播放" />
+                        </div>
                     </div>
                 </div>
             </div>

@@ -12,19 +12,19 @@ label:has(input[required])::before {
 
 select[disabled],
 input[disabled] {
-    border-color: color-mix(in srgb, var(--theme_0) 50%, transparent 50%);
+    border-color: color-mix(in srgb, var(--theme_1) 50%, transparent 50%);
 }
 
 select {
-    border-color: var(--theme_0);
+    border-color: var(--theme_1);
 }
 
 option {
-    background-color: var(--theme_0);
+    background-color: var(--theme_1);
 }
 
 input {
-    border-color: var(--theme_0);
+    border-color: var(--theme_1);
     padding: 0.1rem;
     text-indent: 0.1rem;
     padding-right: 2rem;
@@ -34,6 +34,8 @@ input {
     &[type="submit"] {
         text-indent: 0;
         padding-right: 0;
+        background-color: var(--theme_0);
+        border-radius: 0.25rem;
     }
 }
 

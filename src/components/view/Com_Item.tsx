@@ -15,16 +15,19 @@ export default function ({ item }: propsType) {
     const [isErr, setIsErr] = useState(false);
 
     return <div key={item.url} className="
-                    group 
-                    hover:shadow-none
-                    active:scale-98
+                    theme_0
+                    group
+                    hover:rounded-md
+                    active:scale-90
                     shadow-sm 
                     overflow-hidden 
-                    cursor-pointer flex flex-col z-10">
+                    cursor-pointer
+                    relative
+                    flex flex-col z-10">
         <Link to={`/detail/${window.btoa(item.url)}`}>
             {/* {item.url} */}
-            <div className="theme_0 h-1" style={{ backgroundSize: "100% auto", backgroundImage: 'url("/test/bg.svg")' }}></div>
-            <div className="h-50 label_bg overflow-hidden relative flex justify-center items-center">
+            {/* <div className="theme_1 h-1" style={{ backgroundSize: "100% auto", backgroundImage: 'url("/test/bg.svg")' }}></div> */}
+            <div className="h-50 overflow-hidden relative flex justify-center items-center">
                 <span className="absolute z-2 top-0 left-0 text-sm bg-black/50 px-1 rounded-br-sm group-hover:hidden">{item.info}</span>
                 {
                     isErr ?
@@ -33,7 +36,7 @@ export default function ({ item }: propsType) {
                         </div> :
                         <img className="
                         min-w-full
-                        group-hover:-z-1
+                        group-hover:scale-150
                         absolute 
                         transition"
                             onError={() => setIsErr(true)}
@@ -41,15 +44,13 @@ export default function ({ item }: propsType) {
                 }
 
             </div>
-            <div className="text-center overflow-hidden text-ellipsis theme_0">
-                <span className="text-sm text-nowrap">{item.label}</span>
+            <div className="overflow-hidden text-ellipsis absolute w-full bottom-0">
+                <p className="p-1 group-hover:hidden block text-sm text-nowrap bg-black/80">{item.label}</p>
+                {
+                    item.info2 &&
+                    <p className="group-hover:block hidden text-sm text-nowrap overflow-hidden text-ellipsis p-1 bg-black/80">{item.info2}</p>
+                }
             </div>
-            {
-                item.info2 &&
-                <div className="text-center label_bg overflow-hidden text-ellipsis px-1">
-                    <span className="text-sm text-nowrap scale-10">{item.info2}</span>
-                </div>
-            }
         </Link>
     </div>
 }

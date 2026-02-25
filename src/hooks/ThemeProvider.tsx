@@ -16,15 +16,18 @@ const initTheme: ThemeContextType = {
     config: {
         id: 0,
         label: "魅惑紫",
-        theme: ["#1C0770", "#261CC1", "#3A9AFF", "white"],
+        // theme: ["#0B2D72", "#0992C2", "#0AC4E0"]
+        // theme: ["#6CA651", "#BBCB2E", "#839705"]
+        // theme: ["#576A8F", "#B7BDF7", "#FFF8DE"],
+        theme: ["#30364F", "#ACBAC4", "#F0F0DB"],
+        
     },
     setTheme(newTheme: ThemeContextType) {
         const { theme } = newTheme.config;
         const root = document.documentElement;
-        root.style.setProperty("--theme_bg_0", theme[0]);
-        root.style.setProperty("--theme_0", theme[1]);
-        root.style.setProperty("--theme_1", theme[2]);
-        root.style.setProperty("--text_0", theme[3]);
+        root.style.setProperty("--theme_0", theme[0]);
+        root.style.setProperty("--theme_1", theme[1]);
+        root.style.setProperty("--text_0", theme[2]);
         root.style.setProperty("--plyr-color-main", "var(--theme_0)");
         // localStorage.setItem("theme_config", JSON.stringify(newTheme.config));
     }

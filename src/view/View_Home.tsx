@@ -1,4 +1,5 @@
 import Icon_bg from "@/components/icon/icon_bg";
+import Com_Card from "@/components/view/Com_Card";
 import Com_Item from "@/components/view/Com_Item";
 import Com_Link from "@/components/view/Com_Link";
 import Com_TipsLabel from "@/components/view/Com_TipsLabel";
@@ -15,9 +16,9 @@ export default function () {
 
     return <div className="p-1">
         <Icon_bg>
-            <div className="py-4 pb-6 px-4 h-80 shadow-sm rounded-sm flex text_1">
+            <div className="py-4 px-4 h-80 shadow-sm rounded-sm flex text_1">
                 <div className="h-full flex-1 mr-6 flex">
-                    <img className="h-full max-w-50 min-w-50 mr-6" src={cardList_current.img} />
+                    <img className="h-full max-w-50 min-w-50 mr-6 rounded-r-sm" style={{ borderColor: 'var(--theme_1)' }} src={cardList_current.img} />
                     <div className="flex flex-col">
                         <p className="text-2xl">{cardList_current.info.title}</p>
                         <p className="my-2 text-right text-2xl"><span className=" text-amber-300 mr-1 font-bold">{cardList_current.info.fen}</span>分</p>
@@ -40,7 +41,7 @@ export default function () {
                                     onMouseEnter={() => setCardListCurrent(item)}
                                     style={
                                         cardList_current == item ?
-                                            { outline: '2px var(--theme_bg_0) solid' } :
+                                            { outline: '2px var(--theme_1) solid' } :
                                             {}
                                     }
                                     src={item.img} />

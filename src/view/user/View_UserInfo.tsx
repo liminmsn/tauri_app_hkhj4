@@ -11,7 +11,7 @@ export default function () {
         window.location.pathname = '/';
     }
 
-    return <form className="flex flex-col gap-1.5 px-10 py-4 pb-8">
+    return <form className="flex flex-col gap-1.5 px-20 py-4 pb-8">
         <div>
             <img className='h-20 w-20 border rounded-md' style={{ borderColor: 'var(--theme_0)' }} src={icon} alt="头像" />
         </div>
