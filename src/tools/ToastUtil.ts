@@ -12,12 +12,9 @@ export default class ToastUtil {
         this.stop();
         this.toastRun("加载中", "default", true);
     }
-    static success() {
+    static success(label = "完成") {
         this.stop();
-        this.toastRun("完成", "success");
-        setTimeout(() => {
-            this.stop();
-        }, 500);
+        this.toastRun(label, "success");
     }
     static stop() {
         toast.dismiss(this.ID);

@@ -1,11 +1,10 @@
 import Debug from "@/tools/Debug";
 import GlobalEvent from "@/tools/GlobalEvent";
-import ToastUtil from "@/tools/ToastUtil";
 import { toast } from "react-toastify";
 
 export enum NetUserAPI {
     /**获取登录图片验证码 */
-    captcha_image = "/captcha/image",
+    captcha_image = "/captcha",
     /**用户登录 */
     login = "/login",
     /**价格列表 */
@@ -33,6 +32,14 @@ export default class NetUser extends Debug {
     }
     get(form?: FormData) {
         this.initData.method = "GET";
+        if (form) {
+            const params = new URLSearchParams(form as any).toString();
+            this.baseUrl += "?" + params;
+        }
+        return this;
+    }
+    post(form?: FormData) {
+        this.initData.method = "POST";
         this.initData.body = form;
         return this;
     }
@@ -43,6 +50,11 @@ export default class NetUser extends Debug {
         try {
             return await res.json();
         } catch (error) {
+            toast("服务器错误!", {
+                position: 'bottom-right',
+                type: 'error',
+                theme: 'dark'
+            })
             return {
                 code: 500,
                 msg: "错误",

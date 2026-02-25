@@ -6,8 +6,8 @@ import tailwindcss from "@tailwindcss/vite";
 const host = process.env.TAURI_DEV_HOST;
 // https://vite.dev/config/
 export default defineConfig(async ({ mode }) => {
-  console.log(mode,process.cwd(),'yyyyyy');
-   const env = loadEnv(mode, process.cwd(), '')
+  console.log(mode, process.cwd(), 'yyyyyy');
+  const env = loadEnv(mode, process.cwd(), '')
   return {
     plugins: [react(), tailwindcss(), tsconfigPaths()],
     resolve: {
@@ -33,6 +33,7 @@ export default defineConfig(async ({ mode }) => {
       proxy: {
         '/api': {
           target: env['VITE_URL_USER'],
+          // target: "http://8.148.250.179:8080",
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api/, ''),
         }

@@ -10,7 +10,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--theme_0);
+    background: linear-gradient(transparent, var(--theme_0),transparent);
 }
 
 :root {
@@ -19,10 +19,6 @@
     --theme_0: #839705;
     --text_0: #6B7445;
     --plyr-color-main: var(--theme_0);
-}
-
-.card_bg{
-    fill: red !important;
 }
 
 .label_bg {
@@ -48,5 +44,5 @@
 
 .theme_1_opacity {
     color: var(--text_0);
-    background: color-mix(in srgb, var(--theme_1) 10%, rgba(0,0,0,0.1) 90%);
+    background: color-mix(in srgb, var(--theme_1) 10%, rgba(0, 0, 0, 0.1) 90%);
 }
