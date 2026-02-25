@@ -65,6 +65,9 @@ const router = createBrowserRouter([
                         path: '',
                         Component: View_Login,
                         loader: async () => {
+                            if(localStorage.getItem('token')){
+                                location.replace('/user/userInfo');
+                            }
                             return await user_api_captcha();
                         }
                     },

@@ -15,7 +15,7 @@ export default function () {
             config: {
                 ...config,
                 // theme: ["#15173D","#982598","#E491C9","#F1E9E9"]
-                theme: ["#6B7445", "#839705", "#BBCB2E", "#6CA651"]
+                theme: ["#6B7445", "#839705", "#BBCB2E", "black"].reverse()
                 // theme: ["#FFD400", "#FFC300", "#FF8C00", '#FF5F00'].reverse()
             },
             setTheme

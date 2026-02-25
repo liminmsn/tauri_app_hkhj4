@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function () {
     return <div className="px-10 py-4 pb-8">
         <form className="flex flex-col gap-1.5 text-left">
@@ -19,6 +21,9 @@ export default function () {
                 </select>
             </label>
             <input className="theme_0 text_0" type="submit" value="注册" required />
+            <div className="text-sm text-right">
+                <Link to={"/user"}>已有帐号? 去登录</Link>
+            </div>
         </form>
     </div>
 }

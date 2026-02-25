@@ -2,7 +2,7 @@ import Com_Card from "@/components/view/Com_Card";
 import { Outlet } from "react-router-dom";
 
 export default function () {
-    return <div className="p-2 text-center">
+    return <div className="h-full flex justify-center items-center pb-40">
         <Com_Card>
             <Outlet />
         </Com_Card>

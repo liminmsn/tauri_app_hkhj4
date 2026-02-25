@@ -1,6 +1,6 @@
 import icon from '@/assets/react.svg';
 export default function () {
-    return <div className="userInfo text_0">
+    return <div className="userInfo px-10 py-4 pb-8">
         <div className='text-center mb-2'>
             <img className='h-20 w-20 border-2 rounded-md' style={{ borderColor: 'var(--theme_0)' }} src={icon} alt="头像" />
         </div>

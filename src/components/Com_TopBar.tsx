@@ -19,7 +19,9 @@ export default function () {
     return <div className="theme_0 px-2 py-1 flex justify-between shadow-sm drag">
         <div className="flex no_drag">
             <div className=" inline-flex">
-                <Anim_label>{app_name}</Anim_label>
+                <Anim_label>
+                    <span className="font-bold">{app_name}</span>
+                </Anim_label>
             </div>
             <div className="inline-flex gap-1 ml-2">
                 <Icon onClick={() => navigate("/")} icon="line-md:home-md-twotone" width="24" className="cursor-pointer active:scale-95" />
