@@ -1,4 +1,4 @@
-import Com_Item from "@/components/view/Com_Item"
+import Com_Item from "@/components/view/com_item"
 import { data_year_onign } from "@/router/analysis/analysis_net_api_year"
 import { useEffect } from "react";
 import { useLoaderData } from "react-router-dom"

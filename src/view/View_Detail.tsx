@@ -1,12 +1,16 @@
 import Icon_bg from "@/components/icon/icon_bg";
-import Com_Item from "@/components/view/Com_Item";
-import Com_Link from "@/components/view/Com_Link";
-import Com_TipsLabel from "@/components/view/Com_TipsLabel";
+import Com_Item from "@/components/view/com_item";
+import Com_Link from "@/components/view/com_link";
+import Com_TipsLabel from "@/components/view/com_tipslabel";
+import { useHistoryContext } from "@/hooks/HistoryProvider";
 import { data_detail_onign } from "@/router/analysis/analysis_net_api_detail";
 import { useLoaderData } from "react-router-dom"
 
 export default function () {
-    const { info, playother_1, playother_2, playlist_1, playlist_2 } = useLoaderData<typeof data_detail_onign>();
+    const { add, history } = useHistoryContext();
+    const { data, url } = useLoaderData<{ url: string, data: typeof data_detail_onign }>();
+    const { info, playother_1, playother_2, playlist_1, playlist_2 } = data;
+
     return <div className="p-1">
         <Icon_bg>
             <div className="py-4 pb-6 px-4 shadow-sm rounded-sm flex text_1 relative">
@@ -34,8 +38,11 @@ export default function () {
                 <Com_TipsLabel label="主路线" icon="line-md:list-3-twotone" />
                 <div className="grid grid-cols-6 gap-1">
                     {
-                        playlist_1.map(item => {
-                            return <Com_Link key={item.url} label={item.label} url={`/play/${window.btoa(item.url)}`} />
+                        playlist_1.map((item, idx) => {
+                            return <span className={`${history.url == url && history.select == idx && history.grep == 1 ? "opacity-40" : ""}`}
+                                onClickCapture={() => add({ url, img: info.img, label: info.title, grep: 1, select: idx })} key={item.url}>
+                                <Com_Link key={item.url} label={item.label} url={`/play/${window.btoa(item.url)}`} />
+                            </span>
                         })
                     }
                 </div>
@@ -47,8 +54,11 @@ export default function () {
                 <Com_TipsLabel label="备用路线" icon="line-md:list-3-twotone" />
                 <div className="grid grid-cols-6 gap-1">
                     {
-                        playlist_2.map(item => {
-                            return <Com_Link key={item.url} label={item.label} url={`/play/${window.btoa(item.url)}`} />
+                        playlist_2.map((item, idx) => {
+                            return <span className={`${history.url == url && history.select == idx && history.grep == 2 ? "opacity-40" : ""}`}
+                                onClickCapture={() => add({ url, img: info.img, label: info.title, grep: 2, select: idx })} key={item.url}>
+                                <Com_Link key={item.url} label={item.label} url={`/play/${window.btoa(item.url)}`} />
+                            </span>
                         })
                     }
                 </div>

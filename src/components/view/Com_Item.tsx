@@ -1,3 +1,4 @@
+import { useHistoryContext } from "@/hooks/HistoryProvider";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -12,6 +13,7 @@ type propsType = {
 }
 
 export default function ({ item }: propsType) {
+
     const [isErr, setIsErr] = useState(false);
 
     return <div key={item.url} className="
@@ -36,7 +38,6 @@ export default function ({ item }: propsType) {
                         </div> :
                         <img className="
                         min-w-full
-                        group-hover:scale-150
                         absolute 
                         transition"
                             onError={() => setIsErr(true)}

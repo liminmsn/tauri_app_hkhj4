@@ -1,4 +1,4 @@
-import Com_Card from "@/components/view/Com_Card";
+import Com_Card from "@/components/view/com_card";
 import { Outlet } from "react-router-dom";
 
 export default function () {

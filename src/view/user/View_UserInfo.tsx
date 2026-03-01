@@ -13,7 +13,7 @@ export default function () {
 
     return <form className="flex flex-col gap-1.5 px-20 py-4 pb-8">
         <div>
-            <img className='h-20 w-20 border rounded-md' style={{ borderColor: 'var(--theme_0)' }} src={icon} alt="头像" />
+            <img className='h-20 w-20 rounded-md' style={{ borderColor: 'var(--theme_0)' }} src={icon} alt="头像" />
         </div>
         <input className="border outline-none" disabled={disabled} value={data.email} type="email" name="email" required />
         <input className="border outline-none" disabled={disabled} value={data.username} type="text" name="password" required minLength={6} />

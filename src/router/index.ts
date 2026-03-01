@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, redirect } from "react-router-dom";
 import Net, { NetAPI } from "@/api/Net";
 import App from "@/App";
 import View_Home from "@/view/View_Home";
@@ -16,7 +16,7 @@ import View_Login from "@/view/user/View_Login";
 import View_UserInfo from "@/view/user/View_UserInfo";
 import View_Register from "@/view/user/View_Register";
 import View_Error from "@/view/View_Error";
-import { user_api_captcha, user_api_userInfo } from "./user_api";
+import { user_api_userInfo } from "./user_api";
 
 async function analysis_body(url: NetAPI | string | undefined, analysis_net_api: (dom: Document) => any) {
     try {
@@ -26,6 +26,14 @@ async function analysis_body(url: NetAPI | string | undefined, analysis_net_api:
         console.log(error);
         window.location.pathname = "/err";
     }
+}
+/**未登录自动跳转登录 */
+function is_login() {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        return false;
+    }
+    return true;
 }
 
 const router = createBrowserRouter([
@@ -46,12 +54,23 @@ const router = createBrowserRouter([
             {
                 path: '/detail/:url',
                 Component: View_Detail,
-                loader: async ({ params }) => await analysis_body(window.atob(params['url']!), analysis_net_api_detail)
+                loader: async ({ params }) => {
+                    const url = window.atob(params['url']!);
+                    return {
+                        url: url,
+                        data: await analysis_body(url, analysis_net_api_detail)
+                    }
+                }
             },
             {
                 path: '/play/:url',
                 Component: View_Play,
-                loader: async ({ params }) => await analysis_body(window.atob(params['url']!), analysis_net_api_play)
+                loader: async ({ params }) => {
+                    if (!is_login()) {
+                        redirect("/user");
+                    }
+                    return await analysis_body(window.atob(params['url']!), analysis_net_api_play);
+                }
             },
             {
                 path: "/err",
@@ -65,10 +84,10 @@ const router = createBrowserRouter([
                         path: '',
                         Component: View_Login,
                         loader: async () => {
-                            if (localStorage.getItem('token')) {
-                                location.replace('/user/userInfo');
+                            if (is_login()) {
+                                throw redirect("/user/userInfo");
                             }
-                            return await user_api_captcha();
+                            // return await user_api_captcha();
                         }
                     },
                     {

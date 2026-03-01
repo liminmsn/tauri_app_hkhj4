@@ -7,7 +7,7 @@ export type ThemeContextTypeTheme = {
     theme: string[];
 }
 
-export type ThemeContextType = {
+type ThemeContextType = {
     config: ThemeContextTypeTheme,
     setTheme: (theme: ThemeContextType) => void;
 };

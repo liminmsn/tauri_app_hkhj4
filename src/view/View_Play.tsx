@@ -4,9 +4,12 @@ import { useLoaderData } from "react-router-dom";
 import { Plyr } from "plyr-react";
 import Hls from "hls.js";
 import "plyr-react/plyr.css";
+import { useHistoryContext } from "@/hooks/HistoryProvider";
 
+let ok = 0;
 export default function Player() {
     const { url, err, title } = useLoaderData() as typeof play_data;
+    const { history } = useHistoryContext();
     const hlsRef = useRef<Hls | null>(null);
 
     useEffect(() => {
@@ -25,6 +28,7 @@ export default function Player() {
                     hls.loadSource(url);
                     hls.on(Hls.Events.MANIFEST_PARSED, () => {
                         console.log("HLS视频加载成功");
+                        ok = 1;
                     });
                     hls.on(Hls.Events.ERROR, (event, data) => {
                         console.error("HLS播放错误:", data);
@@ -41,6 +45,10 @@ export default function Player() {
             if (hlsRef.current) {
                 hlsRef.current.destroy();
                 hlsRef.current = null;
+                if (ok == 1) {
+                    alert(JSON.stringify(history));
+                    ok = 0;
+                }
             }
         };
     }, [url, err]);
@@ -50,6 +58,7 @@ export default function Player() {
             err ?
                 <div className="w-full pt-20 text-center font-bold">视频资源不见了，看看其它的吧</div> :
                 <Plyr
+                    autoPlay={true}
                     source={{
                         type: "video",
                         sources: [
@@ -69,7 +78,6 @@ export default function Player() {
                             "volume",
                             "settings",
                             "pip",
-                            "airplay",
                             "fullscreen",
                         ],
                     }}

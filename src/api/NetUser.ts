@@ -49,18 +49,18 @@ export default class NetUser extends Debug {
         this.initData.body = form;
         return this;
     }
-    async then(): Promise<{ code: number, msg: string, data: any }> {
-        this.nethook.loding();
-        const res = await fetch(this.baseUrl, this.initData);
-        this.nethook.lodingEnd();
+    async then() {
         try {
-            return await res.json();
+            this.nethook.loding();
+            const res = await (await fetch(this.baseUrl, this.initData)).json() as { code: number, msg: string, data: any };
+            this.nethook.lodingEnd();
+            //token失效
+            if (res.code == -1) {
+                localStorage.removeItem('token');
+                window.location.pathname = '/user';
+            }
+            return res;
         } catch (error) {
-            toast("服务器错误!", {
-                position: 'bottom-right',
-                type: 'error',
-                theme: 'dark'
-            })
             return {
                 code: 500,
                 msg: "错误",

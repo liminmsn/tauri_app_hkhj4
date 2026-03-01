@@ -1,13 +1,14 @@
 import { user_api_login } from "@/router/user_api";
-import { Link, useLoaderData} from "react-router-dom";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export default function () {
-    const { data } = useLoaderData();
+
+    useEffect(() => { }, [])
 
     function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
-
         const form = e.currentTarget as HTMLFormElement;
         const formData = new FormData(form);
         user_api_login(formData).then(res => {
@@ -25,18 +26,13 @@ export default function () {
 
     return <form className="flex flex-col gap-1.5 px-10 py-4 pb-8" onSubmit={handleSubmit}>
         <p className="text-xl font-bold mb-2">{import.meta.env['VITE_APPNAME']}</p>
-        <label>邮箱：
+        <label>邮&nbsp;&nbsp;&nbsp;箱：
             <input className="border outline-none" type="email" name="email" placeholder="12345@qq.com" required />
         </label>
-        <label>密码：
+        <label>密&nbsp;&nbsp;&nbsp;码：
             <input className="border outline-none" type="password" name="password" placeholder="******" required minLength={6} />
         </label>
-        <label>
-            <div className="flex">
-                <div className="w-12 theme_1 text-sm text-center leading-7 font-bold">{data}</div>
-                <input className="border outline-none" type="text" name="captcha" placeholder="输入验证码" required />
-            </div>
-        </label>
+        {/* <Com_captcha /> */}
         <input type="submit" value="登录" />
         <div className="flex justify-between text-sm">
             <Link to={""}>忘记密码？</Link>
