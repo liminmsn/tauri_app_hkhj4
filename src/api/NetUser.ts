@@ -62,7 +62,7 @@ export default class NetUser extends Debug {
         } catch (error) {
             return {
                 code: 500,
-                msg: "错误",
+                msg: "服务器错误",
                 data: null
             }
         }
