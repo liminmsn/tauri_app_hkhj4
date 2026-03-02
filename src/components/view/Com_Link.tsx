@@ -5,13 +5,13 @@ export default function (prop: { label: string; url: string }) {
         className="
             flex
             justify-between
-            hover:shadow-none
             overflow-hidden
-            active:shadow-md
-            theme_0
-            shadow-sm 
-            rounded-r-sm 
+            hover:shadow-none
+            active:scale-95
+            rounded-r-sm
             rounded-bl-sm
+            theme_0
+            shadow-sm
             cursor-pointer">
         <div className="text-sm p-1">
             {prop.label}
