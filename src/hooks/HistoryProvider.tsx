@@ -5,6 +5,7 @@ export type HistoryContextTypeItem = {
     url: string;
     img: string;
     label: string;
+    time: string;
 }
 type HistoryContextType = {
     history: HistoryContextTypeItem;
@@ -16,7 +17,8 @@ const history_hook: HistoryContextTypeItem = {
     select: 0,
     url: "",
     img: "",
-    label: ""
+    label: "",
+    time: ""
 }
 
 const HistoryContext = createContext<HistoryContextType | null>(null);

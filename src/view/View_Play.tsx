@@ -1,26 +1,30 @@
 import { play_data } from "@/router/analysis/analysis_net_api_play";
-import { useEffect, useRef } from "react";
+import { useHistoryContext } from "@/hooks/HistoryProvider";
 import { useLoaderData } from "react-router-dom";
+import { useEffect, useRef } from "react";
 import { Plyr } from "plyr-react";
 import Hls from "hls.js";
 import "plyr-react/plyr.css";
-import { useHistoryContext } from "@/hooks/HistoryProvider";
 
-let ok = 0;
 export default function Player() {
-    const { url, err, title } = useLoaderData() as typeof play_data;
     const { history } = useHistoryContext();
+    const { url, err, title } = useLoaderData() as typeof play_data;
     const hlsRef = useRef<Hls | null>(null);
+    let videoElement: HTMLVideoElement;
 
-    useEffect(() => {
+    function init() {
+        //添加标题
         const controls = document.querySelector('.plyr__controls');
         const p = document.createElement('p');
         p.textContent = title;
         p.className = 'text-white absolute -top-4 left-5 font-bold';
         controls?.appendChild(p);
+        // 视频组件
+        videoElement = document.querySelector('.plyr__video-wrapper video') as HTMLVideoElement;
+        // 进度更新
+        videoElement.ontimeupdate = (e) => { history.time = String(e.timeStamp) };
 
         if (!err && url) {
-            const videoElement = document.querySelector('.plyr__video-wrapper video') as any;
             if (videoElement) {
                 if (Hls.isSupported()) {
                     const hls = new Hls();
@@ -28,28 +32,24 @@ export default function Player() {
                     hls.loadSource(url);
                     hls.on(Hls.Events.MANIFEST_PARSED, () => {
                         console.log("HLS视频加载成功");
-                        ok = 1;
+                        videoElement.play()
                     });
-                    hls.on(Hls.Events.ERROR, (event, data) => {
-                        console.error("HLS播放错误:", data);
+                    hls.on(Hls.Events.ERROR, (_e) => {
+                        console.error("HLS播放错误:", _e);
                     });
                     hlsRef.current = hls;
-                }
-                // 兼容Safari等原生支持HLS的浏览器
-                else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
+                } else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
+                    // 兼容Safari等原生支持HLS的浏览器
                     videoElement.src = url;
                 }
             }
         }
+    }
+    
+    useEffect(() => {
+        init();
         return () => {
-            if (hlsRef.current) {
-                hlsRef.current.destroy();
-                hlsRef.current = null;
-                if (ok == 1) {
-                    alert(JSON.stringify(history));
-                    ok = 0;
-                }
-            }
+            hlsRef.current && hlsRef.current.destroy();
         };
     }, [url, err]);
 

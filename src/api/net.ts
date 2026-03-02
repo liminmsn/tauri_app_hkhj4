@@ -3,7 +3,8 @@ import GlobalEvent from "@/tools/GlobalEvent";
 import { ClientOptions, fetch } from "@tauri-apps/plugin-http";
 
 export enum NetAPI {
-    Home = "/"
+    Home = "/",
+    Rank = "/label/rank.html"
 }
 
 export default class Net extends Debug {

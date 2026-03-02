@@ -27,5 +27,6 @@ export type UserInfoType = {
 }
 /**获取用户信息 */
 export async function user_api_userInfo() {
-    return await new NetUser(NetUserAPI.user_info).get().then();
+    const res = await new NetUser(NetUserAPI.user_info).get().then();
+    return res;
 }

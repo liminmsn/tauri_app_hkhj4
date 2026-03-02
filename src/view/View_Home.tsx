@@ -5,6 +5,7 @@ import Com_TipsLabel from "@/components/view/com_tipslabel";
 import { data_home_onign } from "@/router/analysis/analysis_net_api_home";
 import { useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom"
+import View_ranking from "./home/View_ranking";
 
 export default function () {
     const { cardList, itemList, grup } = useLoaderData<typeof data_home_onign>();
@@ -50,6 +51,8 @@ export default function () {
                 </div>
             </div>
         </Icon_bg>
+        <Com_TipsLabel label="排行榜" icon="line-md:align-right" />
+        <View_ranking />
         <Com_TipsLabel label="年度分类" icon="line-md:calendar-twotone" />
         <div className=" grid gap-1 grid-cols-6">
             {

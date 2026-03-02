@@ -17,8 +17,9 @@ import View_UserInfo from "@/view/user/View_UserInfo";
 import View_Register from "@/view/user/View_Register";
 import View_Error from "@/view/View_Error";
 import { user_api_userInfo } from "./user_api";
+import { toast } from "react-toastify";
 
-async function analysis_body(url: NetAPI | string | undefined, analysis_net_api: (dom: Document) => any) {
+ export async function analysis_body(url: NetAPI | string | undefined, analysis_net_api: (dom: Document) => any) {
     try {
         const res_text = await (await new Net(url).get()).text();
         return analysis.init(res_text, analysis_net_api);
@@ -44,7 +45,9 @@ const router = createBrowserRouter([
             {
                 index: true,
                 Component: View_Home,
-                loader: async () => await analysis_body(NetAPI.Home, analysis_net_api_home)
+                loader: async () => {
+                    return await analysis_body(NetAPI.Home, analysis_net_api_home)
+                }
             },
             {
                 path: '/year/:url',
@@ -67,7 +70,7 @@ const router = createBrowserRouter([
                 Component: View_Play,
                 loader: async ({ params }) => {
                     if (!is_login()) {
-                       throw redirect("/user");
+                        throw redirect("/user");
                     }
                     return await analysis_body(window.atob(params['url']!), analysis_net_api_play);
                 }
@@ -94,7 +97,12 @@ const router = createBrowserRouter([
                         path: "userInfo",
                         Component: View_UserInfo,
                         loader: async () => {
-                            return await user_api_userInfo();
+                            const res = await user_api_userInfo();
+                            if (res.code != 200) {
+                                toast("服务器错误!", { theme: "dark", type: "warning" })
+                                throw redirect("/");
+                            }
+                            return res;
                         }
                     },
                     {
