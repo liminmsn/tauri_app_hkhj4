@@ -6,7 +6,7 @@ import { useEffect, useState } from "react"
 import { Link } from "react-router-dom";
 
 function getBGColor(idx: number) {
-    const colors = ['bg-red-400 text-white', 'bg-green-400 text-white', 'bg-orange-400 text-white']
+    const colors = ['bg-red-500 text-white', 'bg-green-500 text-white', 'bg-orange-500 text-white']
     if (colors[idx]) {
         return colors[idx];
     }
