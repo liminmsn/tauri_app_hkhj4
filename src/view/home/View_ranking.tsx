@@ -30,7 +30,7 @@ export default function () {
                                 <div className="max-h-60 overflow-y-auto">
                                     {item.list.map((a, idx_) => {
                                         return <div key={idx_} className="text-left">
-                                            <Link to={`/detail/${window.btoa(a.href)}`} style={{ color: 'var(--theme_1)' }}>
+                                            <Link to={`/detail/${window.btoa(a.href)}`}>
                                                 <span
                                                     className={`inline-block px-2 mr-1 mb-1 text-sm text-center bg-black/20
                                                     rounded-sm ${getBGColor(idx_)}`}>{idx_ + 1}
