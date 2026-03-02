@@ -1,11 +1,9 @@
 import { user_api_login } from "@/router/user_api";
-import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export default function () {
-
-    useEffect(() => { }, [])
+    const navigate = useNavigate();  // 👈 加这个
 
     function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
@@ -19,7 +17,7 @@ export default function () {
             });
             if (res.code == 200) {
                 localStorage.setItem('token', res.data);
-                window.location.pathname = '/user/userInfo';
+                navigate("/user/userInfo");   // 👈 用这个
             }
         });
     }
@@ -30,7 +28,7 @@ export default function () {
             <input className="border outline-none" type="email" name="email" placeholder="12345@qq.com" required />
         </label>
         <label>密&nbsp;&nbsp;&nbsp;码：
-            <input className="border outline-none" type="password" name="password" placeholder="******" required minLength={6} />
+            <input className="border outline-none" type="password" name="password" placeholder="******" required />
         </label>
         {/* <Com_captcha /> */}
         <input type="submit" value="登录" />

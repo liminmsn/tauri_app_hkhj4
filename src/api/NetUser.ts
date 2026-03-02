@@ -1,18 +1,17 @@
 import Debug from "@/tools/Debug";
 import GlobalEvent from "@/tools/GlobalEvent";
-import { toast } from "react-toastify";
 
 export enum NetUserAPI {
     /**获取登录图片验证码 */
     captcha_image = "/captcha",
     /**用户登录 */
     login = "/login",
-    /**用户登录 */
+    /**注册用户 */
+    register = "/createUser",
+    /**用户信息 */
     user_info = "/api/user/info",
     /**价格列表 */
     premium_list = "/api/premium/premium_list",
-    /**注册用户 */
-    register = "/api/user/createUser"
 }
 
 export default class NetUser extends Debug {

@@ -1,17 +1,23 @@
 import NetUser, { NetUserAPI } from "@/api/NetUser";
 /**获取登录验证图片 */
-export async function user_api_captcha() {
-    return await new NetUser(NetUserAPI.captcha_image).get().then();
+export async function user_api_captcha(email: string) {
+    const form = new FormData()
+    form.append("email", email);
+    return await new NetUser(NetUserAPI.captcha_image).get(form).then();
 }
+
 
 /**用户登录 */
 export async function user_api_login(from: FormData) {
     const res = await new NetUser(NetUserAPI.login).post(from).then();
-    console.log(res);
-
     return res;
 }
 
+/**注册用户 */
+export async function user_api_userRegister(from: FormData) {
+    const res = await new NetUser(NetUserAPI.register).post(from).then();
+    return res;
+}
 export type UserInfoType = {
     username: string;
     email: string;

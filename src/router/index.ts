@@ -67,7 +67,7 @@ const router = createBrowserRouter([
                 Component: View_Play,
                 loader: async ({ params }) => {
                     if (!is_login()) {
-                        redirect("/user");
+                       throw redirect("/user");
                     }
                     return await analysis_body(window.atob(params['url']!), analysis_net_api_play);
                 }
