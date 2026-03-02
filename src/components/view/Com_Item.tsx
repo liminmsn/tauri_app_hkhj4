@@ -30,7 +30,7 @@ export default function ({ item }: propsType) {
             {/* {item.url} */}
             {/* <div className="theme_1 h-1" style={{ backgroundSize: "100% auto", backgroundImage: 'url("/test/bg.svg")' }}></div> */}
             <div className="h-50 overflow-hidden relative flex justify-center items-center">
-                <span className="absolute z-2 top-0 left-0 text-sm bg-black/50 px-1 rounded-b-sm group-hover:hidden">{item.info}</span>
+                <span className="absolute z-2 top-0 left-0 text-sm bg-black/50 text-white px-1 rounded-br-sm group-hover:hidden">{item.info}</span>
                 {
                     isErr ?
                         <div>
@@ -46,10 +46,10 @@ export default function ({ item }: propsType) {
 
             </div>
             <div className="overflow-hidden text-ellipsis absolute w-full bottom-0">
-                <p className="p-1 group-hover:hidden block text-sm text-nowrap bg-black/80">{item.label}</p>
+                <p className="p-1 group-hover:hidden block text-sm text-nowrap text-white bg-black/50">{item.label}</p>
                 {
                     item.info2 &&
-                    <p className="group-hover:block hidden text-sm text-nowrap overflow-hidden text-ellipsis p-1 bg-black/80">{item.info2}</p>
+                    <p className="group-hover:block hidden text-sm text-nowrap overflow-hidden text-ellipsis p-1 text-white bg-black/50">{item.info2}</p>
                 }
             </div>
         </Link>

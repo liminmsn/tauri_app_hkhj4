@@ -18,7 +18,7 @@ export default function () {
     useEffect(() => {
         analysis_body(NetAPI.Rank, analysis_net_api_ranking).then(setRank);
     }, []);
-    return <div className="shadow-sm bg-black/40">
+    return <div className="shadow-sm bg-black/10">
         <div className="h-2 theme_0"></div>
         {
             rank.length > 0 ?

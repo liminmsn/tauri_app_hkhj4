@@ -16,11 +16,10 @@ const initTheme: ThemeContextType = {
     config: {
         id: 0,
         label: "魅惑紫",
-        // theme: ["#0B2D72", "#0992C2", "#0AC4E0"]
-        // theme: ["#6CA651", "#BBCB2E", "#839705"]
-        // theme: ["#576A8F", "#B7BDF7", "#FFF8DE"],
-        theme: ["#30364F", "#ACBAC4", "#F0F0DB"],
-        
+        // theme: ["#30364F", "#ACBAC4", "#F0F0DB"],
+        theme: ["#41431B", "#ECDBBA", "#E8E2DB"],
+        // theme: ["#1A3263", "#547792", "#E8E2DB"],
+
     },
     setTheme(newTheme: ThemeContextType) {
         const { theme } = newTheme.config;
@@ -48,7 +47,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
         themeConfig.setTheme(newTheme); //设置style存本地
     };
 
-    useEffect(() => { 
+    useEffect(() => {
         themeConfig.setTheme(themeConfig);
     }, [])
 
