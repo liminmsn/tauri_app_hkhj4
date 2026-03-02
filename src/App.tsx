@@ -29,7 +29,7 @@ function App() {
   }
 
   return (
-    <main className="theme_bg_0 text_0 select-none" style={{ height: '100vh' }}>
+    <main className="theme_bg_0 rounded-sm overflow-hidden text_0 select-none" style={{ height: '100vh' }}>
       <Com_TopBar />
       {/* onScroll={onScroll} */}
       <div ref={scrollDoM} className="mx-auto overflow-y-auto" style={{ height: 'calc(100vh - 33px)', maxWidth: isPlayPage ? '' : '1200px' }}>

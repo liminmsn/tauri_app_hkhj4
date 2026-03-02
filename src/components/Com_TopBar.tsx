@@ -1,6 +1,6 @@
 import { Icon } from "@iconify/react";
 import { Link, useNavigate } from "react-router-dom";
-import { app, window } from "@tauri-apps/api";
+import { window } from "@tauri-apps/api";
 import { useEffect, useState } from "react";
 import GlobalEvent from "@/tools/GlobalEvent";
 import Anim_label from "./anim/anim_label";
@@ -16,9 +16,10 @@ export default function () {
         win.isMaximized().then(setIsFull);
         GlobalEvent.on('loding', setLoding)
     }, [])
-    return <div className="theme_0 px-2 py-1 flex justify-between shadow-sm drag">
+    return <div className="theme_0 p-1 flex justify-between shadow-sm drag">
         <div className="flex no_drag">
             <div className=" inline-flex">
+                <img src="/logo.png" className="w-6 mr-1" />
                 <Anim_label>
                     <span className="font-bold">{app_name}</span>
                 </Anim_label>

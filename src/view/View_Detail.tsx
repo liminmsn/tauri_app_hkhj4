@@ -25,9 +25,6 @@ export default function () {
                                 <span>{item.t}</span>
                             </p>
                         })}
-                        <div>
-                            <input type="button" value="播放" />
-                        </div>
                     </div>
                 </div>
             </div>
