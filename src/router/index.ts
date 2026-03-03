@@ -18,8 +18,9 @@ import View_Register from "@/view/user/View_Register";
 import View_Error from "@/view/View_Error";
 import { user_api_userInfo } from "./user_api";
 import { toast } from "react-toastify";
+import View_ForgotPaswd from "@/view/user/View_ForgotPaswd";
 
- export async function analysis_body(url: NetAPI | string | undefined, analysis_net_api: (dom: Document) => any) {
+export async function analysis_body(url: NetAPI | string | undefined, analysis_net_api: (dom: Document) => any) {
     try {
         const res_text = await (await new Net(url).get()).text();
         return analysis.init(res_text, analysis_net_api);
@@ -108,6 +109,10 @@ const router = createBrowserRouter([
                     {
                         path: 'register',
                         Component: View_Register
+                    },
+                    {
+                        path: 'forgot_password',
+                        Component: View_ForgotPaswd
                     }
                 ]
             },

@@ -18,6 +18,11 @@ export async function user_api_userRegister(from: FormData) {
     const res = await new NetUser(NetUserAPI.register).post(from).then();
     return res;
 }
+/**修改密码 */
+export async function user_api_userForgotpwd(from: FormData) {
+    const res = await new NetUser(NetUserAPI.forgot_pwd).post(from).then();
+    return res;
+}
 export type UserInfoType = {
     username: string;
     email: string;

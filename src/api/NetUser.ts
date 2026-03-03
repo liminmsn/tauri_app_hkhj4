@@ -8,6 +8,8 @@ export enum NetUserAPI {
     login = "/login",
     /**注册用户 */
     register = "/createUser",
+    /**修改密码 */
+    forgot_pwd = "/changePassword",
     /**用户信息 */
     user_info = "/api/user/info",
     /**价格列表 */

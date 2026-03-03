@@ -30,8 +30,8 @@ export default function () {
     }
     return <div className="text-center pt-10">
         <Com_Card>
-            <div className="text-left p-2 px-10">
-                <div className="text-center font-bold mb-2 text-xl">设置</div>
+            <div className="text-left p-2 px-8">
+                <div className="font-bold mb-2 text-xl">设置</div>
                 <label>主题：
                     <select onChangeCapture={onSelect}>
                         {

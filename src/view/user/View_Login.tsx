@@ -33,7 +33,7 @@ export default function () {
         {/* <Com_captcha /> */}
         <input type="submit" value="登录" />
         <div className="flex justify-between text-sm">
-            <Link to={""}>忘记密码？</Link>
+            <Link to={"forgot_password"}>忘记密码？</Link>
             <Link to={"register"}>注册</Link>
         </div>
     </form>
