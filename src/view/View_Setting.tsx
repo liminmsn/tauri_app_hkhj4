@@ -1,31 +1,46 @@
 import Com_Card from "@/components/view/com_card";
-import { useThemeContext } from "@/hooks/ThemeProvider"
-import { useEffect } from "react";
+import { useThemeContext } from "@/hooks/ThemeProvider";
+import { SyntheticEvent } from "react";
+
+const theme_arr = [
+    {
+        "id": 0,
+        "label": "复古绿",
+        "theme": ["#41431B", "#ECDBBA", "#E8E2DB"]
+    },
+    {
+        "id": 1,
+        "label": "深空灰",
+        "theme": ["#30364F", "#ACBAC4", "#F0F0DB"]
+    },
+    {
+        "id": 2,
+        "label": "沉默蓝",
+        "theme": ["#1A3263", "#547792", "#E8E2DB"]
+    }
+]
 
 export default function () {
-    const { config, setTheme } = useThemeContext();
-    useEffect(() => {
-        fetch(import.meta.env['VITE_URL_STATIC']).then((res) => {
-            res.json().then(res => {
-                console.log(res);
+    const { updateTheme } = useThemeContext();
 
-            })
-        })
-        setTheme({
-            config: {
-                ...config,
-                // theme: ["#15173D","#982598","#E491C9","#F1E9E9"]
-                theme: ["#6B7445", "#839705", "#BBCB2E", "black"].reverse()
-                // theme: ["#FFD400", "#FFC300", "#FF8C00", '#FF5F00'].reverse()
-            },
-            setTheme
-        })
-    }, [])
-    return <div className="text-center pt-2">
+    function onSelect(e: SyntheticEvent<HTMLSelectElement, Event>) {
+        console.log(e.currentTarget.value);
+        const id = e.currentTarget.value;
+        updateTheme(theme_arr[Number(id)]);
+    }
+    return <div className="text-center pt-10">
         <Com_Card>
-            <div className="px-10">
-                {/* {JSON.stringify(config)} */}
-                <button>设置</button>
+            <div className="text-left p-2 px-10">
+                <div className="text-center font-bold mb-2 text-xl">设置</div>
+                <label>主题：
+                    <select onChangeCapture={onSelect}>
+                        {
+                            theme_arr.map((item, idx) => {
+                                return <option key={idx} value={item.id} >{item.label}</option>
+                            })
+                        }
+                    </select>
+                </label>
             </div>
         </Com_Card>
     </div>
