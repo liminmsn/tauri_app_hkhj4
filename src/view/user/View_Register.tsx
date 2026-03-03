@@ -35,16 +35,16 @@ export default function () {
         <form className="flex flex-col gap-1.5 text-left" onSubmit={handleSubmit}>
             <p className="text-xl font-bold mb-2">注册用户</p>
             <label>昵&nbsp;&nbsp;称：
-                <input className="border outline-none" type="text" name="username" placeholder="不吃香菜" defaultValue="不吃香菜" required />
+                <input className="border outline-none" type="text" name="username" placeholder="不吃香菜" required />
             </label>
             <label>邮&nbsp;&nbsp;箱：
-                <input className="border outline-none" type="email" name="email" placeholder="hkhj4@qq.com" defaultValue="1772081518@qq.com" required onInput={(e) => setEmail((e.target as any)['value'])} />
+                <input className="border outline-none" type="email" name="email" placeholder="hkhj4@qq.com" required onInput={(e) => setEmail((e.target as any)['value'])} />
             </label>
             <label>密&nbsp;&nbsp;码：
-                <input className="border outline-none" type="password" name="password" placeholder="******" defaultValue="password" required />
+                <input className="border outline-none" type="password" name="password" placeholder="******" required />
             </label>
             <label>验&nbsp;&nbsp;证：
-                <input className="border outline-none" type="password" name="password_enter" placeholder="再次输入密码" defaultValue="password" required />
+                <input className="border outline-none" type="password" name="password_enter" placeholder="再次输入密码" required />
             </label>
             {
                 email &&
