@@ -3,12 +3,16 @@
 @import "./input.css";
 @import "./plyr.css";
 @import "./drag.css";
+@import "./Img.css";
 
 :root {
     --theme_0: #BBCB2E;
     --theme_1: #839705;
     --text_0: #6B7445;
     --plyr-color-main: var(--text_0);
+}
+body{
+    overflow: hidden;
 }
 
 .label_bg {

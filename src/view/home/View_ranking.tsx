@@ -16,7 +16,15 @@ function getBGColor(idx: number) {
 export default function () {
     const [rank, setRank] = useState<typeof data_rank_onign>([]);
     useEffect(() => {
-        analysis_body(NetAPI.Rank, analysis_net_api_ranking).then(setRank);
+        const data = sessionStorage.getItem('rank');
+        if (data) {
+            setRank(JSON.parse(data));
+        } else {
+            analysis_body(NetAPI.Rank, analysis_net_api_ranking).then((data) => {
+                setRank(data);
+                sessionStorage.setItem('rank', JSON.stringify(data));
+            });
+        }
     }, []);
     return <div className="shadow-sm bg-black/10">
         <div className="h-2 theme_0"></div>
