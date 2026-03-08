@@ -1,7 +1,7 @@
 import Icon_bg from "@/components/icon/icon_bg";
-import Com_Item from "@/components/view/com_item";
-import Com_Link from "@/components/view/com_link";
-import Com_TipsLabel from "@/components/view/com_tipslabel";
+import Com_Item from "@/components/view/com_Item";
+import Com_Link from "@/components/view/com_Link";
+import Com_TipsLabel from "@/components/view/com_TipsLabel";
 import { useHistoryContext } from "@/hooks/HistoryProvider";
 import { data_detail_onign } from "@/router/analysis/analysis_net_api_detail";
 import { useLoaderData } from "react-router-dom"

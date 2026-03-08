@@ -21,7 +21,7 @@ let initTheme: ThemeContextTypeTheme = {
 
 const localTheme = localStorage.getItem("theme_config");
 if (localTheme) {
-    // initTheme = JSON.parse(localTheme);
+    initTheme = JSON.parse(localTheme);
 }
 
 

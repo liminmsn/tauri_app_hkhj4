@@ -1,5 +1,4 @@
 import { createBrowserRouter, redirect } from "react-router-dom";
-import Net, { NetAPI } from "@/api/Net";
 import App from "@/App";
 import View_Home from "@/view/View_Home";
 import analysis from "./analysis";
@@ -16,9 +15,12 @@ import View_Login from "@/view/user/View_Login";
 import View_UserInfo from "@/view/user/View_UserInfo";
 import View_Register from "@/view/user/View_Register";
 import View_Error from "@/view/View_Error";
-import { user_api_userInfo } from "./user_api";
+import { user_api_premium_list, user_api_userInfo } from "./user_api";
 import { toast } from "react-toastify";
 import View_ForgotPaswd from "@/view/user/View_ForgotPaswd";
+import View_Premium from "@/view/View_Premium";
+import Net, { NetAPI } from "@/api/Net";
+import NetUser, { NetUserAPI } from "@/api/NetUser";
 
 export async function analysis_body(url: NetAPI | string | undefined, analysis_net_api: (dom: Document) => any) {
     try {
@@ -79,6 +81,18 @@ const router = createBrowserRouter([
             {
                 path: "/err",
                 Component: View_Error
+            },
+            {
+                path: "/premium",
+                children: [
+                    {
+                        path: "",
+                        Component: View_Premium,
+                        loader: async () => {
+                            return await user_api_premium_list()
+                        }
+                    }
+                ]
             },
             {
                 path: '/user',

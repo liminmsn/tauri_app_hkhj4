@@ -21,7 +21,7 @@ export default function () {
             <div className=" inline-flex">
                 <img src="/logo.png" className="w-6 mr-1" />
                 <Anim_label>
-                    <span className="font-bold">{app_name}</span>
+                    <span className="font-bold" style={{color:'var(--theme_1)'}}>{app_name}</span>
                 </Anim_label>
             </div>
             <div className="inline-flex gap-1 ml-2">
@@ -35,6 +35,7 @@ export default function () {
         </div>
         <div className="flex select-none no_drag">
             <div className="inline-flex gap-1 mr-2">
+                <Link to={"/premium"}> <Icon icon="ri:bit-coin-fill" width="24" className="cursor-pointer active:scale-95" /></Link>
                 <Link to={"/user"}> <Icon icon="material-symbols:account-circle" width="24" className="cursor-pointer active:scale-95" /></Link>
                 <Link to={"/setting"}> <Icon icon="line-md:cog-loop" width="24" className="cursor-pointer active:scale-95" /></Link>
             </div>

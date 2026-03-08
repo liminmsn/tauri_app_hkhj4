@@ -1,20 +1,25 @@
-import Com_Card from "@/components/view/com_card";
+import Com_Card from "@/components/view/com_Card";
 import { useThemeContext } from "@/hooks/ThemeProvider";
 import { SyntheticEvent } from "react";
 
 const theme_arr = [
     {
         "id": 0,
-        "label": "复古绿",
-        "theme": ["#41431B", "#ECDBBA", "#E8E2DB"]
+        "label": "深褐红",
+        "theme": ["#903f22", "#5a0606", "#FFB33F"]
     },
     {
         "id": 1,
-        "label": "深空灰",
-        "theme": ["#30364F", "#ACBAC4", "#F0F0DB"]
+        "label": "复古绿",
+        "theme": ["#a4a946", "#698b32", "#E8E2DB"]
     },
     {
         "id": 2,
+        "label": "深空灰",
+        "theme": ["#40455b", "#8d8d8d", "#e8e8e8"]
+    },
+    {
+        "id": 3,
         "label": "沉默蓝",
         "theme": ["#1A3263", "#547792", "#E8E2DB"]
     }
@@ -22,6 +27,7 @@ const theme_arr = [
 
 export default function () {
     const { updateTheme } = useThemeContext();
+    const local_theme_config = JSON.parse(localStorage.getItem('theme_config')!);
 
     function onSelect(e: SyntheticEvent<HTMLSelectElement, Event>) {
         console.log(e.currentTarget.value);
@@ -33,7 +39,7 @@ export default function () {
             <div className="text-left p-2 px-8">
                 <div className="font-bold mb-2 text-xl">设置</div>
                 <label>主题：
-                    <select onChangeCapture={onSelect}>
+                    <select defaultValue={local_theme_config['id']} onChangeCapture={onSelect}>
                         {
                             theme_arr.map((item, idx) => {
                                 return <option key={idx} value={item.id} >{item.label}</option>

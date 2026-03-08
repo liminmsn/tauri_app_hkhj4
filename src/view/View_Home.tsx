@@ -1,7 +1,7 @@
 import Icon_bg from "@/components/icon/icon_bg";
-import Com_Item from "@/components/view/com_item";
-import Com_Link from "@/components/view/com_link";
-import Com_TipsLabel from "@/components/view/com_tipslabel";
+import Com_Item from "@/components/view/com_Item";
+import Com_Link from "@/components/view/com_Link";
+import Com_TipsLabel from "@/components/view/com_TipsLabel";
 import { data_home_onign } from "@/router/analysis/analysis_net_api_home";
 import { useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom"

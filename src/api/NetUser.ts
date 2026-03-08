@@ -19,7 +19,7 @@ export enum NetUserAPI {
 export default class NetUser extends Debug {
     baseUrl = "/api"
     private initData: RequestInit = {};
-    constructor(url = "") {
+    constructor(url: NetUserAPI | string = "") {
         super();
         this.baseUrl += url;
         const token = localStorage.getItem("token");
@@ -50,10 +50,10 @@ export default class NetUser extends Debug {
         this.initData.body = form;
         return this;
     }
-    async then() {
+    async then<T>() {
         try {
             this.nethook.loding();
-            const res = await (await fetch(this.baseUrl, this.initData)).json() as { code: number, msg: string, data: any };
+            const res = await (await fetch(this.baseUrl, this.initData)).json() as { code: number, msg: string, data: T };
             this.nethook.lodingEnd();
             //token失效
             if (res.code == -1) {

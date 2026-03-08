@@ -5,13 +5,20 @@
 @import "./drag.css";
 @import "./Img.css";
 
+@property --rotate_bg {
+    syntax: "<percentage>";
+    inherits: false;
+    initial-value: 0%;
+}
+
 :root {
     --theme_0: #BBCB2E;
     --theme_1: #839705;
     --text_0: #6B7445;
     --plyr-color-main: var(--text_0);
 }
-body{
+
+body {
     overflow: hidden;
 }
 
@@ -21,8 +28,19 @@ body{
 }
 
 .theme_bg_0 {
-    background: linear-gradient(to left bottom, transparent 0%, var(--theme_0) 80%);
+    background: linear-gradient(to top right, transparent 0%, var(--theme_0) var(--rotate_bg));
     background-color: var(--theme_1);
+    animation: bgrotate 1s ease-in-out forwards;
+}
+
+@keyframes bgrotate {
+    from {
+        --rotate_bg: 0%;
+    }
+
+    to {
+        --rotate_bg: 80%
+    }
 }
 
 

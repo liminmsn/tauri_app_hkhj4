@@ -23,14 +23,13 @@ export default function ({ item }: propsType) {
                     shadow-sm 
                     overflow-hidden 
                     cursor-pointer
-                    rounded-sm
                     relative
                     flex flex-col z-10">
         <Link to={`/detail/${window.btoa(item.url)}`}>
             {/* {item.url} */}
             {/* <div className="theme_1 h-1" style={{ backgroundSize: "100% auto", backgroundImage: 'url("/test/bg.svg")' }}></div> */}
             <div className="h-50 overflow-hidden relative flex justify-center items-center">
-                <span className="absolute z-2 top-0 left-0 text-sm bg-black/50 text-white px-1 rounded-br-sm group-hover:hidden">{item.info}</span>
+                <span className="absolute z-2 top-0 left-0 text-sm bg-black/50 text-white px-1 group-hover:hidden">{item.info}</span>
                 {
                     isErr ?
                         <div>
