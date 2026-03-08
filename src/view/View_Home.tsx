@@ -29,7 +29,7 @@ export default function () {
                             <span>地区：{cardList_current.info.ul[3]}</span>
                             <span>年份：{cardList_current.info.ul[4]}</span>
                         </div>
-                        <p>剧情：{cardList_current.info.desc2}</p>
+                        <p className=" overflow-auto">剧情：{cardList_current.info.desc2}</p>
                     </div>
                 </div>
                 <div className="grid grid-cols-3 grid-rows-3 gap-1">

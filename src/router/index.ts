@@ -89,6 +89,9 @@ const router = createBrowserRouter([
                         path: "",
                         Component: View_Premium,
                         loader: async () => {
+                            if (!is_login()) {
+                                throw redirect("/user");
+                            }
                             return await user_api_premium_list()
                         }
                     }

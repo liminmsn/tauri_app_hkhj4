@@ -21,7 +21,7 @@ export default function () {
             <div className=" inline-flex">
                 <img src="/logo.png" className="w-6 mr-1" />
                 <Anim_label>
-                    <span className="font-bold" style={{color:'var(--theme_1)'}}>{app_name}</span>
+                    <span className="font-bold">{app_name}</span>
                 </Anim_label>
             </div>
             <div className="inline-flex gap-1 ml-2">

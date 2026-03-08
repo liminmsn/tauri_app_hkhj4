@@ -16,7 +16,7 @@ export default function () {
         </div> */}
         <div className="my-2 gap-4 flex justify-center cursor-pointer">
             {
-                data.map((item, idx) => {
+                data && data.map((item, idx) => {
                     return <div key={idx} onClick={() => {
                         if (select_primume == null || select_primume.id != item.id) {
                             setSelectPrimume(item)
