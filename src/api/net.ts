@@ -9,7 +9,20 @@ export enum NetAPI {
 
 export default class Net extends Debug {
     base_url = import.meta.env['VITE_URL'] as string;
-    private fetchInit: RequestInit & ClientOptions = {}
+    private fetchInit: RequestInit & ClientOptions = {
+        headers: {
+            // 核心浏览器标识（最关键）
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+            // 接受的内容类型
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+            // 语言偏好
+            'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
+            // 缓存控制
+            'Cache-Control': 'max-age=0',
+            // 升级请求
+            'Upgrade-Insecure-Requests': '1'
+        }
+    }
     protected nethook = {
         loding: () => {
             GlobalEvent.send('loding', true);
@@ -26,6 +39,8 @@ export default class Net extends Debug {
         super();
         if (base_url) this.base_url = base_url;
         this.base_url += url;
+        console.log(this.base_url);
+
     }
     get(form?: FormData) {
         this.fetchInit.method = "GET";
@@ -41,6 +56,8 @@ export default class Net extends Debug {
     private async send() {
         this.nethook.loding();
         const res = await fetch(this.base_url, this.fetchInit);
+        console.log(res);
+
         this.nethook.lodingEnd();
         // 调试方法
         if (import.meta.env['VITE_NET_DEBUG'] == "true") {

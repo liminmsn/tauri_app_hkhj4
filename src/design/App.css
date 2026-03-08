@@ -20,6 +20,42 @@
 
 body {
     overflow: hidden;
+
+    &::after {
+        z-index: -1;
+        position: absolute;
+        left: 45vw;
+        right: 45vw;
+        top: 40vh;
+        padding: 2vh;
+        border-radius: 0.45rem;
+        text-align: center;
+        margin-inline: auto;
+        line-height: 1;
+        background-color: var(--theme_0);
+        color: var(--text_0);
+        content: '';
+        font-size: 3rem;
+        animation: lodingLabel ease infinite 1s;
+    }
+}
+
+@keyframes lodingLabel {
+    from {
+        content: '🏙️';
+    }
+
+    45% {
+        content: '🌇';
+    }
+
+    65% {
+        content: '🌆';
+    }
+
+    100% {
+        content: '🌃';
+    }
 }
 
 .label_bg {
