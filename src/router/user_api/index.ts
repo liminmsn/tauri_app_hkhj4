@@ -3,7 +3,7 @@ import NetUser, { NetUserAPI } from "@/api/NetUser";
 export async function user_api_captcha(email: string) {
     const form = new FormData()
     form.append("email", email);
-    return await new NetUser(NetUserAPI.captcha_image).get(form).then<any>();
+    return await new NetUser(NetUserAPI.captcha_image).get(form).then<any>(true);
 }
 
 
@@ -15,12 +15,12 @@ export async function user_api_login(from: FormData) {
 
 /**注册用户 */
 export async function user_api_userRegister(from: FormData) {
-    const res = await new NetUser(NetUserAPI.register).post(from).then<any>();
+    const res = await new NetUser(NetUserAPI.register).post(from).then<any>(true);
     return res;
 }
 /**修改密码 */
 export async function user_api_userForgotpwd(from: FormData) {
-    const res = await new NetUser(NetUserAPI.forgot_pwd).post(from).then<any>();
+    const res = await new NetUser(NetUserAPI.forgot_pwd).post(from).then<any>(true);
     return res;
 }
 export type UserInfoType = {

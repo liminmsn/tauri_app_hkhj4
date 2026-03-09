@@ -157,7 +157,6 @@ const router = createBrowserRouter([
                         loader: async () => {
                             const res = await user_api_userInfo();
                             if (res.code != 200) {
-                                toast("服务器错误!", { theme: "dark", type: "warning" })
                                 throw redirect("/");
                             }
                             return res;

@@ -1,5 +1,6 @@
 import Debug from "@/tools/Debug";
 import GlobalEvent from "@/tools/GlobalEvent";
+import { toast } from "react-toastify";
 
 export enum NetUserAPI {
     /**获取登录图片验证码 */
@@ -50,9 +51,9 @@ export default class NetUser extends Debug {
         this.initData.body = form;
         return this;
     }
-    async then<T>() {
+    async then<T>(suc_toast = false) {
+        this.nethook.loding();
         try {
-            this.nethook.loding();
             const res = await (await fetch(this.baseUrl, this.initData)).json() as { code: number, msg: string, data: T };
             this.nethook.lodingEnd();
             //token失效
@@ -60,11 +61,15 @@ export default class NetUser extends Debug {
                 localStorage.removeItem('token');
                 window.location.pathname = '/user';
             }
+            if (suc_toast) {
+                toast(res.msg, { theme: "dark", type: res.code == 200 ? "success" : "warning" });
+            }
             return res;
         } catch (error) {
+            toast("服务器连接错误", { theme: "dark", type: "error" });
             return {
                 code: 500,
-                msg: "服务器错误",
+                msg: "",
                 data: null
             }
         }

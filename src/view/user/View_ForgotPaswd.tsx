@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 
 export default function () {
     const [email, setEmail] = useState("");
+    const [disabled, setDisabled] = useState(false);
 
     function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
@@ -18,11 +19,9 @@ export default function () {
             return;
         }
         formData.delete("password_enter");
-        user_api_userForgotpwd(formData).then(res => {
-            toast(res.msg, {
-                theme: "dark",
-                type: res.code == 200 ? "success" : "error"
-            });
+        setDisabled(true);
+        user_api_userForgotpwd(formData).then(_res => {
+            setDisabled(false);
         });
     }
 
@@ -42,7 +41,7 @@ export default function () {
                 email &&
                 <Com_captcha time={60} email={email} />
             }
-            <input type="submit" value="修改" />
+            <input disabled={disabled} type="submit" value="修改" />
             <div className="text-sm text-right">
                 <Link to={"/user"}>去登录</Link>
             </div>

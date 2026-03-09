@@ -1,4 +1,5 @@
 import icon from '@/assets/react.svg';
+import { categoryHomePath } from '@/hooks/CateGoryProvider';
 import { UserInfoType } from '@/router/user_api';
 import { useState } from 'react';
 import { useLoaderData, useNavigate } from 'react-router-dom';
@@ -9,7 +10,7 @@ export default function () {
 
     function exit_login() {
         localStorage.removeItem('token');
-        navigate("/");
+        navigate(categoryHomePath());
     }
 
     return <form className="flex flex-col gap-1.5 px-20 py-4 pb-8">

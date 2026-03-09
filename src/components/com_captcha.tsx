@@ -1,6 +1,5 @@
 import { user_api_captcha } from "@/router/user_api"
 import { useState } from "react";
-import { toast } from "react-toastify";
 
 export default function ({ email, time }: { email: string, time: number }) {
     const [label, setLabel] = useState("获取");
@@ -10,6 +9,7 @@ export default function ({ email, time }: { email: string, time: number }) {
         if (!disabled) {
             user_api_captcha(email).then(res => {
                 setDisabled(true);
+                setLabel("");
                 const ss = time;
                 for (let i = 0; i <= ss; i++) {
                     setTimeout(() => {
@@ -21,10 +21,6 @@ export default function ({ email, time }: { email: string, time: number }) {
                         }
                     }, i * 1000);
                 }
-                toast(res.msg, {
-                    theme: "dark",
-                    type: res.code == 200 ? "success" : "error"
-                })
             });
         }
     }

@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 export default function () {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
+    const [disabled, setDisabled] = useState(false);
 
     function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
@@ -20,11 +21,9 @@ export default function () {
         }
 
         formData.delete("password_enter");
+        setDisabled(true);
         user_api_userRegister(formData).then(res => {
-            toast(res.msg, {
-                theme: "dark",
-                type: res.code == 200 ? "success" : "error"
-            });
+            setDisabled(false);
             if (res.code == 200) {
                 navigate("/user");
             }
@@ -57,7 +56,7 @@ export default function () {
                     <option value={2} label="女生" />
                 </select>
             </label>
-            <input type="submit" value="注册" />
+            <input disabled={disabled} type="submit" value="注册" />
             <div className="text-sm text-right">
                 <Link to={"/user"}>已有帐号? 去登录</Link>
             </div>
