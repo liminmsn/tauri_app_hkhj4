@@ -22,7 +22,7 @@ export default function (dom: Document) {
             label: a.textContent,
             url: a.getAttribute('href') || 'null'
         }
-    });
+    }) as any;
     const cardList = dom.querySelector('.channel-silder-cnt')?.children;
     if (cardList) {
         data.cardList = Array.from(cardList).map(li => {

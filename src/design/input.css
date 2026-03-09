@@ -1,35 +1,16 @@
-label {
-    position: relative;
-}
-
-label:has(input[required])::before {
-    left: -0.5rem;
-    position: absolute;
-    content: " *";
-    color: red;
-}
-
-
-select[disabled],
 input[disabled] {
     border-color: color-mix(in srgb, var(--theme_1) 50%, transparent 50%);
     opacity: 0.5;
 }
 
-select {
-    border-color: var(--theme_1);
-}
-
-option {
-    color: var(--theme_0);
-    background-color: var(--theme_1);
-}
 
 input {
-    border-color: var(--theme_1);
-    padding: 0.1rem;
-    text-indent: 0.1rem;
-    padding-right: 2rem;
+    outline: none;
+    border: none;
+    border-radius: 0.25rem;
+    background-color: var(--theme_1);
+    padding: 0.2rem;
+    text-indent: 0.25rem;
 
 
     &[type="button"],

@@ -1,0 +1,10 @@
+label {
+    position: relative;
+}
+
+label:has(input[required])::before {
+    left: -0.5rem;
+    position: absolute;
+    content: " *";
+    color: red;
+}

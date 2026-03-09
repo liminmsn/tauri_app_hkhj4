@@ -3,7 +3,7 @@ import Com_Item from "@/components/view/com_Item";
 import Com_Link from "@/components/view/com_Link";
 import Com_TipsLabel from "@/components/view/com_TipsLabel";
 import { useHistoryContext } from "@/hooks/HistoryProvider";
-import { data_detail_onign } from "@/router/analysis/analysis_net_api_detail";
+import { data_detail_onign } from "@/router/analysis/plot/analysis_net_api_plot_detail";
 import { useLoaderData } from "react-router-dom"
 
 export default function () {
@@ -15,7 +15,7 @@ export default function () {
         <Icon_bg>
             <div className="py-4 pb-6 px-4 shadow-sm rounded-sm flex text_1 relative">
                 <div className="h-full flex-1 mr-6 w-full flex">
-                    <img className="h-full max-w-60 min-w-60 rounded-sm" style={{ borderColor: 'var(--theme_1)' }} src={info.img} />
+                    <img className="h-full max-w-50 min-w-50 rounded-sm" style={{ borderColor: 'var(--theme_1)' }} src={info.img} />
                     <div className="flex flex-col ml-2">
                         <p className="text-2xl">{info.title}</p>
                         <p className="my-2 text-right text-2xl absolute right-4 top-2"><span className=" text-amber-300 mr-1 font-bold">{info.pingfen}</span>分</p>
@@ -38,7 +38,7 @@ export default function () {
                         playlist_1.map((item, idx) => {
                             return <span className={`${history.url == url && history.select == idx && history.grep == 1 ? "opacity-40" : ""}`}
                                 onClickCapture={() => add({ url, img: info.img, label: info.title, grep: 1, select: idx })} key={item.url}>
-                                <Com_Link key={item.url} label={item.label} url={`/play/${window.btoa(item.url)}`} />
+                                <Com_Link key={item.url} label={item.label} url={`/video/play/${window.btoa(item.url)}`} />
                             </span>
                         })
                     }
@@ -54,7 +54,7 @@ export default function () {
                         playlist_2.map((item, idx) => {
                             return <span className={`${history.url == url && history.select == idx && history.grep == 2 ? "opacity-40" : ""}`}
                                 onClickCapture={() => add({ url, img: info.img, label: info.title, grep: 2, select: idx })} key={item.url}>
-                                <Com_Link key={item.url} label={item.label} url={`/play/${window.btoa(item.url)}`} />
+                                <Com_Link key={item.url} label={item.label} url={`/video/play/${window.btoa(item.url)}`} />
                             </span>
                         })
                     }

@@ -4,13 +4,16 @@ import { RouterProvider } from "react-router-dom";
 import router from "./router";
 import { ThemeProvider } from "./hooks/ThemeProvider";
 import HistoryProvider from "./hooks/HistoryProvider";
+import CateGoryProvider from "./hooks/CateGoryProvider";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <ThemeProvider>
-      <HistoryProvider>
-        <RouterProvider router={router} />
-      </HistoryProvider>
+      <CateGoryProvider>
+        <HistoryProvider>
+          <RouterProvider router={router} />
+        </HistoryProvider>
+      </CateGoryProvider>
     </ThemeProvider>
   </React.StrictMode>
 );

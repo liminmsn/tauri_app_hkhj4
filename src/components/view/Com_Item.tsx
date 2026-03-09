@@ -1,4 +1,3 @@
-import { useHistoryContext } from "@/hooks/HistoryProvider";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -17,19 +16,17 @@ export default function ({ item }: propsType) {
     const [isErr, setIsErr] = useState(false);
 
     return <div key={item.url} className="
-                    theme_0
                     group
                     active:scale-90
-                    shadow-sm 
                     overflow-hidden 
                     cursor-pointer
                     relative
                     flex flex-col z-10">
-        <Link to={`/detail/${window.btoa(item.url)}`}>
+        <Link to={`/video/detail/${window.btoa(item.url)}`}>
             {/* {item.url} */}
             {/* <div className="theme_1 h-1" style={{ backgroundSize: "100% auto", backgroundImage: 'url("/test/bg.svg")' }}></div> */}
-            <div className="h-50 overflow-hidden relative flex justify-center items-center">
-                <span className="absolute z-2 top-0 left-0 text-sm bg-black/50 text-white px-1 group-hover:hidden">{item.info}</span>
+            <div className="flex justify-center items-center h-55 lg:h-70 relative overflow-y-hidden theme_0 rounded-sm shadow-sm">
+                <span className="absolute z-2 top-0 left-0 text-sm bg-black/20 px-1 rounded-tl-sm rounded-br-sm backdrop-blur-xs">{item.info}</span>
                 {
                     isErr ?
                         <div>
@@ -37,6 +34,7 @@ export default function ({ item }: propsType) {
                         </div> :
                         <img className="
                         min-w-full
+                        h-full
                         absolute 
                         transition"
                             onError={() => setIsErr(true)}
@@ -44,13 +42,11 @@ export default function ({ item }: propsType) {
                 }
 
             </div>
-            <div className="overflow-hidden text-ellipsis absolute w-full bottom-0">
-                <p className="p-1 group-hover:hidden block text-sm text-nowrap text-white bg-black/50">{item.label}</p>
-                {
-                    item.info2 &&
-                    <p className="group-hover:block hidden text-sm text-nowrap overflow-hidden text-ellipsis p-1 text-white bg-black/50">{item.info2}</p>
-                }
-            </div>
+            <div className="text-center text-ellipsis text-nowrap overflow-hidden py-1 text-shadow-sm font-bold">{item.label}</div>
+            {
+                item.info2 &&
+                <p className="text-sm text-center text-nowrap overflow-hidden text-ellipsis px-1">{item.info2}</p>
+            }
         </Link>
     </div>
 }

@@ -1,20 +1,17 @@
-import Icon_bg from "@/components/icon/icon_bg";
-import Com_Item from "@/components/view/com_Item";
-import Com_Link from "@/components/view/com_Link";
-import Com_TipsLabel from "@/components/view/com_TipsLabel";
-import { data_home_onign } from "@/router/analysis/analysis_net_api_home";
-import { useEffect, useState } from "react";
+import Icon_bg from "@/components/icon/icon_bg"
+import Com_Item from "@/components/view/com_Item"
+import Com_Link from "@/components/view/com_Link"
+import Com_TipsLabel from "@/components/view/com_TipsLabel"
 import { Link, useLoaderData } from "react-router-dom"
-import View_ranking from "./home/View_ranking";
+import View_ranking from "../home/View_ranking"
+import { data_home_onign } from "@/router/analysis/plot/analysis_net_api_plot"
+import { useState } from "react"
 
 export default function () {
     const { cardList, itemList, grup } = useLoaderData<typeof data_home_onign>();
     const [cardList_current, setCardListCurrent] = useState(cardList[0]);
 
-    useEffect(() => {
-    }, [])
-
-    return <div className="p-1">
+    return <div className="p-2">
         <Icon_bg>
             <div className="py-4 px-4 h-80 shadow-sm rounded-sm flex text_1">
                 <div className="h-full flex-1 mr-6 flex">
@@ -35,7 +32,7 @@ export default function () {
                 <div className="grid grid-cols-3 grid-rows-3 gap-1">
                     {
                         cardList.map(item => {
-                            return <Link key={item.url} to={`detail/${window.btoa(item.url)}`}>
+                            return <Link key={item.url} to={`/video/detail/${window.btoa(item.url)}`}>
                                 <img
                                     className="h-full max-w-full w-full cursor-pointer"
                                     onMouseEnter={() => setCardListCurrent(item)}
@@ -57,7 +54,7 @@ export default function () {
         <div className=" grid gap-1 grid-cols-6">
             {
                 grup.map(item => {
-                    return <Com_Link key={item.url} label={item.label} url={`/year/${encodeURIComponent(item.url)}`} />
+                    return <Com_Link key={item.url} label={item.label} url={`/video/year/${encodeURIComponent(item.url)}`} />
                 })
             }
         </div>
@@ -71,4 +68,3 @@ export default function () {
         </div>
     </div>
 }
-

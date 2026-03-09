@@ -1,6 +1,6 @@
-import { NetAPI } from "@/api/Net";
+import { NetAPI_Plot } from "@/api/Net";
 import { analysis_body } from "@/router";
-import analysis_net_api_ranking, { data_rank_onign } from "@/router/analysis/analysis_net_api_ranking";
+import analysis_net_api_ranking, { data_rank_onign } from "@/router/analysis/plot/analysis_net_api_plot_ranking";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom";
@@ -20,7 +20,7 @@ export default function () {
         if (data) {
             setRank(JSON.parse(data));
         } else {
-            analysis_body(NetAPI.Rank, analysis_net_api_ranking).then((data) => {
+            analysis_body(NetAPI_Plot.Rank, analysis_net_api_ranking).then((data) => {
                 setRank(data);
                 sessionStorage.setItem('rank', JSON.stringify(data));
             });
@@ -38,7 +38,7 @@ export default function () {
                                 <div className="max-h-60 overflow-y-auto">
                                     {item.list.map((a, idx_) => {
                                         return <div key={idx_} className="text-left">
-                                            <Link to={`/detail/${window.btoa(a.href)}`}>
+                                            <Link to={`/video/detail/${window.btoa(a.href)}`}>
                                                 <span
                                                     className={`inline-block px-2 mr-1 mb-1 text-sm text-center bg-black/20
                                                     rounded-sm ${getBGColor(idx_)}`}>{idx_ + 1}

@@ -1,5 +1,5 @@
 import Com_Item from "@/components/view/com_Item"
-import { data_year_onign } from "@/router/analysis/analysis_net_api_year"
+import { data_year_onign } from "@/router/analysis/plot/analysis_net_api_plot_year"
 import { useLoaderData } from "react-router-dom"
 
 export default function () {

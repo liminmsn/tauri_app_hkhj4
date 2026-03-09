@@ -1,4 +1,4 @@
-import { play_data } from "@/router/analysis/analysis_net_api_play";
+import { play_data } from "@/router/analysis/plot/analysis_net_api_plot_play";
 import { useHistoryContext } from "@/hooks/HistoryProvider";
 import { useLoaderData } from "react-router-dom";
 import { useEffect, useRef } from "react";

@@ -1,36 +1,31 @@
 import { createBrowserRouter, redirect } from "react-router-dom";
+import { user_api_premium_list, user_api_userInfo } from "./user_api";
+import Net, { NetAPI_Move, NetAPI_Plot } from "@/api/Net";
+import { toast } from "react-toastify";
 import App from "@/App";
-import View_Home from "@/view/View_Home";
-import analysis from "./analysis";
-import analysis_net_api_home from "./analysis/analysis_net_api_home";
 import View_Year from "@/view/View_Year";
-import analysis_net_api_year from "./analysis/analysis_net_api_year";
 import View_Detail from "@/view/View_Detail";
-import analysis_net_api_detail from "./analysis/analysis_net_api_detail";
 import View_Play from "@/view/View_Play";
-import analysis_net_api_play from "./analysis/analysis_net_api_play";
 import View_User from "@/view/View_User";
 import View_Setting from "@/view/View_Setting";
 import View_Login from "@/view/user/View_Login";
 import View_UserInfo from "@/view/user/View_UserInfo";
 import View_Register from "@/view/user/View_Register";
 import View_Error from "@/view/View_Error";
-import { user_api_premium_list, user_api_userInfo } from "./user_api";
-import { toast } from "react-toastify";
 import View_ForgotPaswd from "@/view/user/View_ForgotPaswd";
 import View_Premium from "@/view/View_Premium";
-import Net, { NetAPI } from "@/api/Net";
-import NetUser, { NetUserAPI } from "@/api/NetUser";
+import View_Plot from "@/view/category/View_Plot";
+import View_Move from "@/view/category/View_Move";
+import analysis_net_api_move from "./analysis/move/analysis_net_api_move";
+import analysis from "./analysis";
+import analysis_net_api_plot from "./analysis/plot/analysis_net_api_plot";
+import analysis_net_api_plot_year from "./analysis/plot/analysis_net_api_plot_year";
+import analysis_net_api_plot_detail from "./analysis/plot/analysis_net_api_plot_detail";
+import analysis_net_api_plot_play from "./analysis/plot/analysis_net_api_plot_play";
+import { categoryHomePath, CATEGORY_PLOT, CATEGORY_MOVE } from "@/hooks/CateGoryProvider";
+import analysis_net_api_plot_detail_move from "./analysis/move/analysis_net_api_plot_detail_move";
+import analysis_net_api_plot_play_move from "./analysis/move/analysis_net_api_plot_play_move";
 
-export async function analysis_body(url: NetAPI | string | undefined, analysis_net_api: (dom: Document) => any) {
-    try {
-        const res_text = await (await new Net(url).get()).text();
-        return analysis.init(res_text, analysis_net_api);
-    } catch (error) {
-        console.log(error);
-        window.location.pathname = "/err";
-    }
-}
 /**未登录自动跳转登录 */
 function is_login() {
     const token = localStorage.getItem('token');
@@ -40,47 +35,92 @@ function is_login() {
     return true;
 }
 
+export async function analysis_body(url: NetAPI_Plot | string | undefined, analysis_net_api: (dom: Document) => any) {
+    try {
+        let res_text;
+        switch (categoryHomePath()) {
+            case CATEGORY_MOVE:
+                res_text = await (await new Net(url, import.meta.env['VITE_URL_MOVE']).get()).text()
+                break;
+            default:
+                res_text = await (await new Net(url).get()).text()
+                break;
+        }
+        return analysis.init(res_text, analysis_net_api);
+    } catch (error) {
+        console.log(error);
+        // window.location.pathname = "/err";
+    }
+}
+
+const analysis_init = {
+    [CATEGORY_PLOT]: {
+        'year': analysis_net_api_plot_year,
+        'detail': analysis_net_api_plot_detail,
+        'play': analysis_net_api_plot_play
+    },
+    [CATEGORY_MOVE]: {
+        'year': analysis_net_api_plot_year,
+        'detail': analysis_net_api_plot_detail_move,
+        'play': analysis_net_api_plot_play_move
+    },
+}
+function getAnalysisFun(type: keyof typeof analysis_init, path: keyof typeof analysis_init[typeof CATEGORY_MOVE]) {
+    return analysis_init[type][path];
+}
+
 const router = createBrowserRouter([
     {
         path: "/",
         Component: App,
+        loader: () => {
+            redirect(categoryHomePath());
+        },
         children: [
             {
-                index: true,
-                Component: View_Home,
+                path: "plot",
+                Component: View_Plot,
                 loader: async () => {
-                    return await analysis_body(NetAPI.Home, analysis_net_api_home)
+                    return await analysis_body(NetAPI_Plot.Home, analysis_net_api_plot)
                 }
             },
             {
-                path: '/year/:url',
-                Component: View_Year,
-                loader: async ({ params }) => await analysis_body(params['url'], analysis_net_api_year)
-            },
-            {
-                path: '/detail/:url',
-                Component: View_Detail,
-                loader: async ({ params }) => {
-                    const url = window.atob(params['url']!);
-                    return {
-                        url: url,
-                        data: await analysis_body(url, analysis_net_api_detail)
-                    }
+                path: "move",
+                Component: View_Move,
+                loader: async () => {
+                    return await analysis_body(NetAPI_Move.Home, analysis_net_api_move)
                 }
             },
             {
-                path: '/play/:url',
-                Component: View_Play,
-                loader: async ({ params }) => {
-                    if (!is_login()) {
-                        throw redirect("/user");
-                    }
-                    return await analysis_body(window.atob(params['url']!), analysis_net_api_play);
-                }
-            },
-            {
-                path: "/err",
-                Component: View_Error
+                path: "/video",
+                children: [
+                    {
+                        path: 'year/:url',
+                        Component: View_Year,
+                        loader: async ({ params }) => await analysis_body(params['url'], getAnalysisFun(categoryHomePath(), "year"))
+                    },
+                    {
+                        path: 'detail/:url',
+                        Component: View_Detail,
+                        loader: async ({ params }) => {
+                            const url = window.atob(params['url']!);
+                            return {
+                                url: url,
+                                data: await analysis_body(url, getAnalysisFun(categoryHomePath(), "detail"))
+                            }
+                        }
+                    },
+                    {
+                        path: 'play/:url',
+                        Component: View_Play,
+                        loader: async ({ params }) => {
+                            if (!is_login()) {
+                                throw redirect("/user");
+                            }
+                            return await analysis_body(window.atob(params['url']!), getAnalysisFun(categoryHomePath(), "play"));
+                        }
+                    },
+                ]
             },
             {
                 path: "/premium",
@@ -137,6 +177,10 @@ const router = createBrowserRouter([
                 path: '/setting',
                 Component: View_Setting,
                 loader: () => { }
+            },
+            {
+                path: "/err",
+                Component: View_Error
             }
         ]
     }

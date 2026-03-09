@@ -4,11 +4,15 @@ import { window } from "@tauri-apps/api";
 import { useEffect, useState } from "react";
 import GlobalEvent from "@/tools/GlobalEvent";
 import Anim_label from "./anim/anim_label";
+import Com_category from "./com_category";
+import Com_sc from "./com_sc";
+import { useCateGoryContext } from "@/hooks/CateGoryProvider";
 const app_name = import.meta.env['VITE_APPNAME'] as string;
 
 const win = window.getCurrentWindow();
 export default function () {
     const navigate = useNavigate();
+    const { value: category } = useCateGoryContext();
     const [loding, setLoding] = useState(false);
     const [isfull, setIsFull] = useState(false);
 
@@ -24,10 +28,12 @@ export default function () {
                     <span className="font-bold">{app_name}</span>
                 </Anim_label>
             </div>
-            <div className="inline-flex gap-1 ml-2">
-                <Icon onClick={() => navigate("/")} icon="line-md:home-md-twotone" width="24" className="cursor-pointer active:scale-95" />
+            <div className="inline-flex gap-1 ml-1">
+                <Icon onClick={() => navigate(category.home)} icon="line-md:home-md-twotone" width="24" className="cursor-pointer active:scale-95" />
                 <Icon onClick={() => navigate(-1)} icon="line-md:arrow-left-circle-twotone" width="24" className="cursor-pointer active:scale-95" />
                 <Icon onClick={() => location.reload()} icon="line-md:round-360" width="24" className="cursor-pointer active:scale-95" />
+                <Com_category />
+                <Com_sc />
                 <div>
                     {loding && <Icon icon="line-md:beer-alt-twotone-loop" width="24" />}
                 </div>

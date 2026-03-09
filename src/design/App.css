@@ -3,7 +3,9 @@
 @import "./input.css";
 @import "./plyr.css";
 @import "./drag.css";
-@import "./Img.css";
+@import "./img.css";
+@import "./select.css";
+@import "./label.css";
 
 @property --rotate_bg {
     syntax: "<percentage>";
@@ -12,31 +14,36 @@
 }
 
 :root {
-    --theme_0: #BBCB2E;
-    --theme_1: #839705;
-    --text_0: #6B7445;
+    --theme_0: #000;
+    --theme_1: #000;
+    --text_0: #000;
     --plyr-color-main: var(--text_0);
+
 }
 
 body {
     overflow: hidden;
 
+    &::before {
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        content: '';
+        background-color: var(--theme_0);
+        border-radius: 0.25rem;
+        z-index: -1;
+    }
+
     &::after {
         z-index: -1;
         position: absolute;
         left: 45vw;
-        right: 45vw;
         top: 40vh;
-        padding: 2vh;
-        border-radius: 0.45rem;
-        text-align: center;
-        margin-inline: auto;
-        line-height: 1;
-        background-color: var(--theme_0);
-        color: var(--text_0);
         content: '';
-        font-size: 3rem;
-        animation: lodingLabel ease infinite 1s;
+        /* background-color: red; */
+        font-size: 10vh;
+        text-shadow: 0 0 3px var(--theme_1);
+        animation: lodingLabel ease-out infinite 1s;
     }
 }
 
@@ -45,15 +52,11 @@ body {
         content: '🏙️';
     }
 
-    45% {
+    50% {
         content: '🌇';
     }
 
-    65% {
-        content: '🌆';
-    }
-
-    100% {
+    to {
         content: '🌃';
     }
 }

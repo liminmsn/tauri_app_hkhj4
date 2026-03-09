@@ -1,0 +1,18 @@
+select[disabled] {
+    border-color: color-mix(in srgb, var(--theme_1) 50%, transparent 50%);
+    opacity: 0.5;
+}
+
+select {
+    cursor: pointer;
+    border-color: var(--theme_1);
+    outline: none;
+    background-color: var(--theme_1) !important;
+    padding-inline: 0.25rem;
+    border-radius: 0.25rem;
+}
+
+
+option:checked {
+    background-color: var(--theme_0);
+}
