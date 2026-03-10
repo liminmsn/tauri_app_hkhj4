@@ -12,11 +12,9 @@ type ThemeContextType = {
 };
 
 let initTheme: ThemeContextTypeTheme = {
-    id: 0,
-    label: "复古绿",
-    theme: ["#41431B", "#ECDBBA", "#E8E2DB"],
-    // theme: ["#30364F", "#ACBAC4", "#F0F0DB"],
-    // theme: ["#1A3263", "#547792", "#E8E2DB"],
+    "id": 0,
+    "label": "青草绿",
+    "theme": ["#a4a946", "#698b32", "#E8E2DB"]
 };
 
 const localTheme = localStorage.getItem("theme_config");

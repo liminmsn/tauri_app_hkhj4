@@ -5,13 +5,13 @@ import { SyntheticEvent } from "react";
 const theme_arr = [
     {
         "id": 0,
-        "label": "深褐红",
-        "theme": ["#903f22", "#5a0606", "#FFB33F"]
+        "label": "青草绿",
+        "theme": ["#a4a946", "#698b32", "#E8E2DB"]
     },
     {
         "id": 1,
-        "label": "复古绿",
-        "theme": ["#a4a946", "#698b32", "#E8E2DB"]
+        "label": "深褐红",
+        "theme": ["#903f22", "#5a0606", "#FFB33F"]
     },
     {
         "id": 2,

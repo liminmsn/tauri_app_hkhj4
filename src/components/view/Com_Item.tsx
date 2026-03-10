@@ -42,10 +42,10 @@ export default function ({ item }: propsType) {
                 }
 
             </div>
-            <div className="text-center text-ellipsis text-nowrap overflow-hidden py-1 text-shadow-sm font-bold">{item.label}</div>
+            <div className="text-center text-ellipsis text-nowrap overflow-hidden pt-1 text-shadow-sm font-bold">{item.label}</div>
             {
                 item.info2 &&
-                <p className="text-sm text-center text-nowrap overflow-hidden text-ellipsis px-1">{item.info2}</p>
+                <p className="text-sm text-center text-nowrap overflow-hidden text-ellipsis px-1" title={item.info2}>{item.info2}</p>
             }
         </Link>
     </div>

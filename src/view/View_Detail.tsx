@@ -2,14 +2,12 @@ import Icon_bg from "@/components/icon/icon_bg";
 import Com_Item from "@/components/view/com_Item";
 import Com_Link from "@/components/view/com_Link";
 import Com_TipsLabel from "@/components/view/com_TipsLabel";
-import { useHistoryContext } from "@/hooks/HistoryProvider";
 import { data_detail_onign } from "@/router/analysis/plot/analysis_net_api_plot_detail";
 import { useLoaderData } from "react-router-dom"
 
 export default function () {
-    const { add, history } = useHistoryContext();
     const { data, url } = useLoaderData<{ url: string, data: typeof data_detail_onign }>();
-    const { info, playother_1, playother_2, playlist_1, playlist_2 } = data;
+    const { info, playother_1, playother_2, play_list } = data;
 
     return <div className="p-1">
         <Icon_bg>
@@ -30,36 +28,25 @@ export default function () {
             </div>
         </Icon_bg>
         {
-            playlist_1.length > 0 &&
-            <div>
-                <Com_TipsLabel label="主路线" icon="line-md:list-3-twotone" />
-                <div className="grid grid-cols-6 gap-1">
+            play_list.map((item_gory, idx) => {
+                return <div key={idx}>
                     {
-                        playlist_1.map((item, idx) => {
-                            return <span className={`${history.url == url && history.select == idx && history.grep == 1 ? "opacity-40" : ""}`}
-                                onClickCapture={() => add({ url, img: info.img, label: info.title, grep: 1, select: idx })} key={item.url}>
-                                <Com_Link key={item.url} label={item.label} url={`/video/play/${window.btoa(item.url)}`} />
-                            </span>
-                        })
+                        item_gory.length > 0 &&
+                        <div>
+                            <Com_TipsLabel label={`${idx == 0 ? "主路线" : `备用路线${idx}`}`} icon="line-md:list-3-twotone" />
+                            <div className="grid grid-cols-6 gap-1">
+                                {
+                                    item_gory.map((item, idx) => {
+                                        return <span className={`"opacity-40" : ""}`} key={item.url}>
+                                            <Com_Link key={item.url} label={item.label} url={`/video/play/${window.btoa(item.url)}`} />
+                                        </span>
+                                    })
+                                }
+                            </div>
+                        </div>
                     }
                 </div>
-            </div>
-        }
-        {
-            playlist_2.length > 0 &&
-            <div>
-                <Com_TipsLabel label="备用路线" icon="line-md:list-3-twotone" />
-                <div className="grid grid-cols-6 gap-1">
-                    {
-                        playlist_2.map((item, idx) => {
-                            return <span className={`${history.url == url && history.select == idx && history.grep == 2 ? "opacity-40" : ""}`}
-                                onClickCapture={() => add({ url, img: info.img, label: info.title, grep: 2, select: idx })} key={item.url}>
-                                <Com_Link key={item.url} label={item.label} url={`/video/play/${window.btoa(item.url)}`} />
-                            </span>
-                        })
-                    }
-                </div>
-            </div>
+            })
         }
         <Com_TipsLabel label="相关视频" icon="line-md:youtube-twotone" />
         <div className=" grid grid-cols-6 gap-1">

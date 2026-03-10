@@ -32,7 +32,9 @@ export default function ({ children }: { children: ReactNode }) {
 }
 //返回默认前首页途径
 function categoryHomePath(): typeof CATEGORY_PLOT | typeof CATEGORY_MOVE {
-    return localStorage.getItem(LOCAL_CATEGORY) as any;
+    let path = localStorage.getItem(LOCAL_CATEGORY) as any;
+    if (!path) path = category_default.home;
+    return path;
 }
 function useCateGoryContext() {
     const context = useContext(CateGoryContext);

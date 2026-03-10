@@ -6,6 +6,7 @@ export const data_detail_onign = {
         desc: [{ o: '', t: '' }]
     },
     desc: '',
+    play_list: [[{ label: '', url: '' }]],
     playlist_1: [{ label: '', url: '' }],
     playlist_2: [{ label: '', url: '' }],
     playother_1: [{ img: '', info: '', info2: '', url: '', label: '' }],
@@ -27,18 +28,36 @@ export default function (dom: Document) {
         })
     }
     data.desc = dom.querySelector('.tjuqing')?.textContent || '暂无';
-    data.playlist_1 = Array.from(dom.querySelector('#playlist_1')?.querySelectorAll('a') || []).map(item => {
-        return {
-            label: item.textContent || '',
-            url: item.getAttribute('href') || ''
-        }
-    });
-    data.playlist_2 = Array.from(dom.querySelector('#playlist_2')?.querySelectorAll('a') || []).map(item => {
-        return {
-            label: item.textContent || '',
-            url: item.getAttribute('href') || ''
-        }
-    });
+    // data.playlist_1 = Array.from(dom.querySelector('#playlist_1')?.querySelectorAll('a') || []).map(item => {
+    //     return {
+    //         label: item.textContent || '',
+    //         url: item.getAttribute('href') || ''
+    //     }
+    // });
+    // data.playlist_2 = Array.from(dom.querySelector('#playlist_2')?.querySelectorAll('a') || []).map(item => {
+    //     return {
+    //         label: item.textContent || '',
+    //         url: item.getAttribute('href') || ''
+    //     }
+    // });
+
+    data.play_list = [
+        Array.from(dom.querySelector('#playlist_1')?.querySelectorAll('a') || []).map(item => {
+            return {
+                label: item.textContent || '',
+                url: item.getAttribute('href') || ''
+            }
+        }),
+        Array.from(dom.querySelector('#playlist_2')?.querySelectorAll('a') || []).map(item => {
+            return {
+                label: item.textContent || '',
+                url: item.getAttribute('href') || ''
+            }
+        })
+    ]
+    // console.log(data.play_list);
+    
+
 
     data.playother_1 = Array.from(dom.querySelectorAll('.img-list.dis .lianzai-img')).map(item => {
         return {

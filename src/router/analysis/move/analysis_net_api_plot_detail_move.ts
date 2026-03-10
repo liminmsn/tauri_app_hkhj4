@@ -6,6 +6,7 @@ export const data_detail_onign = {
         desc: [{ o: 'a', t: 'b' }]
     },
     desc: '',
+    play_list: [[{ label: '', url: '' }]],
     playlist_1: [{ label: '', url: '' }],
     playlist_2: [{ label: '', url: '' }],
     playother_1: [{ img: '', info: '', info2: '', url: '', label: '' }],
@@ -56,23 +57,33 @@ export default function (dom: Document) {
         ]
     }
     data.desc = lbal_arr[5].innerHTML || '暂无';
-    data.playlist_1 = Array.from(dom.querySelector('#playlist1')?.querySelectorAll('a') || []).map(item => {
-        return {
-            label: item.textContent || '',
-            url: item.getAttribute('href') || ''
-        }
-    });
-    data.playlist_2 = Array.from(dom.querySelector('#playlist2')?.querySelectorAll('a') || []).map(item => {
-        return {
-            label: item.textContent || '',
-            url: item.getAttribute('href') || ''
-        }
-    });
+    data.play_list = Array.from(dom.querySelector(".tab-content.myui-panel_bd")?.querySelectorAll("ul") || [])
+        .map(ul => {
+            return Array.from(ul.querySelectorAll('a')).map(item => {
+                return {
+                    label: item.textContent || '',
+                    url: item.getAttribute('href') || ''
+                }
+            });
+        });
 
+
+    // data.playlist_1 = Array.from(dom.querySelector('#playlist1')?.querySelectorAll('a') || []).map(item => {
+    //     return {
+    //         label: item.textContent || '',
+    //         url: item.getAttribute('href') || ''
+    //     }
+    // });
+    // data.playlist_2 = Array.from(dom.querySelector('#playlist2')?.querySelectorAll('a') || []).map(item => {
+    //     return {
+    //         label: item.textContent || '',
+    //         url: item.getAttribute('href') || ''
+    //     }
+    // });
+
+    // 推荐
     const other_lsit = Array.from(dom.querySelectorAll(".tab-content.myui-panel_bd"));
-    console.log(other_lsit);
-
-
+    // console.log(other_lsit);
     data.playother_1 = Array.from(other_lsit[1]?.querySelectorAll(".myui-vodlist__box") || []).map(item => {
         const regex = /background:\s*url\(\s*["']?([^"')]+)["']?\s*\)/i; //匹配url
         const match_url = item.querySelector('.myui-vodlist__thumb')?.outerHTML.match(regex);
@@ -96,7 +107,7 @@ export default function (dom: Document) {
         }
     })
 
-    console.log(data);
+    // console.log(data);
 
     return data;
 }

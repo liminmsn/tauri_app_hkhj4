@@ -28,7 +28,8 @@ export default function (document: Document) {
                     label: item.querySelector('.myui-vodlist__thumb')?.getAttribute('title') || '',
                     url: item.querySelector('.myui-vodlist__thumb')?.getAttribute('href') || '',
                     img: match_url && String("https:").concat(match_url[1]) || '',
-                    info: item.querySelector('.pic-tag.pic-tag-top')?.textContent || ''
+                    info: item.querySelector('.pic-tag.pic-tag-top')?.textContent || '',
+                    info2: Array.from(item.querySelector('.myui-vodlist__detail')?.querySelector('p')?.children || []).map(item => item.textContent).join("、")
                 }
             })
         }

@@ -36,6 +36,8 @@ function is_login() {
 }
 
 export async function analysis_body(url: NetAPI_Plot | string | undefined, analysis_net_api: (dom: Document) => any) {
+    console.log(url);
+    
     try {
         let res_text;
         switch (categoryHomePath()) {
@@ -55,17 +57,20 @@ export async function analysis_body(url: NetAPI_Plot | string | undefined, analy
 
 const analysis_init = {
     [CATEGORY_PLOT]: {
+        'home': analysis_net_api_plot,
         'year': analysis_net_api_plot_year,
         'detail': analysis_net_api_plot_detail,
         'play': analysis_net_api_plot_play
     },
     [CATEGORY_MOVE]: {
+        'home': analysis_net_api_move,
         'year': analysis_net_api_plot_year,
         'detail': analysis_net_api_plot_detail_move,
         'play': analysis_net_api_plot_play_move
     },
 }
 function getAnalysisFun(type: keyof typeof analysis_init, path: keyof typeof analysis_init[typeof CATEGORY_MOVE]) {
+    console.log(type,path);
     return analysis_init[type][path];
 }
 
@@ -73,22 +78,19 @@ const router = createBrowserRouter([
     {
         path: "/",
         Component: App,
-        loader: () => {
-            redirect(categoryHomePath());
-        },
         children: [
             {
                 path: "plot",
                 Component: View_Plot,
                 loader: async () => {
-                    return await analysis_body(NetAPI_Plot.Home, analysis_net_api_plot)
+                    return await analysis_body(NetAPI_Plot.Home, getAnalysisFun(categoryHomePath(), "home"))
                 }
             },
             {
                 path: "move",
                 Component: View_Move,
                 loader: async () => {
-                    return await analysis_body(NetAPI_Move.Home, analysis_net_api_move)
+                    return await analysis_body(NetAPI_Move.Home, getAnalysisFun(categoryHomePath(), "home"))
                 }
             },
             {

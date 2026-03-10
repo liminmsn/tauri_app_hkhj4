@@ -1,13 +1,19 @@
 import Com_TopBar from "./components/com_topBar";
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useRef } from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import "@/design/App.css";
 import GlobalEvent from "./tools/GlobalEvent";
 import { ToastContainer } from "react-toastify";
+import { categoryHomePath } from "./hooks/CateGoryProvider";
 
 function App() {
+  const local = useLocation();
+  const navigate = useNavigate();
   useEffect(() => {
+    if (local.pathname == '/') {
+      navigate(categoryHomePath());
+    }
     document.addEventListener('contextmenu', (e) => e.preventDefault());
     GlobalEvent.on('top', scrollTop);
   }, [])
