@@ -14,8 +14,8 @@ export default function () {
 
     return <div>
         <select value={value.home} className="ml-1" onChange={onSelect}>
-            <option value={CATEGORY_PLOT}>韩剧1</option>
-            <option value={CATEGORY_DSJ}>韩剧2</option>
+            <option value={CATEGORY_PLOT}>韩剧NEW</option>
+            <option value={CATEGORY_DSJ}>韩剧</option>
             <option value={CATEGORY_MOVE}>电影</option>
             <option value={CATEGORY_ZongYi}>综艺</option>
         </select>
