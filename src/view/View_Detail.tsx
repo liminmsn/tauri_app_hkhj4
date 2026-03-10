@@ -1,7 +1,7 @@
 import Icon_bg from "@/components/icon/icon_bg";
 import Com_Item from "@/components/view/com_Item";
-import Com_Link from "@/components/view/com_Link";
-import Com_TipsLabel from "@/components/view/com_TipsLabel";
+import Com_Link from "@/components/view/com_link";
+import Com_TipsLabel from "@/components/view/com_tipsLabel";
 import { data_detail_onign } from "@/router/analysis/plot/analysis_net_api_plot_detail";
 import { useLoaderData } from "react-router-dom"
 
@@ -9,7 +9,7 @@ export default function () {
     const { data, url } = useLoaderData<{ url: string, data: typeof data_detail_onign }>();
     const { info, playother_1, playother_2, play_list } = data;
 
-    return <div className="p-1">
+    return <div className="p-2">
         <Icon_bg>
             <div className="py-4 pb-6 px-4 shadow-sm rounded-sm flex text_1 relative">
                 <div className="h-full flex-1 mr-6 w-full flex">

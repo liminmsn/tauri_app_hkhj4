@@ -1,4 +1,5 @@
 export const data_year_onign = {
+    page: [{ label: '', url: '', disabled: false }],
     itemList: [{ img: '', info: '', url: '', label: '' }]
 }
 

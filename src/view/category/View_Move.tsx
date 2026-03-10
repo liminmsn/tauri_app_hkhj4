@@ -1,6 +1,6 @@
 import Com_Item from "@/components/view/com_Item";
-import Com_Link from "@/components/view/com_Link";
-import Com_TipsLabel from "@/components/view/com_TipsLabel"
+import Com_Link from "@/components/view/com_link";
+import Com_TipsLabel from "@/components/view/com_tipsLabel"
 import { data_move_home_onign } from "@/router/analysis/move/analysis_net_api_move";
 import { useLoaderData } from "react-router-dom"
 
@@ -12,7 +12,7 @@ export default function () {
         <div className=" grid gap-1 grid-cols-6">
             {
                 grup.map(item => {
-                    return <Com_Link key={item.url} label={item.label} url={`/video/year/${encodeURIComponent(item.url)}`} />
+                    return <Com_Link key={item.url} label={`${item.label}年电影`} url={`/video/year/${encodeURIComponent(item.url)}`} />
                 })
             }
         </div>

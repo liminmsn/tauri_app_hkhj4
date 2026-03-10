@@ -25,6 +25,7 @@ import analysis_net_api_plot_play from "./analysis/plot/analysis_net_api_plot_pl
 import { categoryHomePath, CATEGORY_PLOT, CATEGORY_MOVE } from "@/hooks/CateGoryProvider";
 import analysis_net_api_plot_detail_move from "./analysis/move/analysis_net_api_plot_detail_move";
 import analysis_net_api_plot_play_move from "./analysis/move/analysis_net_api_plot_play_move";
+import analysis_net_api_plot_year_move from "./analysis/move/analysis_net_api_plot_year_move";
 
 /**未登录自动跳转登录 */
 function is_login() {
@@ -64,12 +65,12 @@ const analysis_init = {
     },
     [CATEGORY_MOVE]: {
         'home': analysis_net_api_move,
-        'year': analysis_net_api_plot_year,
+        'year': analysis_net_api_plot_year_move,
         'detail': analysis_net_api_plot_detail_move,
         'play': analysis_net_api_plot_play_move
     },
 }
-function getAnalysisFun(type: keyof typeof analysis_init, path: keyof typeof analysis_init[typeof CATEGORY_MOVE]) {
+export function getAnalysisFun(type: keyof typeof analysis_init, path: keyof typeof analysis_init[typeof CATEGORY_MOVE]) {
     console.log(type,path);
     return analysis_init[type][path];
 }
@@ -99,7 +100,7 @@ const router = createBrowserRouter([
                     {
                         path: 'year/:url',
                         Component: View_Year,
-                        loader: async ({ params }) => await analysis_body(params['url'], getAnalysisFun(categoryHomePath(), "year"))
+                        // loader: async ({ params }) => await analysis_body(params['url'], getAnalysisFun(categoryHomePath(), "year"))
                     },
                     {
                         path: 'detail/:url',

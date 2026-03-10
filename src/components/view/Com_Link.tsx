@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 
-export default function (prop: { label: string; url: string }) {
+export default function (prop: { label: string; url: string, disabled?: boolean }) {
     return <Link to={prop.url}
-        className="
+        className={`
+            w-full
+            ${prop.disabled ? 'opacity-40 pointer-events-none' : 'shadow-sm'}
             flex
             justify-between
             overflow-hidden
@@ -11,8 +13,8 @@ export default function (prop: { label: string; url: string }) {
             rounded-r-sm
             rounded-bl-sm
             theme_0
-            shadow-sm
-            cursor-pointer">
+            cursor-pointer
+        `}>
         <div className="text-sm p-1">
             {prop.label}
         </div>
