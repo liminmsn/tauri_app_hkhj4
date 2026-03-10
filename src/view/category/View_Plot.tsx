@@ -3,7 +3,7 @@ import Com_Item from "@/components/view/com_Item"
 import Com_Link from "@/components/view/com_link"
 import Com_TipsLabel from "@/components/view/com_tipsLabel"
 import { Link, useLoaderData } from "react-router-dom"
-import View_ranking from "../home/View_ranking"
+import View_ranking from "./plot/View_ranking"
 import { data_home_onign } from "@/router/analysis/plot/analysis_net_api_plot"
 import { useState } from "react"
 

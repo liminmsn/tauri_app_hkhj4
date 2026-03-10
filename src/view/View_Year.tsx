@@ -3,6 +3,7 @@ import Com_Link from "@/components/view/com_link";
 import { categoryHomePath } from "@/hooks/CateGoryProvider";
 import { analysis_body, getAnalysisFun } from "@/router";
 import { data_year_onign } from "@/router/analysis/plot/analysis_net_api_plot_year";
+import { Icon } from "@iconify/react/dist/iconify.js";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
@@ -28,7 +29,7 @@ export default function () {
                 <div className="flex justify-center gap-2 my-2">
                     {
                         data.page.map(item => {
-                            return <div className="flex" key={item.label}>
+                            return <div className="flex w-10 text-center" key={item.label}>
                                 <Com_Link disabled={item.disabled} label={` ${item.label} `} url={`/video/year/${encodeURIComponent(item.url)}`} />
                             </div>
                         })
@@ -37,6 +38,8 @@ export default function () {
             }
         </div>
     } else {
-        return <div className="p-2">加载中...</div>
+        return <div className="p-2">
+            加载中...
+        </div>
     }
 }

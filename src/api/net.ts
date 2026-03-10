@@ -7,7 +7,10 @@ export enum NetAPI_Plot {
     Rank = "/label/rank.html"
 }
 export enum NetAPI_Move {
+    DSJ = "/dianshiju.html",
     Home = "/dianying.html",
+    ZhongYi = '/zongyi.html',
+    Search = '/index.php?s=vod-search'
 }
 
 export default class Net extends Debug {

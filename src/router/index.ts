@@ -22,10 +22,13 @@ import analysis_net_api_plot from "./analysis/plot/analysis_net_api_plot";
 import analysis_net_api_plot_year from "./analysis/plot/analysis_net_api_plot_year";
 import analysis_net_api_plot_detail from "./analysis/plot/analysis_net_api_plot_detail";
 import analysis_net_api_plot_play from "./analysis/plot/analysis_net_api_plot_play";
-import { categoryHomePath, CATEGORY_PLOT, CATEGORY_MOVE } from "@/hooks/CateGoryProvider";
+import { categoryHomePath, CATEGORY_PLOT, CATEGORY_MOVE, CATEGORY_ZongYi, CATEGORY_DSJ } from "@/hooks/CateGoryProvider";
 import analysis_net_api_plot_detail_move from "./analysis/move/analysis_net_api_plot_detail_move";
 import analysis_net_api_plot_play_move from "./analysis/move/analysis_net_api_plot_play_move";
 import analysis_net_api_plot_year_move from "./analysis/move/analysis_net_api_plot_year_move";
+import View_Search from "@/view/View_Search";
+import View_ZhongYi from "@/view/category/View_ZhongYi";
+import View_DSJ from "@/view/category/View_DSJ";
 
 /**未登录自动跳转登录 */
 function is_login() {
@@ -36,12 +39,21 @@ function is_login() {
     return true;
 }
 
-export async function analysis_body(url: NetAPI_Plot | string | undefined, analysis_net_api: (dom: Document) => any) {
+export async function analysis_body(url: NetAPI_Plot | string | undefined, analysis_net_api: (dom: Document) => any, base_url?: string) {
     console.log(url);
-    
+
     try {
         let res_text;
+        if (base_url) {
+            res_text = await (await new Net(url, base_url).get()).text()
+        }
         switch (categoryHomePath()) {
+            case CATEGORY_DSJ:
+                res_text = await (await new Net(url, import.meta.env['VITE_URL_MOVE']).get()).text()
+                break;
+            case CATEGORY_ZongYi:
+                res_text = await (await new Net(url, import.meta.env['VITE_URL_MOVE']).get()).text()
+                break;
             case CATEGORY_MOVE:
                 res_text = await (await new Net(url, import.meta.env['VITE_URL_MOVE']).get()).text()
                 break;
@@ -63,7 +75,19 @@ const analysis_init = {
         'detail': analysis_net_api_plot_detail,
         'play': analysis_net_api_plot_play
     },
+    [CATEGORY_DSJ]: {
+        'home': analysis_net_api_move,
+        'year': analysis_net_api_plot_year_move,
+        'detail': analysis_net_api_plot_detail_move,
+        'play': analysis_net_api_plot_play_move
+    },
     [CATEGORY_MOVE]: {
+        'home': analysis_net_api_move,
+        'year': analysis_net_api_plot_year_move,
+        'detail': analysis_net_api_plot_detail_move,
+        'play': analysis_net_api_plot_play_move
+    },
+    [CATEGORY_ZongYi]: {
         'home': analysis_net_api_move,
         'year': analysis_net_api_plot_year_move,
         'detail': analysis_net_api_plot_detail_move,
@@ -71,7 +95,7 @@ const analysis_init = {
     },
 }
 export function getAnalysisFun(type: keyof typeof analysis_init, path: keyof typeof analysis_init[typeof CATEGORY_MOVE]) {
-    console.log(type,path);
+    console.log(type, path);
     return analysis_init[type][path];
 }
 
@@ -81,22 +105,40 @@ const router = createBrowserRouter([
         Component: App,
         children: [
             {
-                path: "plot",
+                path: CATEGORY_PLOT,
                 Component: View_Plot,
                 loader: async () => {
                     return await analysis_body(NetAPI_Plot.Home, getAnalysisFun(categoryHomePath(), "home"))
                 }
             },
             {
-                path: "move",
+                path: CATEGORY_DSJ,
+                Component: View_DSJ,
+                loader: async () => {
+                    return await analysis_body(NetAPI_Move.DSJ, getAnalysisFun(categoryHomePath(), "home"))
+                }
+            },
+            {
+                path: CATEGORY_MOVE,
                 Component: View_Move,
                 loader: async () => {
                     return await analysis_body(NetAPI_Move.Home, getAnalysisFun(categoryHomePath(), "home"))
                 }
             },
             {
+                path: CATEGORY_ZongYi,
+                Component: View_ZhongYi,
+                loader: async () => {
+                    return await analysis_body(NetAPI_Move.ZhongYi, getAnalysisFun(categoryHomePath(), "home"))
+                }
+            },
+            {
                 path: "/video",
                 children: [
+                    {
+                        path: 'search',
+                        Component: View_Search
+                    },
                     {
                         path: 'year/:url',
                         Component: View_Year,

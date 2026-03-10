@@ -1,4 +1,4 @@
-export const data_move_home_onign = {
+export const data_move_search_onign = {
     grup: [{ label: '', url: '' }],
     cardList: [
         {
@@ -9,7 +9,7 @@ export const data_move_home_onign = {
 }
 
 export default function (document: Document) {
-    let data = data_move_home_onign;
+    let data = data_move_search_onign;
     data.grup = Array.from(document.querySelector(".myui-screen__list.nav-slide.clearfix")?.querySelectorAll(".btn") || []).filter(item => item.getAttribute('href')).map(a => {
         return {
             label: a.textContent,
@@ -34,8 +34,6 @@ export default function (document: Document) {
             })
         }
     })
-    console.log('dom', document);
-
     console.log(data);
     return data;
 }

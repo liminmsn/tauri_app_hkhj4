@@ -15,7 +15,7 @@ export default function (prop: { label: string; url: string, disabled?: boolean 
             theme_0
             cursor-pointer
         `}>
-        <div className="text-sm p-1">
+        <div className="text-sm p-1 w-full">
             {prop.label}
         </div>
         <div className="w-1 min-w-1 h-full theme_1"></div>

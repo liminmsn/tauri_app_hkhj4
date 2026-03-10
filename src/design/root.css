@@ -1,9 +1,9 @@
 ::-webkit-scrollbar {
     appearance: none;
     width: 4px;
-    background: var(--theme_1);
+    background: var(--theme_0);
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--theme_0);
+    background: var(--theme_1);
 }

@@ -5,7 +5,7 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom";
 
-function getBGColor(idx: number) {
+export function getBGColor(idx: number) {
     const colors = ['bg-red-500 text-white', 'bg-green-500 text-white', 'bg-orange-500 text-white']
     if (colors[idx]) {
         return colors[idx];

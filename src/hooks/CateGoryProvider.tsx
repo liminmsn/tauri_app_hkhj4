@@ -7,7 +7,10 @@ type CateGoryContextType = {
 
 const LOCAL_CATEGORY = 'category';
 const CATEGORY_PLOT = '/plot';
+const CATEGORY_DSJ = '/dianshiji';
 const CATEGORY_MOVE = '/move';
+const CATEGORY_ZongYi = '/zongyi';
+type HomePathType = typeof CATEGORY_PLOT | typeof CATEGORY_MOVE | typeof CATEGORY_ZongYi | typeof CATEGORY_DSJ;
 
 
 const category_default = {
@@ -24,14 +27,17 @@ export default function ({ children }: { children: ReactNode }) {
     function update(val: Partial<CateGoryContextValueType>) {
         localStorage.setItem(LOCAL_CATEGORY, val.home!);
         const newobl = { ...value, ...val };
-        setCateGory(newobl);
+        setCateGory(prev => ({
+            ...prev,
+            ...newobl,
+        }));
     }
     return <CateGoryContext.Provider value={{ value, update }}>
         {children}
     </CateGoryContext.Provider >
 }
 //返回默认前首页途径
-function categoryHomePath(): typeof CATEGORY_PLOT | typeof CATEGORY_MOVE {
+function categoryHomePath(): HomePathType {
     let path = localStorage.getItem(LOCAL_CATEGORY) as any;
     if (!path) path = category_default.home;
     return path;
@@ -44,4 +50,4 @@ function useCateGoryContext() {
     return context;
 }
 
-export { useCateGoryContext, categoryHomePath, CATEGORY_MOVE, CATEGORY_PLOT }
+export { useCateGoryContext, categoryHomePath, CATEGORY_MOVE, CATEGORY_PLOT, CATEGORY_DSJ, CATEGORY_ZongYi }
