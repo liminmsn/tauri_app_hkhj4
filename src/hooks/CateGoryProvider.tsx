@@ -50,4 +50,4 @@ function useCateGoryContext() {
     return context;
 }
 
-export { useCateGoryContext, categoryHomePath, CATEGORY_MOVE, CATEGORY_PLOT, CATEGORY_DSJ, CATEGORY_ZongYi }
+export { useCateGoryContext, categoryHomePath, LOCAL_CATEGORY, CATEGORY_MOVE, CATEGORY_PLOT, CATEGORY_DSJ, CATEGORY_ZongYi }

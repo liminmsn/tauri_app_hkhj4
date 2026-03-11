@@ -47,10 +47,8 @@ body {
         left: 45vw;
         top: 40vh;
         content: '';
-        /* background-color: red; */
         font-size: 10vh;
-        text-shadow: 0 0 3px var(--theme_1);
-        /* animation: lodingLabel ease-out infinite 1s; */
+        animation: lodingLabel ease-out infinite 1s;
     }
 }
 

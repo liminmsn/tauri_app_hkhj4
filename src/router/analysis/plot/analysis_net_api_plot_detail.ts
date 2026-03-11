@@ -23,7 +23,7 @@ export default function (dom: Document) {
         desc: Array.from(head?.querySelector('.info.fn-clear')?.querySelectorAll('.nyzhuy') || []).map(item => {
             return {
                 o: item.querySelector('dt')?.textContent || '',
-                t: item.querySelector('dd')?.textContent || ''
+                t: item.querySelector('dd')?.textContent.replaceAll(',', '、') || ''
             }
         })
     }
@@ -56,7 +56,7 @@ export default function (dom: Document) {
         })
     ]
     // console.log(data.play_list);
-    
+
 
 
     data.playother_1 = Array.from(dom.querySelectorAll('.img-list.dis .lianzai-img')).map(item => {

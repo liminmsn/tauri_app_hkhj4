@@ -37,8 +37,8 @@ export default function () {
             }
         </div>
     } else {
-        return <div className="p-2">
-            加载中...
+        return <div className="p-2 shouxie">
+            数据获取中...
         </div>
     }
 }

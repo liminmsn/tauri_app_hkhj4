@@ -21,7 +21,7 @@ import analysis_net_api_plot from "./analysis/plot/analysis_net_api_plot";
 import analysis_net_api_plot_year from "./analysis/plot/analysis_net_api_plot_year";
 import analysis_net_api_plot_detail from "./analysis/plot/analysis_net_api_plot_detail";
 import analysis_net_api_plot_play from "./analysis/plot/analysis_net_api_plot_play";
-import { categoryHomePath, CATEGORY_PLOT, CATEGORY_MOVE, CATEGORY_ZongYi, CATEGORY_DSJ } from "@/hooks/CateGoryProvider";
+import { categoryHomePath, CATEGORY_PLOT, CATEGORY_MOVE, CATEGORY_ZongYi, CATEGORY_DSJ, LOCAL_CATEGORY } from "@/hooks/CateGoryProvider";
 import analysis_net_api_plot_detail_move from "./analysis/move/analysis_net_api_plot_detail_move";
 import analysis_net_api_plot_play_move from "./analysis/move/analysis_net_api_plot_play_move";
 import analysis_net_api_plot_year_move from "./analysis/move/analysis_net_api_plot_year_move";
@@ -108,6 +108,7 @@ const router = createBrowserRouter([
                 path: CATEGORY_PLOT,
                 Component: View_Plot,
                 loader: async () => {
+                    localStorage.setItem(LOCAL_CATEGORY, CATEGORY_PLOT)
                     return await analysis_body(NetAPI_Plot.Home, getAnalysisFun(categoryHomePath(), "home"))
                 }
             },

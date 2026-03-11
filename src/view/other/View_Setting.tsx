@@ -16,7 +16,7 @@ const theme_arr = [
     {
         "id": 2,
         "label": "深空灰",
-        "theme": ["#40455b", "#8d8d8d", "#e8e8e8"]
+        "theme": ["#40455b", "#202020", "#e8e8e8"]
     },
     {
         "id": 3,
@@ -38,15 +38,29 @@ export default function () {
         <Com_Card>
             <div className="text-left p-2 px-8">
                 <div className="font-bold mb-2 text-xl">设置</div>
-                <label>主题：
-                    <select defaultValue={local_theme_config['id']} onChangeCapture={onSelect}>
-                        {
-                            theme_arr.map((item, idx) => {
-                                return <option key={idx} value={item.id} >{item.label}</option>
-                            })
-                        }
-                    </select>
-                </label>
+                <ul className="text-sm">
+                    <li>
+                        <label>主题：
+                            <select className="shouxie" defaultValue={local_theme_config['id']} onChangeCapture={onSelect}>
+                                {
+                                    theme_arr.map((item, idx) => {
+                                        return <option key={idx} value={item.id} >{item.label}</option>
+                                    })
+                                }
+                            </select>
+                        </label>
+                    </li>
+                    <li>
+                        <label>版本：
+                            <span className="shouxie text-sm">{import.meta.env['VITE_VERSION']}</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>关于：
+                            <span className="shouxie text-sm">开发者@头号玩家</span>
+                        </label>
+                    </li>
+                </ul>
             </div>
         </Com_Card>
     </div>

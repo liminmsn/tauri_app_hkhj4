@@ -5,66 +5,74 @@ import Com_TipsLabel from "@/components/view/com_tipsLabel"
 import { Link, useLoaderData } from "react-router-dom"
 import View_ranking from "./plot/View_ranking"
 import { data_home_onign } from "@/router/analysis/plot/analysis_net_api_plot"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { CATEGORY_PLOT, useCateGoryContext } from "@/hooks/CateGoryProvider"
 
 export default function () {
+    const { update } = useCateGoryContext();
     const { cardList, itemList, grup } = useLoaderData<typeof data_home_onign>();
     const [cardList_current, setCardListCurrent] = useState(cardList[0]);
 
-    return <div className="p-2">
-        <Icon_bg>
-            <div className="py-4 px-4 h-80 shadow-sm rounded-sm flex text_1">
-                <div className="h-full flex-1 mr-6 flex">
-                    <img className="h-full max-w-50 min-w-50 mr-6 rounded-sm" style={{ borderColor: 'var(--theme_1)' }} src={cardList_current.img} />
-                    <div className="flex flex-col">
-                        <p className="text-2xl">{cardList_current.info.title}</p>
-                        <p className="my-2 text-right text-2xl"><span className=" text-amber-300 mr-1 font-bold">{cardList_current.info.fen}</span>分</p>
-                        <p>主演：{cardList_current.info.ul[0]}</p>
-                        <div className="grid grid-cols-2 grid-rows-2 my-2">
-                            <span>类型：{cardList_current.info.ul[1]}</span>
-                            <span>导演：{cardList_current.info.ul[2]}</span>
-                            <span>地区：{cardList_current.info.ul[3]}</span>
-                            <span>年份：{cardList_current.info.ul[4]}</span>
+    useEffect(() => {
+        update({ home: CATEGORY_PLOT });
+    }, []);
+
+    if (cardList_current) {
+        return <div className="p-2">
+            <Icon_bg>
+                <div className="py-4 px-4 h-80 shadow-sm rounded-sm flex text_1">
+                    <div className="h-full flex-1 mr-6 flex">
+                        <img className="h-full max-w-50 min-w-50 mr-6 rounded-sm" style={{ borderColor: 'var(--theme_1)' }} src={cardList_current.img} />
+                        <div className="flex flex-col">
+                            <p className="text-2xl">{cardList_current.info.title}</p>
+                            <p className="my-2 text-right text-2xl"><span className=" text-amber-300 mr-1 font-bold">{cardList_current.info.fen}</span>分</p>
+                            <p>主演：{cardList_current.info.ul[0]}</p>
+                            <div className="grid grid-cols-2 grid-rows-2 my-2">
+                                <span>类型：{cardList_current.info.ul[1]}</span>
+                                <span>导演：{cardList_current.info.ul[2]}</span>
+                                <span>地区：{cardList_current.info.ul[3]}</span>
+                                <span>年份：{cardList_current.info.ul[4]}</span>
+                            </div>
+                            <p className=" overflow-auto">剧情：{cardList_current.info.desc2}</p>
                         </div>
-                        <p className=" overflow-auto">剧情：{cardList_current.info.desc2}</p>
+                    </div>
+                    <div className="grid grid-cols-3 grid-rows-3 gap-1">
+                        {
+                            cardList.map(item => {
+                                return <Link key={item.url} to={`/video/detail/${window.btoa(item.url)}`}>
+                                    <img
+                                        className="h-full max-w-full w-full cursor-pointer"
+                                        onMouseEnter={() => setCardListCurrent(item)}
+                                        style={
+                                            cardList_current == item ?
+                                                { outline: '2px var(--theme_1) solid' } :
+                                                {}
+                                        }
+                                        src={item.img} />
+                                </Link>
+                            })
+                        }
                     </div>
                 </div>
-                <div className="grid grid-cols-3 grid-rows-3 gap-1">
-                    {
-                        cardList.map(item => {
-                            return <Link key={item.url} to={`/video/detail/${window.btoa(item.url)}`}>
-                                <img
-                                    className="h-full max-w-full w-full cursor-pointer"
-                                    onMouseEnter={() => setCardListCurrent(item)}
-                                    style={
-                                        cardList_current == item ?
-                                            { outline: '2px var(--theme_1) solid' } :
-                                            {}
-                                    }
-                                    src={item.img} />
-                            </Link>
-                        })
-                    }
-                </div>
+            </Icon_bg>
+            <Com_TipsLabel label="排行榜" icon="line-md:align-right" />
+            <View_ranking />
+            <Com_TipsLabel label="年度分类" icon="line-md:calendar-twotone" />
+            <div className=" grid gap-1 grid-cols-6">
+                {
+                    grup.map(item => {
+                        return <Com_Link key={item.url} label={item.label} url={`/video/year/${encodeURIComponent(item.url)}`} />
+                    })
+                }
             </div>
-        </Icon_bg>
-        <Com_TipsLabel label="排行榜" icon="line-md:align-right" />
-        <View_ranking />
-        <Com_TipsLabel label="年度分类" icon="line-md:calendar-twotone" />
-        <div className=" grid gap-1 grid-cols-6">
-            {
-                grup.map(item => {
-                    return <Com_Link key={item.url} label={item.label} url={`/video/year/${encodeURIComponent(item.url)}`} />
-                })
-            }
+            <Com_TipsLabel label="连载更新" icon="line-md:beer-twotone-loop" />
+            <div className="grid gap-1 grid-cols-6">
+                {
+                    itemList.map(item => {
+                        return <Com_Item item={item} key={item.url} />
+                    })
+                }
+            </div>
         </div>
-        <Com_TipsLabel label="连载更新" icon="line-md:beer-twotone-loop" />
-        <div className="grid gap-1 grid-cols-6">
-            {
-                itemList.map(item => {
-                    return <Com_Item item={item} key={item.url} />
-                })
-            }
-        </div>
-    </div>
+    }
 }

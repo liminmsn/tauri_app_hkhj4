@@ -1,17 +1,20 @@
 import Net, { NetAPI_Move } from "@/api/Net";
 import Com_Item from "@/components/view/com_Item";
 import Com_link from "@/components/view/com_link";
+import { CATEGORY_DSJ, useCateGoryContext } from "@/hooks/CateGoryProvider";
 import analysis from "@/router/analysis";
 import analysis_net_api_search_move, { data_move_search_onign } from "@/router/analysis/move/analysis_net_api_search_move";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 export default function () {
+    const { update } = useCateGoryContext();
     const [searchParams] = useSearchParams();
     const s = searchParams.get('s');
     const [data, setData] = useState<typeof data_move_search_onign | null>(null);
 
     useEffect(() => {
+        update({ home: CATEGORY_DSJ });
         if (s) {
             !async function () {
                 const res_text = await (await new Net(String(NetAPI_Move.Search).concat(`&wd=${s}`), import.meta.env['VITE_URL_MOVE']).post()).text();
