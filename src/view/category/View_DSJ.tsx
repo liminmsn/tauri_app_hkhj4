@@ -1,11 +1,17 @@
 import Com_Item from "@/components/view/com_Item";
 import Com_Link from "@/components/view/com_link";
 import Com_TipsLabel from "@/components/view/com_tipsLabel"
+import { CATEGORY_DSJ, useCateGoryContext } from "@/hooks/CateGoryProvider";
 import { data_move_home_onign } from "@/router/analysis/move/analysis_net_api_move";
+import { useEffect } from "react";
 import { useLoaderData } from "react-router-dom"
 
 export default function () {
     const { cardList, grup } = useLoaderData<typeof data_move_home_onign>();
+    const { update } = useCateGoryContext();
+    useEffect(() => {
+        update({ home: CATEGORY_DSJ });
+    }, []);
 
     return <div className="p-2 pt-0">
         <Com_TipsLabel label="年度分类" icon="line-md:calendar-twotone" />

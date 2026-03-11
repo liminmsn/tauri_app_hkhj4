@@ -10,10 +10,17 @@ import { categoryHomePath } from "./hooks/CateGoryProvider";
 function App() {
   const local = useLocation();
   const navigate = useNavigate();
+
   useEffect(() => {
     if (local.pathname == '/') {
       navigate(categoryHomePath());
     }
+
+
+  }, []);
+
+
+  useEffect(() => {
     document.addEventListener('contextmenu', (e) => e.preventDefault());
     GlobalEvent.on('top', scrollTop);
   }, [])

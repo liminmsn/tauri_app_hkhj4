@@ -2,11 +2,11 @@ import Icon_bg from "@/components/icon/icon_bg"
 import Com_Item from "@/components/view/com_Item"
 import Com_Link from "@/components/view/com_link"
 import Com_TipsLabel from "@/components/view/com_tipsLabel"
-import { Link, useLoaderData, useNavigate } from "react-router-dom"
+import { Link, useLoaderData } from "react-router-dom"
 import View_ranking from "./plot/View_ranking"
 import { data_home_onign } from "@/router/analysis/plot/analysis_net_api_plot"
 import { useEffect, useState } from "react"
-import { CATEGORY_DSJ, CATEGORY_PLOT, useCateGoryContext } from "@/hooks/CateGoryProvider"
+import { CATEGORY_PLOT, useCateGoryContext } from "@/hooks/CateGoryProvider"
 
 export default function () {
     const data = useLoaderData<typeof data_home_onign>();
@@ -24,16 +24,16 @@ export default function () {
                     <div className="h-full flex-1 mr-6 flex">
                         <img className="h-full max-w-50 min-w-50 mr-6 rounded-sm" style={{ borderColor: 'var(--theme_1)' }} src={cardList_current.img} />
                         <div className="flex flex-col">
-                            <p className="text-2xl">{cardList_current.info.title}</p>
-                            <p className="my-2 text-right text-2xl"><span className=" text-amber-300 mr-1 font-bold">{cardList_current.info.fen}</span>分</p>
-                            <p>主演：{cardList_current.info.ul[0]}</p>
+                            <p className="text-2xl">{cardList_current.info?.title}</p>
+                            <p className="my-2 text-right text-2xl"><span className=" text-amber-300 mr-1 font-bold">{cardList_current.info?.fen}</span>分</p>
+                            <p>主演：{cardList_current.info?.ul[0]}</p>
                             <div className="grid grid-cols-2 grid-rows-2 my-2">
-                                <span>类型：{cardList_current.info.ul[1]}</span>
-                                <span>导演：{cardList_current.info.ul[2]}</span>
-                                <span>地区：{cardList_current.info.ul[3]}</span>
-                                <span>年份：{cardList_current.info.ul[4]}</span>
+                                <span>类型：{cardList_current.info?.ul[1]}</span>
+                                <span>导演：{cardList_current.info?.ul[2]}</span>
+                                <span>地区：{cardList_current.info?.ul[3]}</span>
+                                <span>年份：{cardList_current.info?.ul[4]}</span>
                             </div>
-                            <p className=" overflow-auto">剧情：{cardList_current.info.desc2}</p>
+                            <p className=" overflow-auto">剧情：{cardList_current.info?.desc2}</p>
                         </div>
                     </div>
                     <div className="grid grid-cols-3 grid-rows-3 gap-1">
@@ -68,7 +68,7 @@ export default function () {
             <Com_TipsLabel label="连载更新" icon="line-md:beer-twotone-loop" />
             <div className="grid gap-1 grid-cols-6">
                 {
-                    itemList.map(item => {
+                    itemList?.map(item => {
                         return <Com_Item item={item} key={item.url} />
                     })
                 }

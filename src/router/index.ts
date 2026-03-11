@@ -64,6 +64,7 @@ export async function analysis_body(url: NetAPI_Plot | string | undefined, analy
         return analysis.init(res_text, analysis_net_api);
     } catch (error) {
         console.log(error);
+        throw redirect("/err")
         // window.location.pathname = "/err";
     }
 }
@@ -108,29 +109,28 @@ const router = createBrowserRouter([
                 path: CATEGORY_PLOT,
                 Component: View_Plot,
                 loader: async () => {
-                    localStorage.setItem(LOCAL_CATEGORY, CATEGORY_PLOT)
-                    return await analysis_body(NetAPI_Plot.Home, getAnalysisFun(categoryHomePath(), "home"))
+                    return await analysis_body(NetAPI_Plot.Home, getAnalysisFun(CATEGORY_PLOT, "home"))
                 }
             },
             {
                 path: CATEGORY_DSJ,
                 Component: View_DSJ,
                 loader: async () => {
-                    return await analysis_body(NetAPI_Move.DSJ, getAnalysisFun(categoryHomePath(), "home"))
+                    return await analysis_body(NetAPI_Move.DSJ, getAnalysisFun(CATEGORY_DSJ, "home"))
                 }
             },
             {
                 path: CATEGORY_MOVE,
                 Component: View_Move,
                 loader: async () => {
-                    return await analysis_body(NetAPI_Move.Home, getAnalysisFun(categoryHomePath(), "home"))
+                    return await analysis_body(NetAPI_Move.Home, getAnalysisFun(CATEGORY_MOVE, "home"))
                 }
             },
             {
                 path: CATEGORY_ZongYi,
                 Component: View_ZhongYi,
                 loader: async () => {
-                    return await analysis_body(NetAPI_Move.ZhongYi, getAnalysisFun(categoryHomePath(), "home"))
+                    return await analysis_body(NetAPI_Move.ZhongYi, getAnalysisFun(CATEGORY_ZongYi, "home"))
                 }
             },
             {
