@@ -30,7 +30,7 @@ export default function ({ item }: propsType) {
         }, 10)}>
             {/* <div className="theme_1 h-1" style={{ backgroundSize: "100% auto", backgroundImage: 'url("/test/bg.svg")' }}></div> */}
             <div className="flex justify-center items-center h-55 lg:h-70 relative overflow-y-hidden theme_0 rounded-sm shadow-sm">
-                <span className="absolute z-2 top-0 left-0 text-sm bg-black/20 px-1 rounded-tl-sm rounded-br-sm backdrop-blur-xs">{item.info}</span>
+                <span className="absolute z-2 top-1 left-0 text-sm scale-90  px-1 rounded-sm  backdrop-blur-sm shadow-sm">{item.info}</span>
                 {
                     isErr ?
                         <div>

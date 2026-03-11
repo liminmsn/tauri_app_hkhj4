@@ -10,19 +10,21 @@ export default function () {
     const { info, playother_1, playother_2, play_list } = data;
 
     if (data) {
-        return <div>
+        return <div className="p-2">
             <div className="relative z-10">
-                <div className="p-2 shadow-sm flex overflow-hidden">
+                <div className="p-2 shadow-sm rounded-md flex overflow-hidden">
                     <div className="absolute left-0 right-0 top-0 bottom-0 -z-1"
                         style={{
+                            filter: "blur(10px)",
                             background: `url(${info.img}),
-                                linear-gradient(45deg, rgba(0,0,0,0.5) 10%, black)
+                                linear-gradient(45deg, rgba(0,0,0,0.0), var(--theme_1)
                                 `,
                             backgroundSize: 'auto 100%',
                             backgroundPosition: 'center',
-                            backgroundBlendMode: 'color-burn',
+                            backgroundBlendMode: 'color',
                         }} ></div>
-                    <div className="flex-1 flex flex-col mr-2">
+                    <img className="inline min-w-50 rounded-sm " style={{ borderColor: 'var(--theme_1)' }} src={info.img} />
+                    <div className="flex-1 flex flex-col ml-4">
                         <p className="text-2xl">{info.title}</p>
                         <p className="my-1 text text-2xl"><span className=" text-amber-300 mr-1 font-bold">{info.pingfen}</span>分</p>
                         {info.desc.filter(val => val.t !== "").map(item => {
@@ -40,10 +42,9 @@ export default function () {
                             </p>
                         })}
                     </div>
-                    <img className="inline min-w-50 rounded-sm " style={{ borderColor: 'var(--theme_1)' }} src={info.img} />
                 </div>
             </div>
-            <div className="p-2">
+            <div className="p-0">
                 {
                     play_list.map((item_gory, idx) => {
                         return <div key={idx}>
