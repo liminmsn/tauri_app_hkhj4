@@ -3,7 +3,7 @@ import { CATEGORY_DSJ, categoryHomePath, useCateGoryContext } from "@/hooks/Cate
 import { analysis_body } from "@/router";
 import analysis_net_api_search_tips_move, { data_move_search_tips_onign } from "@/router/analysis/move/analysis_net_api_search_tips_move";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { useEffect, useState } from "react"
+import { ReactNode, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
 import Com_link from "./view/com_link";
 import { getBGColor } from "@/view/category/plot/View_ranking";
@@ -13,6 +13,10 @@ export default function () {
     const [ipt_focus, setiptFocus] = useState(false);
     const [tips, setTips] = useState<typeof data_move_search_tips_onign | null>(null);
 
+    function onAction(form: FormData) {
+        navigate("/video/search?s=" + form.get('s'));
+    }
+
     useEffect(() => {
         if (ipt_focus) {
             navigate("/video/search");
@@ -20,9 +24,9 @@ export default function () {
         if (!tips) {
             analysis_body(NetAPI_Move.Search, analysis_net_api_search_tips_move, import.meta.env["VITE_URL_MOVE"]).then(setTips)
         }
-    }, [ipt_focus, tips])
+    }, [ipt_focus])
 
-    return <form className="flex z-20" method="GET" action="/video/search">
+    return <form className="flex z-20" action={onAction}>
         <div className="theme_1 flex items-center rounded-sm px-1 text-sm relative">
             <Icon className="scale-90" icon="line-md:search-twotone" width="24" />
             <input className="p-0!" type="text" name="s" placeholder="片名 导演 演员..."

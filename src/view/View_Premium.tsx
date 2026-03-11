@@ -29,7 +29,7 @@ export default function () {
                                 <div className={`p-4 px-8 text-center relative`} >
                                     <div className="text-sm opacity-50 text-balance line-through">原价:{item.price}元</div>
                                     <div className="text-xl font-bold relative">
-                                        <span className="absolute -right-4 -top-1 rotate-12 text-sm theme_0 px-1 scale-80 rounded-sm" style={{ color: 'var(--theme_1)' }}>{item.priceDiscount}折</span>
+                                        <span className="absolute -right-4 -top-1 rotate-12 text-sm theme_0 px-1 scale-80 rounded-sm">{item.priceDiscount}折</span>
                                         <span className="py-1 mr-1">{(Number(item.price) - (Number(item.price) * Number(item.priceDiscount)))}元</span>
                                     </div>
                                     <div className="text-sm">{item.priceLabel}</div>

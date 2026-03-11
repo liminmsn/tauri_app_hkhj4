@@ -34,8 +34,5 @@ export default function (document: Document) {
             })
         }
     })
-    console.log('dom', document);
-
-    console.log(data);
     return data;
 }

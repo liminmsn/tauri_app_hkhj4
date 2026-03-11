@@ -46,9 +46,9 @@ body {
         position: absolute;
         left: 45vw;
         top: 40vh;
-        content: '';
+        content: '🏙️';
         font-size: 10vh;
-        animation: lodingLabel ease-out infinite 1s;
+        /* animation: lodingLabel ease-out infinite 1s; */
     }
 }
 

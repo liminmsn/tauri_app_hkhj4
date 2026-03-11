@@ -22,7 +22,8 @@ export default function ({ item }: propsType) {
         cursor-pointer
         relative
         flex flex-col z-10
-        ${disabled && 'scale-90'}
+        active:scale-98
+        ${disabled && 'scale-95'}
     `}>
         <Link to={`${disabled ? 'javascript:;' : `/video/detail/${window.btoa(item.url)}`}`} onClickCapture={() => setTimeout(() => {
             setDisabled(true)

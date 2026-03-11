@@ -17,6 +17,7 @@ export default function () {
         update({ home: CATEGORY_DSJ });
         if (s) {
             !async function () {
+                setData(null);
                 const res_text = await (await new Net(String(NetAPI_Move.Search).concat(`&wd=${s}`), import.meta.env['VITE_URL_MOVE']).post()).text();
                 setData(analysis.init(res_text, analysis_net_api_search_move));
             }()
