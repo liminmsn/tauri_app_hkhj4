@@ -64,7 +64,7 @@ export async function analysis_body(url: NetAPI_Plot | string | undefined, analy
         return analysis.init(res_text, analysis_net_api);
     } catch (error) {
         console.log(error);
-        window.location.pathname = "/err";
+        // window.location.pathname = "/err";
     }
 }
 

@@ -15,6 +15,9 @@ export const data_home_onign = {
 export default function (dom: Document) {
     const data = data_home_onign;
 
+    console.log('home dom', dom);
+
+
     const grup = dom.querySelectorAll('li[class*="=0"]');
     data.grup = Array.from(grup).map(item => {
         const a = item.children[0];
@@ -23,6 +26,8 @@ export default function (dom: Document) {
             url: a.getAttribute('href') || 'null'
         }
     }) as any;
+
+
     const cardList = dom.querySelector('.channel-silder-cnt')?.children;
     if (cardList) {
         data.cardList = Array.from(cardList).map(li => {
@@ -53,5 +58,8 @@ export default function (dom: Document) {
             }
         });
     }
+
+    console.log(data);
+
     return data;
 }

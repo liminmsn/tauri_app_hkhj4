@@ -41,7 +41,7 @@ export default function () {
                 <ul className="text-sm">
                     <li>
                         <label>主题：
-                            <select className="shouxie" defaultValue={local_theme_config['id']} onChangeCapture={onSelect}>
+                            <select className="shouxie py-1" defaultValue={local_theme_config['id']} onChangeCapture={onSelect}>
                                 {
                                     theme_arr.map((item, idx) => {
                                         return <option key={idx} value={item.id} >{item.label}</option>

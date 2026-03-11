@@ -2,22 +2,22 @@ import Icon_bg from "@/components/icon/icon_bg"
 import Com_Item from "@/components/view/com_Item"
 import Com_Link from "@/components/view/com_link"
 import Com_TipsLabel from "@/components/view/com_tipsLabel"
-import { Link, useLoaderData } from "react-router-dom"
+import { Link, useLoaderData, useNavigate } from "react-router-dom"
 import View_ranking from "./plot/View_ranking"
 import { data_home_onign } from "@/router/analysis/plot/analysis_net_api_plot"
 import { useEffect, useState } from "react"
-import { CATEGORY_PLOT, useCateGoryContext } from "@/hooks/CateGoryProvider"
+import { CATEGORY_DSJ, CATEGORY_PLOT, useCateGoryContext } from "@/hooks/CateGoryProvider"
 
 export default function () {
+    const data = useLoaderData<typeof data_home_onign>();
     const { update } = useCateGoryContext();
-    const { cardList, itemList, grup } = useLoaderData<typeof data_home_onign>();
-    const [cardList_current, setCardListCurrent] = useState(cardList[0]);
-
     useEffect(() => {
         update({ home: CATEGORY_PLOT });
     }, []);
 
-    if (cardList_current) {
+    if (data) {
+        const { cardList, itemList, grup } = data;
+        const [cardList_current, setCardListCurrent] = useState(cardList[0]);
         return <div className="p-2">
             <Icon_bg>
                 <div className="py-4 px-4 h-80 shadow-sm rounded-sm flex text_1">
@@ -75,4 +75,5 @@ export default function () {
             </div>
         </div>
     }
+    return <div className="shouxie">切换其它分类试试？</div>
 }

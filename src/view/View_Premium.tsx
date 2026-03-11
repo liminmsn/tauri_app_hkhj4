@@ -12,7 +12,7 @@ export default function () {
         money: ''
     });
 
-    const [spay_data, setSpayData] = useState<PremiumSpayType | null>({});
+    const [spay_data, setSpayData] = useState<PremiumSpayType | null>(null);
     async function getSpayData() {
         const res = await user_api_premium_spay(pay_data);
         setSpayData(res.data);
@@ -73,14 +73,16 @@ export default function () {
             }
         </div>
         <div className="mb-2">
-            <label>选择你的支付方式：
+            <label className="shouxie`">选择你的支付方式：
                 <div className="flex h-8 justify-center gap-2 mt-2">
                     {
                         ["alipay", "wxpay"].map(url => {
                             return <img className={`${url == pay_data.type ? "opacity-100" : " opacity-50"} h-full`} src={`/pay/${url}.svg`} />
                         })
                     }
-                    <select className="shouxie" value={pay_data.type}
+                    <select className="shouxie"
+                        disabled={select_primume == null}
+                        value={pay_data.type}
                         onChange={(e) => {
                             setPlayData({ ...pay_data, type: e.currentTarget.value as any });
                         }}>

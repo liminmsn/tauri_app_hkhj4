@@ -26,39 +26,33 @@ export default function () {
             });
         }
     }, []);
-    return <div className="shadow-sm bg-black/10 shouxie">
-        <div className="h-2 theme_0"></div>
-        {
-            rank.length > 0 ?
-                <div className="flex justify-center gap-10 p-2">
-                    {
-                        rank.map((item, idx) => {
-                            return <div key={idx}>
-                                <p className="font-bold mb-2">{item.label}</p>
-                                <div className="max-h-60 overflow-y-auto">
-                                    {item.list.map((a, idx_) => {
-                                        return <div key={idx_} className="text-left">
-                                            <Link to={`/video/detail/${window.btoa(a.href)}`}>
-                                                <span
-                                                    className={`inline-block px-2 mr-1 mb-1 text-sm text-center bg-black/20
+    if (rank.length > 0) {
+        return <div className="shadow-sm bg-black/10 shouxie">
+            <div className="h-2 theme_0"></div>
+            <div className="flex justify-center gap-10 p-2">
+                {
+                    rank.map((item, idx) => {
+                        return <div key={idx}>
+                            <p className="font-bold mb-2">{item.label}</p>
+                            <div className="max-h-60 overflow-y-auto">
+                                {item.list.map((a, idx_) => {
+                                    return <div key={idx_} className="text-left">
+                                        <Link to={`/video/detail/${window.btoa(a.href)}`}>
+                                            <span
+                                                className={`inline-block px-2 mr-1 mb-1 text-sm text-center bg-black/20
                                                     rounded-sm ${getBGColor(idx_)}`}>{idx_ + 1}
-                                                </span>
-                                                <span>{a.tit}</span>
-                                                <span className="ml-1 opacity-70">{a.score}</span>
-                                            </Link>
-                                        </div>
-                                    })}
-                                </div>
+                                            </span>
+                                            <span>{a.tit}</span>
+                                            <span className="ml-1 opacity-70">{a.score}</span>
+                                        </Link>
+                                    </div>
+                                })}
                             </div>
-                        })
-                    }
-                </div> :
-                <div>
-                    <div className="flex justify-center items-center p-2 h-60">
-                        <Icon icon={"line-md:beer-twotone-loop"} className="inline" height={30} />
-                    </div>
-                </div>
-        }
-        <div className="h-2 theme_0"></div>
-    </div>
+                        </div>
+                    })
+                }
+            </div>
+            <div className="h-2 theme_0"></div>
+        </div>
+    }
 }
