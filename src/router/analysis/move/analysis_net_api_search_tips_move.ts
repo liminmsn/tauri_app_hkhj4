@@ -10,6 +10,8 @@ export const data_move_search_tips_onign = {
 
 export default function (document: Document) {
     let data = data_move_search_tips_onign;
+    console.log(document);
+    
     data.host_list = Array.from(document.querySelectorAll(".search-dropdown-hot a") || []).map(a => {
         return {
             label: a.getAttribute('title') || '',

@@ -12,12 +12,10 @@ export default function () {
         navigate(val);
     }, [update, navigate]);
 
-    return <div>
-        <select value={value.home} className="ml-1" onChange={onSelect}>
-            <option value={CATEGORY_PLOT}>韩剧NEW</option>
-            <option value={CATEGORY_DSJ}>韩剧</option>
-            <option value={CATEGORY_MOVE}>电影</option>
-            <option value={CATEGORY_ZongYi}>综艺</option>
-        </select>
-    </div>
+    return <select value={value.home} className="ml-1 shouxie" onChange={onSelect}>
+        <option value={CATEGORY_PLOT}>韩剧新</option>
+        <option value={CATEGORY_DSJ}>韩剧</option>
+        <option value={CATEGORY_MOVE}>电影</option>
+        <option value={CATEGORY_ZongYi}>综艺</option>
+    </select>
 }

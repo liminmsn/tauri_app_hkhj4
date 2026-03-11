@@ -20,12 +20,12 @@ export default function () {
         win.isMaximized().then(setIsFull);
         GlobalEvent.on('loding', setLoding)
     }, [])
-    return <div className="theme_0 p-1 flex justify-between shadow-sm drag">
+    return <div className="shouxie theme_0 p-1 flex justify-between shadow-sm drag">
         <div className="flex no_drag">
             <div className=" inline-flex">
                 <img src="/logo.png" className="w-6 mr-1" />
                 <Anim_label>
-                    <span className="font-bold">{app_name}</span>
+                    <span className="font-bold shouxie">{app_name}</span>
                 </Anim_label>
             </div>
             <div className="inline-flex gap-1 ml-1">

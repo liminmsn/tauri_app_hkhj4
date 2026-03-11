@@ -7,6 +7,13 @@
 @import "./select.css";
 @import "./label.css";
 
+@font-face {
+    font-family: "shouxie";
+    src: url("/font/Xim-Sans-Brahmic-3.ttf") format("truetype");
+    font-style: normal;
+    font-display: swap;
+}
+
 @property --rotate_bg {
     syntax: "<percentage>";
     inherits: false;
@@ -43,7 +50,7 @@ body {
         /* background-color: red; */
         font-size: 10vh;
         text-shadow: 0 0 3px var(--theme_1);
-        animation: lodingLabel ease-out infinite 1s;
+        /* animation: lodingLabel ease-out infinite 1s; */
     }
 }
 
@@ -59,6 +66,10 @@ body {
     to {
         content: '🌃';
     }
+}
+
+.shouxie {
+    font-family: 'shouxie';
 }
 
 .label_bg {

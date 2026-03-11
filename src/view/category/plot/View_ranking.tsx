@@ -26,7 +26,7 @@ export default function () {
             });
         }
     }, []);
-    return <div className="shadow-sm bg-black/10">
+    return <div className="shadow-sm bg-black/10 shouxie">
         <div className="h-2 theme_0"></div>
         {
             rank.length > 0 ?

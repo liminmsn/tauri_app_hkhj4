@@ -17,15 +17,17 @@ export default function () {
         if (ipt_focus) {
             navigate("/video/search");
         }
-        if (tips == null) {
+        if (!tips) {
             analysis_body(NetAPI_Move.Search, analysis_net_api_search_tips_move, import.meta.env["VITE_URL_MOVE"]).then(setTips)
         }
-    }, [ipt_focus])
+    }, [ipt_focus, tips])
 
     return <form className="flex z-20" method="GET" action="/video/search">
         <div className="theme_1 flex items-center rounded-sm px-1 text-sm relative">
             <Icon className="scale-90" icon="line-md:search-twotone" width="24" />
             <input className="p-0!" type="text" name="s" placeholder="片名 导演 演员..."
+                required
+                autoComplete="off"
                 onFocus={() => setiptFocus(true)}
                 onBlur={() => setTimeout(() => {
                     setiptFocus(false)

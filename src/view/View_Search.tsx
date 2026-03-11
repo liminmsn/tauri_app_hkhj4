@@ -5,7 +5,7 @@ export default function () {
     const s = searchParams.get('s');
 
     if (s == null) {
-        return <div className="p-1 h-1/2 flex justify-center items-center">
+        return <div className="p-1 h-1/2 flex justify-center items-center shouxie">
             <div className="text-center">
                 <img className="w-20 mx-auto" src="/logo.png" />
                 <h1 className="mt-2 font-bold text-xl">{import.meta.env["VITE_APPNAME"]}</h1>

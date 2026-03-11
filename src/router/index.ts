@@ -1,7 +1,6 @@
 import { createBrowserRouter, redirect } from "react-router-dom";
 import { user_api_premium_list, user_api_userInfo } from "./user_api";
 import Net, { NetAPI_Move, NetAPI_Plot } from "@/api/Net";
-import { toast } from "react-toastify";
 import App from "@/App";
 import View_Year from "@/view/View_Year";
 import View_Detail from "@/view/View_Detail";
@@ -40,31 +39,30 @@ function is_login() {
 }
 
 export async function analysis_body(url: NetAPI_Plot | string | undefined, analysis_net_api: (dom: Document) => any, base_url?: string) {
-    console.log(url);
-
     try {
         let res_text;
         if (base_url) {
             res_text = await (await new Net(url, base_url).get()).text()
-        }
-        switch (categoryHomePath()) {
-            case CATEGORY_DSJ:
-                res_text = await (await new Net(url, import.meta.env['VITE_URL_MOVE']).get()).text()
-                break;
-            case CATEGORY_ZongYi:
-                res_text = await (await new Net(url, import.meta.env['VITE_URL_MOVE']).get()).text()
-                break;
-            case CATEGORY_MOVE:
-                res_text = await (await new Net(url, import.meta.env['VITE_URL_MOVE']).get()).text()
-                break;
-            default:
-                res_text = await (await new Net(url).get()).text()
-                break;
+        } else {
+            switch (categoryHomePath()) {
+                case CATEGORY_DSJ:
+                    res_text = await (await new Net(url, import.meta.env['VITE_URL_MOVE']).get()).text()
+                    break;
+                case CATEGORY_ZongYi:
+                    res_text = await (await new Net(url, import.meta.env['VITE_URL_MOVE']).get()).text()
+                    break;
+                case CATEGORY_MOVE:
+                    res_text = await (await new Net(url, import.meta.env['VITE_URL_MOVE']).get()).text()
+                    break;
+                default:
+                    res_text = await (await new Net(url).get()).text()
+                    break;
+            }
         }
         return analysis.init(res_text, analysis_net_api);
     } catch (error) {
         console.log(error);
-        // window.location.pathname = "/err";
+        window.location.pathname = "/err";
     }
 }
 
