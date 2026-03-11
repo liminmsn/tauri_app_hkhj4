@@ -48,6 +48,11 @@ export default class Net extends Debug {
         this.fetchInit.body = form;
         return this.send();
     }
+    post(body?: any) {
+        this.fetchInit.method = "POST";
+        if (body) this.fetchInit.body = body;
+        return this.send();
+    }
 
     private async send() {
         this.nethook.loding();

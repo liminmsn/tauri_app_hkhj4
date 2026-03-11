@@ -3,7 +3,6 @@ import Com_Link from "@/components/view/com_link";
 import { categoryHomePath } from "@/hooks/CateGoryProvider";
 import { analysis_body, getAnalysisFun } from "@/router";
 import { data_year_onign } from "@/router/analysis/plot/analysis_net_api_plot_year";
-import { Icon } from "@iconify/react/dist/iconify.js";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 

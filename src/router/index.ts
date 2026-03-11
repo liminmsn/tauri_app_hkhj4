@@ -28,6 +28,8 @@ import analysis_net_api_plot_year_move from "./analysis/move/analysis_net_api_pl
 import View_Search from "@/view/View_Search";
 import View_ZhongYi from "@/view/category/View_ZhongYi";
 import View_DSJ from "@/view/category/View_DSJ";
+import View_Search_List from "@/view/View_Search_List";
+import analysis_net_api_search_move, { data_move_search_onign } from "./analysis/move/analysis_net_api_search_move";
 
 /**未登录自动跳转登录 */
 function is_login() {
@@ -138,9 +140,12 @@ const router = createBrowserRouter([
                         Component: View_Search
                     },
                     {
+                        path: 'search_list/:url',
+                        Component: View_Search_List,
+                    },
+                    {
                         path: 'year/:url',
-                        Component: View_Year,
-                        // loader: async ({ params }) => await analysis_body(params['url'], getAnalysisFun(categoryHomePath(), "year"))
+                        Component: View_Year
                     },
                     {
                         path: 'detail/:url',

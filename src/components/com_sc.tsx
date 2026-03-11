@@ -1,5 +1,5 @@
 import { NetAPI_Move } from "@/api/Net";
-import { categoryHomePath, useCateGoryContext } from "@/hooks/CateGoryProvider";
+import { CATEGORY_DSJ, categoryHomePath, useCateGoryContext } from "@/hooks/CateGoryProvider";
 import { analysis_body } from "@/router";
 import analysis_net_api_search_tips_move, { data_move_search_tips_onign } from "@/router/analysis/move/analysis_net_api_search_tips_move";
 import { Icon } from "@iconify/react/dist/iconify.js";
@@ -10,12 +10,14 @@ import { getBGColor } from "@/view/category/plot/View_ranking";
 
 export default function () {
     const navigate = useNavigate();
+    const { update } = useCateGoryContext();
     const [ipt_focus, setiptFocus] = useState(false);
     const [tips, setTips] = useState<typeof data_move_search_tips_onign | null>(null);
 
     useEffect(() => {
         if (ipt_focus) {
             navigate("/video/search");
+            update({ home: CATEGORY_DSJ });
         }
         if (!tips) {
             analysis_body(NetAPI_Move.Search, analysis_net_api_search_tips_move, import.meta.env["VITE_URL_MOVE"]).then(setTips)
