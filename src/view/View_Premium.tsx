@@ -1,25 +1,56 @@
 import Com_card from "@/components/view/com_Card";
-import { PremiumListItem } from "@/router/user_api";
+import { PremiumListItem, PremiumSpay, PremiumSpayType, user_api_premium_spay } from "@/router/user_api";
 import { useState } from "react";
 import { useLoaderData } from "react-router-dom"
 
 export default function () {
     const { data } = useLoaderData<{ data: PremiumListItem[] }>();
     const [select_primume, setSelectPrimume] = useState<PremiumListItem | null>(null);
+    const [pay_data, setPlayData] = useState<PremiumSpay>({
+        type: 'alipay',
+        name: '',
+        money: ''
+    });
+
+    const [spay_data, setSpayData] = useState<PremiumSpayType | null>({});
+    async function getSpayData() {
+        const res = await user_api_premium_spay(pay_data);
+        setSpayData(res.data);
+    };
+
+    if (spay_data) {
+        return <div className="text-center pt-10 shouxie">
+            <div>
+                <span>手机使用</span>
+                <img className="h-10 inline mx-2" src={`/pay/${pay_data.type}.svg`} />
+                <span>扫码完成支付!</span>
+            </div>
+            <img width={150} height={150} className="theme_0 inline my-2" src={spay_data.img} />
+            <div>
+                <label>订单号:</label>
+                <span>{spay_data.trade_no}</span>
+            </div>
+            <div>
+                <label>编码:</label>
+                <span>{spay_data.O_id}</span>
+            </div>
+            <div>
+                <label>消息:</label>
+                <span>{spay_data.msg}</span>
+            </div>
+            <input className="px-8! mt-2 font-bold" type="button" value="返回" onClick={() => setSpayData(null)} />
+        </div>
+    }
+
 
     return <div className="text-center pt-20">
-        {/* <div className="text-sm opacity-40">
-            --
-            <span>微信</span>
-            <span>支付宝</span>
-            --
-        </div> */}
         <div className="my-2 gap-4 flex justify-center cursor-pointer">
             {
                 data && data.map((item, idx) => {
                     return <div key={idx} onClick={() => {
                         if (select_primume == null || select_primume.id != item.id) {
                             setSelectPrimume(item)
+                            setPlayData({ ...pay_data, name: item.priceLabel, money: String((Number(item.price) - (Number(item.price) * Number(item.priceDiscount)))) })
                         } else {
                             setSelectPrimume(null);
                         }
@@ -33,7 +64,7 @@ export default function () {
                                         <span className="py-1 mr-1">{(Number(item.price) - (Number(item.price) * Number(item.priceDiscount)))}元</span>
                                     </div>
                                     <div className="text-sm">{item.priceLabel}</div>
-                                    <div className=" -rotate-45 absolute -right-5 px-6 text-sm font-bold bg-red-500"><span className="pl-4">{item.day}天</span></div>
+                                    <div className=" -rotate-45 absolute -right-5 px-6 text-sm font-bold bg-red-500 shouxie"><span className="pl-4">{item.day}天</span></div>
                                 </div>
                             </Com_card>
                         </div>
@@ -41,6 +72,24 @@ export default function () {
                 })
             }
         </div>
-        <input disabled={select_primume == null} className="px-8! font-bold" type="button" value="订阅" />
+        <div className="mb-2">
+            <label>选择你的支付方式：
+                <div className="flex h-8 justify-center gap-2 mt-2">
+                    {
+                        ["alipay", "wxpay"].map(url => {
+                            return <img className={`${url == pay_data.type ? "opacity-100" : " opacity-50"} h-full`} src={`/pay/${url}.svg`} />
+                        })
+                    }
+                    <select className="shouxie" value={pay_data.type}
+                        onChange={(e) => {
+                            setPlayData({ ...pay_data, type: e.currentTarget.value as any });
+                        }}>
+                        <option value="alipay">支付宝</option>
+                        <option value="wxpay">微信</option>
+                    </select>
+                </div>
+            </label>
+        </div>
+        <input disabled={select_primume == null} className="px-8! font-bold" type="button" value="订阅" onClick={getSpayData} />
     </div>
 }

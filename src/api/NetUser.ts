@@ -15,17 +15,22 @@ export enum NetUserAPI {
     user_info = "/api/user/info",
     /**价格列表 */
     premium_list = "/api/premium/premium_list",
+    premium_pay = "/api/premium/spay",
 }
 
 export default class NetUser extends Debug {
     baseUrl = "/api"
-    private initData: RequestInit = {};
+    private initData: RequestInit & { headers: any } = {
+        headers: {
+            token: ""
+        }
+    };
     constructor(url: NetUserAPI | string = "") {
         super();
         this.baseUrl += url;
         const token = localStorage.getItem("token");
         if (token) {
-            this.initData.headers = { "token": token } as HeadersInit;
+            this.initData.headers["token"] = token;
         }
     }
     protected nethook = {

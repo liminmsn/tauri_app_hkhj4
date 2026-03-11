@@ -48,3 +48,30 @@ export async function user_api_premium_list() {
     const res = await new NetUser(NetUserAPI.premium_list).get().then<PremiumListItem[]>();
     return res;
 }
+
+export type PremiumSpay = {
+    name: string;
+    money: string;
+    type: "alipay" | "wxpay"
+}
+
+export type PremiumSpayType = {
+    code: number;
+    msg: string;
+    trade_no: string;
+    O_id: string;
+    payurl: string;
+    payurl2: string;
+    qrcode: string;
+    img: string;
+}
+/**获取订阅列表信息 */
+export async function user_api_premium_spay(params: PremiumSpay) {
+    const from_data = new FormData();
+    from_data.append("name", params.name);
+    from_data.append("money", params.money);
+    from_data.append("type", params.type);
+    const res = await new NetUser(NetUserAPI.premium_pay).post(from_data).then<string>(true);
+    res.data = JSON.parse(res.data || "");
+    return res as any as Promise<{ code: number, data: PremiumSpayType, msg: string }>;
+}
