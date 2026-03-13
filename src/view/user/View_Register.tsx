@@ -50,10 +50,10 @@ export default function () {
                 <Com_captcha time={60} email={email} />
             }
             <label>性&nbsp;&nbsp;别：
-                <select className="border outline-none" name="gender" defaultValue={0}>
+                <select className="border outline-none" name="gender" defaultValue={2}>
                     <option value={0} label="私密" />
-                    <option value={1} label="男生" />
-                    <option value={2} label="女生" />
+                    <option value={1} label="男" />
+                    <option value={2} label="女" />
                 </select>
             </label>
             <input disabled={disabled} type="submit" value="注册" />

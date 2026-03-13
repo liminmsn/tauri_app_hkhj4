@@ -23,7 +23,7 @@ export default function () {
     return <form className="flex flex-col gap-1.5 px-10 py-4 pb-8" onSubmit={handleSubmit}>
         <p className="text-xl font-bold mb-2">登录</p>
         <label>邮&nbsp;&nbsp;&nbsp;箱：
-            <input className="border outline-none" type="email" name="email" placeholder="12345@qq.com" required />
+            <input className="border outline-none" type="email" name="email" placeholder="hkhj4@qq.com" required />
         </label>
         <label>密&nbsp;&nbsp;&nbsp;码：
             <input className="border outline-none" type="password" name="password" placeholder="******" required />
