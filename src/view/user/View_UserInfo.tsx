@@ -15,9 +15,9 @@ export default function () {
     }
 
     return <form className="flex flex-col gap-1.5 px-20 py-4 pb-8">
-        <div>
+        {/* <div>
             <img className='h-20 w-20 rounded-md' style={{ borderColor: 'var(--theme_0)' }} src={icon} alt="头像" />
-        </div>
+        </div> */}
         <input className="border outline-none" disabled value={data.email} type="email" name="email" required />
         <input className="border outline-none" disabled={disabled} value={data.username} type="text" name="password" required minLength={6} />
         <select className="border outline-none" disabled={disabled} name="gender" defaultValue={data.gender}>
@@ -25,7 +25,7 @@ export default function () {
             <option value={1} label="男生" />
             <option value={2} label="女生" />
         </select>
-        <input className="theme_0" type="button" onClick={() => setDisabled(!disabled)} value={disabled ? "编辑" : "保存"} />
+        {/* <input className="theme_0" type="button" onClick={() => setDisabled(!disabled)} value={disabled ? "编辑" : "保存"} /> */}
         <input className="theme_0" type="button" value="退出登录" onClick={() => exit_login()} />
     </form>
 }
