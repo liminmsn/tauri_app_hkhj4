@@ -1,3 +1,4 @@
+import { categoryHomePath } from "@/hooks/CateGoryProvider";
 import { useMemberContext } from "@/hooks/MemberProvider";
 import { user_api_login } from "@/router/user_api";
 import { useState } from "react";
@@ -18,7 +19,7 @@ export default function () {
             if (res.code == 200) {
                 localStorage.setItem('token', res.data);
                 updateState(() => {
-                    navigate(-1);
+                    navigate(categoryHomePath());
                 });
             }
         });

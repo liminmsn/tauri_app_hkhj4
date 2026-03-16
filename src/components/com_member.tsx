@@ -9,7 +9,7 @@ export default function () {
         return <Link to={"/premium"} title="订阅到期时间">
             <div className="px-2 rounded-sm flex items-center gap-1 number">
                 <Icon icon="ri:alarm-line" width="20" className="cursor-pointer active:scale-95" />
-                <span>{member.expireTime.replace("T", "")}</span>
+                <span>{member.expireTime.replace("T", " ")}</span>
             </div>
         </Link>
     }

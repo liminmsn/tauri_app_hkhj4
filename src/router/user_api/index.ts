@@ -9,7 +9,7 @@ export async function user_api_captcha(email: string) {
 
 /**用户登录 */
 export async function user_api_login(from: FormData) {
-    const res = await new NetUser(NetUserAPI.login).post(from).then<any>();
+    const res = await new NetUser(NetUserAPI.login).post(from).then<any>(true);
     return res;
 }
 

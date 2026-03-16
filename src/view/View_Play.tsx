@@ -109,7 +109,7 @@ export default function Player() {
                 <img className="w-20 mx-auto" src="/logo.png" />
                 <h1 className="mt-2 font-bold text-xl">{import.meta.env["VITE_APPNAME"]}</h1>
                 <h2 className="opacity-45 mb-2">海量 韩剧 电影 综艺 等你来发现</h2>
-                <h2 className="opacity-45 mb-2">需要Premium即可无广告观看所有韩剧</h2>
+                <h2 className="opacity-45 mb-2">Premium可无广告观看所有韩剧</h2>
                 <Com_link url="/premium" label="订阅Premium" />
             </div>
         </div>
