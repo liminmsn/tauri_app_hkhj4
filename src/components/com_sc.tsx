@@ -1,9 +1,8 @@
 import { NetAPI_Move } from "@/api/Net";
-import { CATEGORY_DSJ, categoryHomePath, useCateGoryContext } from "@/hooks/CateGoryProvider";
 import { analysis_body } from "@/router";
 import analysis_net_api_search_tips_move, { data_move_search_tips_onign } from "@/router/analysis/move/analysis_net_api_search_tips_move";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { ReactNode, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
 import Com_link from "./view/com_link";
 import { getBGColor } from "@/view/category/plot/View_ranking";

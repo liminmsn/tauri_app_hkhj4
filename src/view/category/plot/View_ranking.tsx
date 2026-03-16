@@ -1,7 +1,6 @@
 import { NetAPI_Plot } from "@/api/Net";
 import { analysis_body } from "@/router";
 import analysis_net_api_ranking, { data_rank_onign } from "@/router/analysis/plot/analysis_net_api_plot_ranking";
-import { Icon } from "@iconify/react/dist/iconify.js";
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom";
 

@@ -1,4 +1,3 @@
-import Icon_bg from "@/components/icon/icon_bg";
 import Com_Item from "@/components/view/com_Item";
 import Com_Link from "@/components/view/com_link";
 import Com_TipsLabel from "@/components/view/com_tipsLabel";

@@ -23,7 +23,7 @@ export default function (dom: Document) {
         desc: Array.from(head?.querySelector('.info.fn-clear')?.querySelectorAll('.nyzhuy') || []).map(item => {
             return {
                 o: item.querySelector('dt')?.textContent || '',
-                t: item.querySelector('dd')?.textContent.replaceAll(',', '、') || ''
+                t: item.querySelector('dd')?.textContent?.replaceAll(',', '、') || ''
             }
         })
     }

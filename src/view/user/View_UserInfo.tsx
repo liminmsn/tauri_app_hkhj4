@@ -1,12 +1,11 @@
-import icon from '@/assets/react.svg';
 import { categoryHomePath } from '@/hooks/CateGoryProvider';
 import { UserInfoType } from '@/router/user_api';
 import { useState } from 'react';
-import { useLoaderData, useNavigate } from 'react-router-dom';
+import { useLoaderData } from 'react-router-dom';
 export default function () {
     // const navigate = useNavigate();
     const { data } = useLoaderData<{ data: UserInfoType }>();
-    const [disabled, setDisabled] = useState(true);
+    const [disabled] = useState(true);
 
     function exit_login() {
         localStorage.removeItem('token');

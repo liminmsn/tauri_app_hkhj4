@@ -7,7 +7,7 @@ export default function ({ email, time }: { email: string, time: number }) {
 
     function getCaptcha() {
         if (!disabled) {
-            user_api_captcha(email).then(res => {
+            user_api_captcha(email).then(_res => {
                 setDisabled(true);
                 setLabel("");
                 const ss = time;

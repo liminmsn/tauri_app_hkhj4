@@ -21,7 +21,7 @@ import analysis_net_api_plot from "./analysis/plot/analysis_net_api_plot";
 import analysis_net_api_plot_year from "./analysis/plot/analysis_net_api_plot_year";
 import analysis_net_api_plot_detail from "./analysis/plot/analysis_net_api_plot_detail";
 import analysis_net_api_plot_play from "./analysis/plot/analysis_net_api_plot_play";
-import { categoryHomePath, CATEGORY_PLOT, CATEGORY_MOVE, CATEGORY_ZongYi, CATEGORY_DSJ, LOCAL_CATEGORY } from "@/hooks/CateGoryProvider";
+import { categoryHomePath, CATEGORY_PLOT, CATEGORY_MOVE, CATEGORY_ZongYi, CATEGORY_DSJ } from "@/hooks/CateGoryProvider";
 import analysis_net_api_plot_detail_move from "./analysis/move/analysis_net_api_plot_detail_move";
 import analysis_net_api_plot_play_move from "./analysis/move/analysis_net_api_plot_play_move";
 import analysis_net_api_plot_year_move from "./analysis/move/analysis_net_api_plot_year_move";
@@ -29,8 +29,6 @@ import View_Search from "@/view/View_Search";
 import View_ZhongYi from "@/view/category/View_ZhongYi";
 import View_DSJ from "@/view/category/View_DSJ";
 import View_Search_List from "@/view/View_Search_List";
-import analysis_net_api_search_move, { data_move_search_onign } from "./analysis/move/analysis_net_api_search_move";
-import GlobalEvent from "@/tools/GlobalEvent";
 
 /**登录判断 */
 export function is_login() {

@@ -3,7 +3,7 @@ export const data_detail_onign = {
         title: '',
         img: '',
         pingfen: '',
-        desc: [{ o: 'a', t: 'b' }]
+        desc: [{ o: '', t: '' }]
     },
     desc: '',
     play_list: [[{ label: '', url: '' }]],
@@ -24,30 +24,30 @@ export default function (dom: Document) {
     data.info = {
         title: a_img?.getAttribute('title') || '',
         img: a_img?.querySelector('img')?.getAttribute('src') || '',
-        pingfen: detail?.querySelector('#rating')?.textContent.replaceAll('：', ':') || '未知',
+        pingfen: detail?.querySelector('#rating')?.textContent?.replaceAll('：', ':') || '未知',
         desc: [
             {
-                o: lbal_arr[0].children[0].textContent,
+                o: lbal_arr[0].children[0].textContent || '',
                 t: lbal_arr[0].childNodes[1].textContent || ''
             },
             {
-                o: lbal_arr[1].children[0].textContent,
-                t: lbal_arr[1].children[1].textContent
+                o: lbal_arr[1].children[0].textContent || '',
+                t: lbal_arr[1].children[1].textContent || ''
             },
             {
-                o: lbal_arr[2].children[0].textContent,
-                t: lbal_arr[2].children[1].textContent
+                o: lbal_arr[2].children[0].textContent || '',
+                t: lbal_arr[2].children[1].textContent || ''
             },
             {
-                o: lbal_arr[3].children[0].textContent,
-                t: Array.from(lbal_arr[3].children).filter((_item, idx) => { return idx > 0 }).map(item => item.textContent).join("、")
+                o: lbal_arr[3].children[0].textContent || '',
+                t: Array.from(lbal_arr[3].children).filter((_item, idx) => { return idx > 0 }).map(item => item.textContent).join("、") || ''
             },
             {
-                o: lbal_arr[4].children[0].textContent,
+                o: lbal_arr[4].children[0].textContent || '',
                 t: lbal_arr[4].childNodes[2].textContent || ''
             },
             {
-                o: lbal_arr[5].children[0].textContent,
+                o: lbal_arr[5].children[0].textContent || '',
                 t: lbal_arr[5].childNodes[2].textContent || ''
             },
             {
@@ -91,7 +91,7 @@ export default function (dom: Document) {
             label: item.querySelector('.myui-vodlist__thumb')?.getAttribute('title') || '',
             url: item.querySelector('.myui-vodlist__thumb')?.getAttribute('href') || '',
             img: match_url && String("https:").concat(match_url[1]) || '',
-            info: item.querySelector('.pic-tag.pic-tag-top')?.textContent.replaceAll(" ", "").replace("\n", "") || '',
+            info: item.querySelector('.pic-tag.pic-tag-top')?.textContent?.replaceAll(" ", "")?.replace("\n", "") || '',
             info2: Array.from(item.querySelector('.myui-vodlist__detail')?.children[1].children || []).map(item => item.textContent).join("、")
         }
     })
@@ -102,7 +102,7 @@ export default function (dom: Document) {
             label: item.querySelector('.myui-vodlist__thumb')?.getAttribute('title') || '',
             url: item.querySelector('.myui-vodlist__thumb')?.getAttribute('href') || '',
             img: match_url && String("https:").concat(match_url[1]) || '',
-            info: item.querySelector('.pic-tag.pic-tag-top')?.textContent.replaceAll(" ", "").replace("\n", "") || '',
+            info: item.querySelector('.pic-tag.pic-tag-top')?.textContent?.replaceAll(" ", "")?.replace("\n", "") || '',
             info2: Array.from(item.querySelector('.myui-vodlist__detail')?.children[1].children || []).map(item => item.textContent).join("、")
         }
     })
