@@ -4,13 +4,14 @@ import { UserInfoType } from '@/router/user_api';
 import { useState } from 'react';
 import { useLoaderData, useNavigate } from 'react-router-dom';
 export default function () {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const { data } = useLoaderData<{ data: UserInfoType }>();
     const [disabled, setDisabled] = useState(true);
 
     function exit_login() {
         localStorage.removeItem('token');
-        navigate(categoryHomePath());
+        window.location.replace(categoryHomePath());
+        // navigate(categoryHomePath());
     }
 
     return <form className="flex flex-col gap-1.5 px-20 py-4 pb-8">

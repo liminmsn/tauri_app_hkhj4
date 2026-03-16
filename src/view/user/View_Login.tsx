@@ -1,8 +1,10 @@
+import { useMemberContext } from "@/hooks/MemberProvider";
 import { user_api_login } from "@/router/user_api";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function () {
+    const { updateState } = useMemberContext();
     const navigate = useNavigate();  // 👈 加这个
     const [disabled, setDisabled] = useState(false);
 
@@ -15,7 +17,9 @@ export default function () {
             setDisabled(false);
             if (res.code == 200) {
                 localStorage.setItem('token', res.data);
-                navigate("/user/userInfo");   // 👈 用这个
+                updateState(() => {
+                    navigate(-1);
+                });
             }
         });
     }

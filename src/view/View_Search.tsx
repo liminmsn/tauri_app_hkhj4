@@ -42,15 +42,18 @@ export default function () {
                     })
                 }
             </div>
-            <div className="flex justify-center gap-2 my-2">
-                {
-                    data.page.map(item => {
-                        return <div className="flex w-10 text-center" key={item.label}>
-                            <Com_link disabled={item.disabled} label={` ${item.label} `} url={`/video/search_list/${encodeURIComponent(item.url)}`} />
-                        </div>
-                    })
-                }
-            </div>
+            {
+                data.page.length > 1 &&
+                <div className="flex justify-center gap-2 my-2">
+                    {
+                        data.page.map(item => {
+                            return <div className="flex w-10 text-center" key={item.label}>
+                                <Com_link disabled={item.disabled} label={` ${item.label} `} url={`/video/search_list/${encodeURIComponent(item.url)}`} />
+                            </div>
+                        })
+                    }
+                </div>
+            }
         </div>
     }
 

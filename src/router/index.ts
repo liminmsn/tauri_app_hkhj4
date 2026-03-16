@@ -30,9 +30,10 @@ import View_ZhongYi from "@/view/category/View_ZhongYi";
 import View_DSJ from "@/view/category/View_DSJ";
 import View_Search_List from "@/view/View_Search_List";
 import analysis_net_api_search_move, { data_move_search_onign } from "./analysis/move/analysis_net_api_search_move";
+import GlobalEvent from "@/tools/GlobalEvent";
 
-/**未登录自动跳转登录 */
-function is_login() {
+/**登录判断 */
+export function is_login() {
     const token = localStorage.getItem('token');
     if (!token) {
         return false;
@@ -195,9 +196,8 @@ const router = createBrowserRouter([
                         Component: View_Login,
                         loader: async () => {
                             if (is_login()) {
-                                throw redirect("/user/userInfo");
+                                throw redirect("userInfo");
                             }
-                            // return await user_api_captcha();
                         }
                     },
                     {

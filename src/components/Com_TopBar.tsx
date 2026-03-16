@@ -7,6 +7,7 @@ import Anim_label from "./anim/anim_label";
 import Com_category from "./com_category";
 import Com_sc from "./com_sc";
 import { useCateGoryContext } from "@/hooks/CateGoryProvider";
+import Com_member from "./com_member";
 const app_name = import.meta.env['VITE_APPNAME'] as string;
 
 const win = window.getCurrentWindow();
@@ -15,10 +16,10 @@ export default function () {
     const { value: category } = useCateGoryContext();
     const [loding, setLoding] = useState(false);
     const [isfull, setIsFull] = useState(false);
-
+    
     useEffect(() => {
         win.isMaximized().then(setIsFull);
-        GlobalEvent.on('loding', setLoding)
+        GlobalEvent.on('loding', setLoding);
     }, [])
     return <div className="shouxie theme_0 p-1 flex justify-between shadow-sm drag">
         <div className="flex no_drag">
@@ -29,7 +30,7 @@ export default function () {
                 </Anim_label>
             </div>
             <div className="inline-flex gap-1 ml-1">
-                <Icon onClick={() => navigate(category.home)} icon="line-md:home-md-twotone" width="24" className="cursor-pointer active:scale-95" />
+                <Icon onClick={() => navigate(category.home)} icon="ri:ghost-smile-fill" width="24" className="cursor-pointer active:scale-95" />
                 <Icon onClick={() => navigate(-1)} icon="line-md:arrow-left-circle-twotone" width="24" className="cursor-pointer active:scale-95" />
                 <Icon onClick={() => location.reload()} icon="line-md:round-360" width="24" className="cursor-pointer active:scale-95" />
                 <Com_category />
@@ -41,8 +42,8 @@ export default function () {
         </div>
         <div className="flex select-none no_drag">
             <div className="inline-flex gap-1 mr-2">
-                <Link to={"/premium"}> <Icon icon="ri:bit-coin-fill" width="24" className="cursor-pointer active:scale-95" /></Link>
-                <Link to={"/user"}> <Icon icon="material-symbols:account-circle" width="24" className="cursor-pointer active:scale-95" /></Link>
+                <Com_member />
+                <Link to={"/user"}> <Icon icon="ri:account-circle-fill" width="24" className="cursor-pointer active:scale-95" /></Link>
                 <Link to={"/setting"}> <Icon icon="line-md:cog-loop" width="24" className="cursor-pointer active:scale-95" /></Link>
             </div>
             <div className="inline-flex">

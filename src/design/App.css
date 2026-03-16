@@ -8,10 +8,26 @@
 @import "./label.css";
 
 @font-face {
+    font-family: 'shuzi';
+    src: url('/font/Digital-7MonoItalic.woff2') format('woff2');
+    font-weight: bolder;
+    font-display: swap;
+}
+
+@font-face {
     font-family: "shouxie";
     src: url("/font/Xim-Sans-Brahmic-3.ttf") format("truetype");
-    font-style: normal;
     font-display: swap;
+}
+
+.shouxie {
+    font-family: 'shouxie';
+}
+
+.number {
+    background-color: var(--theme_1);
+    color: var(--theme_0);
+    font-family: 'shuzi', monospace;
 }
 
 @property --rotate_bg {
@@ -64,10 +80,6 @@ body {
     to {
         content: '🌃';
     }
-}
-
-.shouxie {
-    font-family: 'shouxie';
 }
 
 .label_bg {

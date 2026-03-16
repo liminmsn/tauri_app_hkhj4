@@ -32,10 +32,10 @@ export default function () {
                 <input className="border outline-none" type="email" name="email" placeholder="hkhj4@qq.com" required onInput={(e) => setEmail((e.target as any)['value'])} />
             </label>
             <label>密&nbsp;&nbsp;码：
-                <input className="border outline-none" type="password" name="password" placeholder="******" required />
+                <input className="border outline-none" type="password" name="password" placeholder="新密码" required />
             </label>
             <label>验&nbsp;&nbsp;证：
-                <input className="border outline-none" type="password" name="password_enter" placeholder="再次输入密码" required />
+                <input className="border outline-none" type="password" name="password_enter" placeholder="再次输入新密码" required />
             </label>
             {
                 email &&

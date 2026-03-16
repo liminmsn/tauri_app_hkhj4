@@ -15,7 +15,10 @@ export enum NetUserAPI {
     user_info = "/api/user/info",
     /**价格列表 */
     premium_list = "/api/premium/premium_list",
+    /**支付二维码 */
     premium_pay = "/api/premium/spay",
+    /**订阅时长 */
+    premium_member = "/api/premium/get_member"
 }
 
 export default class NetUser extends Debug {
@@ -25,7 +28,7 @@ export default class NetUser extends Debug {
             token: ""
         }
     };
-    constructor(url: NetUserAPI | string = "") {
+    constructor(url: NetUserAPI | string = "", private redirect = true) {
         super();
         this.baseUrl += url;
         const token = localStorage.getItem("token");
@@ -62,7 +65,7 @@ export default class NetUser extends Debug {
             const res = await (await fetch(this.baseUrl, this.initData)).json() as { code: number, msg: string, data: T };
             this.nethook.lodingEnd();
             //token失效
-            if (res.code == -1) {
+            if (res.code == -1 && this.redirect) {
                 localStorage.removeItem('token');
                 window.location.pathname = '/user';
             }

@@ -52,6 +52,7 @@ export async function user_api_premium_list() {
 export type PremiumSpay = {
     name: string;
     money: string;
+    premiumId: number;
     type: "alipay" | "wxpay"
 }
 
@@ -71,7 +72,21 @@ export async function user_api_premium_spay(params: PremiumSpay) {
     from_data.append("name", params.name);
     from_data.append("money", params.money);
     from_data.append("type", params.type);
-    const res = await new NetUser(NetUserAPI.premium_pay).post(from_data).then<string>(true);
-    res.data = JSON.parse(res.data || "");
+    from_data.append("premium_id", String(params.premiumId));
+    const res = await new NetUser(NetUserAPI.premium_pay).post(from_data).then<PremiumSpayType>(true);
+    // res.data = JSON.parse(res.data || "");
     return res as any as Promise<{ code: number, data: PremiumSpayType, msg: string }>;
+}
+
+export type MemberType = {
+    email: string;
+    premiumType: number;
+    expireTime: string;
+    createTime: string;
+    updateTime: string;
+}
+/**获取订阅时长 */
+export async function user_api_get_member() {
+    const res = await new NetUser(NetUserAPI.premium_member, false).get().then<MemberType>();
+    return res.data;
 }
