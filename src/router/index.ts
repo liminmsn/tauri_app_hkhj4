@@ -29,6 +29,7 @@ import View_Search from "@/view/View_Search";
 import View_ZhongYi from "@/view/category/View_ZhongYi";
 import View_DSJ from "@/view/category/View_DSJ";
 import View_Search_List from "@/view/View_Search_List";
+import View_Message from "@/view/View_Message";
 
 /**登录判断 */
 export function is_login() {
@@ -218,6 +219,10 @@ const router = createBrowserRouter([
                         Component: View_ForgotPaswd
                     }
                 ]
+            },
+            {
+                path: '/message',
+                Component: View_Message
             },
             {
                 path: '/setting',

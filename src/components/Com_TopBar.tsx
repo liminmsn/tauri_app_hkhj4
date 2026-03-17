@@ -43,6 +43,7 @@ export default function () {
         <div className="flex select-none no_drag">
             <div className="inline-flex gap-1 mr-2">
                 <Com_member />
+                <Link to={"/message"} title="问题反馈"> <Icon icon="ri:message-3-fill" width="24" className="cursor-pointer active:scale-95" /></Link>
                 <Link to={"/user"}> <Icon icon="ri:account-circle-fill" width="24" className="cursor-pointer active:scale-95" /></Link>
                 <Link to={"/setting"}> <Icon icon="line-md:cog-loop" width="24" className="cursor-pointer active:scale-95" /></Link>
             </div>

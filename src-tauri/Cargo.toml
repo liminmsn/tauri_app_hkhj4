@@ -1,8 +1,8 @@
 [package]
-name = "tauri_app_hkhj4"
-version = "0.1.0"
+name = "好看韩剧4"
+version = "1.1.0"
 description = "A Tauri App"
-authors = ["you"]
+authors = ["1772081518@qq.com"]
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html

@@ -18,7 +18,9 @@ export enum NetUserAPI {
     /**支付二维码 */
     premium_pay = "/api/premium/spay",
     /**订阅时长 */
-    premium_member = "/api/premium/get_member"
+    premium_member = "/api/premium/get_member",
+    /**提交反馈 */
+    feed_back_submit = "/api/feed_back/create"
 }
 
 export default class NetUser extends Debug {

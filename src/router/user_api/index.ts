@@ -90,3 +90,8 @@ export async function user_api_get_member() {
     const res = await new NetUser(NetUserAPI.premium_member, false).get().then<MemberType>();
     return res.data;
 }
+/**创建用户反馈 */
+export async function user_api_feed_back_submit(form: FormData) {
+    const res = await new NetUser(NetUserAPI.feed_back_submit, true).get(form).then();
+    return res;
+}
