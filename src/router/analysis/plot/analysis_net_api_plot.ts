@@ -15,7 +15,7 @@ export const data_home_onign = {
 export default function (dom: Document) {
     const data = data_home_onign;
 
-    console.log('home dom', dom);
+    // console.log('home dom', dom);
 
 
     const grup = dom.querySelectorAll('li[class*="=0"]');
@@ -59,7 +59,7 @@ export default function (dom: Document) {
         });
     }
 
-    console.log(data);
+    // console.log(data);
 
     return data;
 }

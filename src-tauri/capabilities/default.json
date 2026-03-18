@@ -12,6 +12,17 @@
     "core:window:allow-toggle-maximize",
     "core:window:allow-close",
     {
+      "identifier": "http:allow-fetch",
+      "allow": [
+        {
+          "url": "http://127.0.0.1:8080/*"
+        },
+        {
+          "url": "http://8.148.250.179:8080/*"
+        }
+      ]
+    },
+    {
       "identifier": "http:default",
       "allow": [
         {
@@ -19,12 +30,6 @@
         },
         {
           "url": "https://www.thanju.com*"
-        },
-        {
-          "url": "http://127.0.0.1:8080/*"
-        },
-        {
-          "url": "http://8.148.250.179:8080/*"
         }
       ]
     }

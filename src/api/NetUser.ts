@@ -1,5 +1,6 @@
 import Debug from "@/tools/Debug";
 import GlobalEvent from "@/tools/GlobalEvent";
+import { fetch } from "@tauri-apps/plugin-http";
 import { toast } from "react-toastify";
 
 export enum NetUserAPI {
@@ -24,7 +25,7 @@ export enum NetUserAPI {
 }
 
 export default class NetUser extends Debug {
-    baseUrl = "/api"
+    baseUrl = import.meta.env["VITE_URL_USER"];
     private initData: RequestInit & { headers: any } = {
         headers: {
             token: ""

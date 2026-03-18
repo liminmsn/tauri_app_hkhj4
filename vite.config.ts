@@ -29,15 +29,7 @@ export default defineConfig(async ({ mode }) => {
         : undefined,
       watch: {
         ignored: ["**/src-tauri/**"],
-      },
-      proxy: {
-        '/api': {
-          target: env['VITE_URL_USER'],
-          // target: "http://8.148.250.179:8080",
-          changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/api/, ''),
-        }
       }
-    },
+    }
   }
 });
