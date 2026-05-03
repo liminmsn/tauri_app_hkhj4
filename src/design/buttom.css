@@ -1,0 +1,12 @@
+button{
+    --val:0.25rem;
+    cursor: pointer;
+    padding-inline: var(--val);
+    padding-block: var(--val);
+    background-color: var(--theme_1);
+    border-radius: var(--val);
+    transition: all ease 0.25ms;
+    &:active{
+        transform: scale(0.95);
+    }
+}

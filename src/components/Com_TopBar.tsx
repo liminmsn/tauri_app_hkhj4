@@ -34,7 +34,7 @@ export default function () {
                 <Icon onClick={() => navigate(-1)} icon="line-md:arrow-left-circle-twotone" width="24" className="cursor-pointer active:scale-95" />
                 <Icon onClick={() => location.reload()} icon="line-md:round-360" width="24" className="cursor-pointer active:scale-95" />
                 <Com_category />
-                <Com_sc />
+                {/* <Com_sc /> */}
                 <div>
                     {loding && <Icon icon="line-md:beer-alt-twotone-loop" width="24" />}
                 </div>
@@ -43,7 +43,7 @@ export default function () {
         <div className="flex select-none no_drag">
             <div className="inline-flex gap-1 mr-2">
                 <Com_member />
-                <Link to={"/message"} title="问题反馈"> <Icon icon="ri:message-3-fill" width="24" className="cursor-pointer active:scale-95" /></Link>
+                <Link to={"/message"} title="问题反馈"> <Icon icon="ri:edit-line" width="24" className="cursor-pointer active:scale-95" /></Link>
                 <Link to={"/user"}> <Icon icon="ri:account-circle-fill" width="24" className="cursor-pointer active:scale-95" /></Link>
                 <Link to={"/setting"}> <Icon icon="line-md:cog-loop" width="24" className="cursor-pointer active:scale-95" /></Link>
             </div>

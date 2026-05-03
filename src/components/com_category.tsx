@@ -12,7 +12,7 @@ export default function () {
         navigate(val);
     }, [update, navigate]);
 
-    return <select value={value.home} className="ml-1 shouxie" onChange={onSelect}>
+    return <select disabled value={value.home} className="ml-1 shouxie" onChange={onSelect}>
         <option value={CATEGORY_PLOT}>推荐</option>
         <option value={CATEGORY_DSJ}>韩剧</option>
         <option value={CATEGORY_MOVE}>电影</option>

@@ -39,6 +39,10 @@ export default function () {
             <div className="text-left p-2 px-8">
                 <div className="font-bold mb-2 text-xl">设置</div>
                 <ul className="text-sm">
+                    <li className="mb-1">
+                        <label>缓存：</label>
+                        <button className="shouxie">修复未知错误</button>
+                    </li>
                     <li>
                         <label>主题：
                             <select className="shouxie py-1" defaultValue={local_theme_config['id']} onChangeCapture={onSelect}>
